@@ -6,7 +6,6 @@ import ReviewSection from "../components/courseDetail/ReviewSection";
 import PageTemplate from "../components/global/PageTemplate";
 import { getSampleImage } from "../lib/styles/utils";
 
-const NAVER_CP_CLIENT_ID = process.env.REACT_APP_NAVER_CP_CLIENT_ID;
 const photo = getSampleImage();
 
 const course = {
@@ -49,6 +48,12 @@ const course = {
             review: "추워진 날씨에 어울리는 차와 함께 기분 좋은 힐링되는 토요일이었어요 좋은 수업 감사합니다 🙂 테스트 테스트 테스트 테스트",
         },
     ],
+    place: {
+        name: "월하보이",
+        address: "서울 종로구 북촌로5길 26, 1층",
+        lat: 37.3595704,
+        lng: 127.105399,
+    },
 };
 
 function CourseDetail() {
@@ -61,31 +66,31 @@ function CourseDetail() {
         rating,
         reviewCnt,
         reviews,
+        place,
     } = course;
 
     return (
-        <>
-            <script
-                type="text/javascript"
-                src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${NAVER_CP_CLIENT_ID}`}
-            ></script>
-            <PageTemplate>
-                <Banner />
-                <HeadSection
-                    title={title}
-                    region={region}
-                    price={price}
-                    hostInfo={hostInfo}
-                />
-                <ReviewSection
-                    rating={rating}
-                    reviewCnt={reviewCnt}
-                    reviews={reviews}
-                />
-                <DescriptionSection />
-                <MapSection />
-            </PageTemplate>
-        </>
+        <PageTemplate>
+            <Banner />
+            <HeadSection
+                title={title}
+                region={region}
+                price={price}
+                hostInfo={hostInfo}
+            />
+            <ReviewSection
+                rating={rating}
+                reviewCnt={reviewCnt}
+                reviews={reviews}
+            />
+            <DescriptionSection />
+            <MapSection
+                lat={place.lat}
+                lng={place.lng}
+                name={place.name}
+                address={place.address}
+            />
+        </PageTemplate>
     );
 }
 
