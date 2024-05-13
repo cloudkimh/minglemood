@@ -1,9 +1,7 @@
 import styled from "styled-components";
-import media from "../lib/styles/media";
-import palette from "../lib/styles/palette";
-import { withOpacity } from "../lib/styles/utils";
-
-import { ReactComponent as CloseIco } from "../static/icons/global/ico_close_2.svg";
+import media from "../../../lib/styles/media";
+import palette from "../../../lib/styles/palette";
+import { withOpacity } from "../../../lib/styles/utils";
 
 export const BasicModalContainer = styled.div`
     width: 530px;
@@ -43,20 +41,4 @@ export const ModalContainer = styled.div`
 export const ModalCloseBtn = styled.button`
     display: block;
     margin-left: auto;
-`;
-
-export const ModalCloseIco = styled(CloseIco)`
-    width: 32px;
-    height: 32px;
-
-    &:hover {
-        .ico-close-2-path {
-            fill: ${palette.purple0};
-        }
-    }
-
-    ${media.mobile} {
-        width: 24px;
-        height: 24px;
-    }
 `;

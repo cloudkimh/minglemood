@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 
-type UseDisappearingAnimationTimeParams = {
+type UseDisappearingAnimationParams = {
     startDisapperingAnime: boolean;
     animationTime: number;
 };
-type UseDisappearingAnimationTimeReturns = [boolean, boolean];
+type UseDisappearingAnimationReturns = [boolean, boolean];
 
-function useDisappearingAnimationTime(
-    params: UseDisappearingAnimationTimeParams
-): UseDisappearingAnimationTimeReturns {
+function useDisappearingAnimation(
+    params: UseDisappearingAnimationParams
+): UseDisappearingAnimationReturns {
     const { startDisapperingAnime, animationTime } = params;
     const [isAnimationStarted, setIsAnimationStarted] = useState(false);
     const [disappearingAnimeFinished, setDisappearingAnimeFinished] =
@@ -44,4 +44,4 @@ function useDisappearingAnimationTime(
     return [disappearingAnimeFinished, isAnimationStarted];
 }
 
-export default useDisappearingAnimationTime;
+export default useDisappearingAnimation;

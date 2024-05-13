@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
-import media from "../lib/styles/media";
-import palette from "../lib/styles/palette";
-import { withOpacity } from "../lib/styles/utils";
+import media from "../../../lib/styles/media";
+import palette from "../../../lib/styles/palette";
+import { withOpacity } from "../../../lib/styles/utils";
 
 export const BasicModalContainer = styled.div`
     width: 530px;

@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import styled from "styled-components";
-import media from "../../lib/styles/media";
+import media from "../../../lib/styles/media";
 
 export type ModalHeaderProp = {
     left?: ReactNode;

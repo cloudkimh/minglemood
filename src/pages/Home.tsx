@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import PageTemplate from "../components/global/PageTemplate";
+import PageTemplate from "../components/common/PageTemplate";
 import Banner from "../components/home/Banner";
 import Categories from "../components/home/Categories";
 import LocalList from "../components/home/LocalList";

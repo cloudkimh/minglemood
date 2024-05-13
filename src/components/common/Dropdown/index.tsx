@@ -3,9 +3,8 @@ import Trigger from "./Trigger";
 import Menu from "./Menu";
 import styled from "styled-components";
 import media from "../../../lib/styles/media";
-import ModalTypeMenu from "./ModalTypeMenu";
 
-export type DropdownxxProps = {
+export type DropdownProps = {
     className?: string;
     render: (params: {
         openMenu: () => void;
@@ -14,7 +13,7 @@ export type DropdownxxProps = {
     }) => ReactNode;
 };
 
-function Dropdownxx(props: DropdownxxProps) {
+function Dropdown(props: DropdownProps) {
     const { className, render } = props;
     const [isOpened, setIsOpened] = useState(false);
 
@@ -40,8 +39,7 @@ const Block = styled.div`
     }
 `;
 
-Dropdownxx.Trigger = Trigger;
-Dropdownxx.Menu = Menu;
-Dropdownxx.ModalTypeMenu = ModalTypeMenu;
+Dropdown.Trigger = Trigger;
+Dropdown.Menu = Menu;
 
-export default Dropdownxx;
+export default Dropdown;

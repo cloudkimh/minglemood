@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
-import media from "../lib/styles/media";
-import palette from "../lib/styles/palette";
+import media from "../../../lib/styles/media";
+import palette from "../../../lib/styles/palette";
 
 import searchIco from "../static/icons/global/ico_find.svg";
 import checkIco from "../static/icons/global/ico_check.svg";

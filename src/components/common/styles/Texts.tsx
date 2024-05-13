@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
-import media from "../lib/styles/media";
-import palette from "../lib/styles/palette";
-import fonts from "../lib/styles/fonts";
+import media from "../../../lib/styles/media";
+import palette from "../../../lib/styles/palette";
+import fonts from "../../../lib/styles/fonts";
 
 import errorIco from "../static/icons/global/ico_alert_circle.svg";
 

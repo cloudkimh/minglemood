@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import palette from "../../../../lib/styles/palette";
 import { multiLineEllipsis } from "../../../../lib/styles/utils";
-import { HorizontalBar } from "../../../../styles/Common";
+import { HorizontalBar } from "../../../common/styles/Common";
 
 export type HeaderProps = {
     region: string;

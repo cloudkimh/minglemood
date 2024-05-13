@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import CourseInfo from "./CourseInfo";
 import HostInfo from "./HostInfo";
-import { HorizontalBar } from "../../../styles/Common";
+import { HorizontalBar } from "../../common/styles/Common";
 import palette from "../../../lib/styles/palette";
 import Banner from "./Banner";
 

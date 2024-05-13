@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import palette from "../../../lib/styles/palette";
-import { VerticalBar } from "../../../styles/Common";
+import { VerticalBar } from "../../common/styles/Common";
 
 export type HostInfoProps = {
     hostInfo: {

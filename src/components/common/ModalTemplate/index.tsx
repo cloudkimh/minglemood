@@ -1,24 +1,26 @@
 import { ReactNode, useEffect, useRef } from "react";
 import styled, { css, keyframes } from "styled-components";
-import useDisapearingAnime from "../../lib/hooks/useDisapearingAnime";
-import { fadeIn, fadeOut } from "../../lib/styles/animations";
-import media from "../../lib/styles/media";
-import palette from "../../lib/styles/palette";
-import { withOpacity } from "../../lib/styles/utils";
-import { setPreventScroll } from "../../lib/utils";
+import { fadeIn, fadeOut } from "../../../lib/styles/animations";
+import media from "../../../lib/styles/media";
+import palette from "../../../lib/styles/palette";
+import { withOpacity } from "../../../lib/styles/utils";
+import { setPreventScroll } from "../../../lib/utils";
+import useDisappearingAnimation from "../../../lib/hooks/useDisappearingAnimation";
 
 export type ModalTemplateProp = {
     onClick?: Function;
-    className?: string;
-    children: ReactNode;
     isVisible: boolean;
+    children: ReactNode;
+    className?: string;
 };
 
 function ModalTemplate(props: ModalTemplateProp) {
     const { className, isVisible, children, onClick } = props;
     const modalWrapperRef = useRef<HTMLDivElement>(null);
-    const { isAnimated, isDisapeared } = useDisapearingAnime(isVisible, 200);
-    const closed = !isAnimated && !isVisible && isDisapeared;
+    const [disappearingAnimeFinished] = useDisappearingAnimation({
+        startDisapperingAnime: !isVisible,
+        animationTime: 200,
+    });
 
     const lockScroll = () => {
         setPreventScroll(true);
@@ -52,7 +54,7 @@ function ModalTemplate(props: ModalTemplateProp) {
         };
     }, []);
 
-    if (closed) return null;
+    if (disappearingAnimeFinished) return null;
 
     return (
         <Block className={className}>

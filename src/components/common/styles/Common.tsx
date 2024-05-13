@@ -1,9 +1,13 @@
 import styled, { css } from "styled-components";
-import Loader from "../components/common/Loader";
-import { fadeIn, fadeInFromBottom, fadeOut } from "../lib/styles/animations";
-import media from "../lib/styles/media";
-import palette from "../lib/styles/palette";
-import { withOpacity } from "../lib/styles/utils";
+import Loader from "../Loader";
+import {
+    fadeIn,
+    fadeInFromBottom,
+    fadeOut,
+} from "../../../lib/styles/animations";
+import media from "../../../lib/styles/media";
+import palette from "../../../lib/styles/palette";
+import { withOpacity } from "../../../lib/styles/utils";
 
 export const Avatar = styled.img`
     width: 44px;

@@ -1,5 +1,5 @@
 import OutsideClickHandler from "react-outside-click-handler";
-import useDisapearingAnime from "../../../lib/hooks/useDisapearingAnime";
+import useDisappearingAnimationTime from "../../../lib/hooks/useDisappearingAnimation";
 
 export type MenuProps = {
     children: React.ReactNode;
@@ -11,12 +11,12 @@ export type MenuProps = {
 
 function Menu(props: MenuProps) {
     const { children, isOpened, className, animationTime, onOutside } = props;
-    const { isDisapeared } = useDisapearingAnime(
-        isOpened,
-        animationTime ?? 150
-    );
+    const [disappearingAnimeFinished] = useDisappearingAnimationTime({
+        startDisapperingAnime: !isOpened,
+        animationTime: animationTime ?? 150,
+    });
 
-    if (isDisapeared) {
+    if (disappearingAnimeFinished) {
         return null;
     }
 

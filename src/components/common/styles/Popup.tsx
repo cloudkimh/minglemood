@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
-import fonts from "../lib/styles/fonts";
-import media from "../lib/styles/media";
-import palette from "../lib/styles/palette";
+import fonts from "../../../lib/styles/fonts";
+import media from "../../../lib/styles/media";
+import palette from "../../../lib/styles/palette";
 
 export const PopupContentContainer = styled.div<{ responsive: boolean }>`
     ${(props) =>

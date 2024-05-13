@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import media from "../lib/styles/media";
-import palette from "../lib/styles/palette";
+import media from "../../../lib/styles/media";
+import palette from "../../../lib/styles/palette";
 
 export const PageBullet = styled.button<{ idx: number; curIdx: number }>`
     display: inline-block;
