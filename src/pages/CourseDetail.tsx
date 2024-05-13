@@ -1,8 +1,9 @@
-import Banner from "../components/courseDetail/Banner";
+import BottomActionBar from "../components/courseDetail/BottomActionBar";
 import DescriptionSection from "../components/courseDetail/DescriptionSection";
 import HeadSection from "../components/courseDetail/HeadSection";
 import MapSection from "../components/courseDetail/MapSection";
 import ReviewSection from "../components/courseDetail/ReviewSection";
+import TagsSection from "../components/courseDetail/TagsSection";
 import PageTemplate from "../components/global/PageTemplate";
 import { getSampleImage } from "../lib/styles/utils";
 
@@ -13,6 +14,8 @@ const course = {
     title: "오감으로 맛보고 느끼는 힐링, 월하보이 차와 함께 계절 다회",
     region: "부산",
     price: 50000,
+    isLiked: true,
+    likeCnt: 281,
     hostInfo: {
         avatar: photo,
         alias: "월하보이",
@@ -62,6 +65,8 @@ function CourseDetail() {
         title,
         region,
         price,
+        isLiked,
+        likeCnt,
         hostInfo,
         rating,
         reviewCnt,
@@ -71,8 +76,8 @@ function CourseDetail() {
 
     return (
         <PageTemplate>
-            <Banner />
             <HeadSection
+                banners={banners}
                 title={title}
                 region={region}
                 price={price}
@@ -90,6 +95,8 @@ function CourseDetail() {
                 name={place.name}
                 address={place.address}
             />
+            <TagsSection tags={[]} />
+            <BottomActionBar isLiked={isLiked} likeCnt={likeCnt} />
         </PageTemplate>
     );
 }
