@@ -11,12 +11,12 @@ export type MenuProps = {
 
 function Menu(props: MenuProps) {
     const { children, isOpened, className, animationTime, onOutside } = props;
-    const [disappearingAnimeFinished] = useDisappearingAnimationTime({
-        startDisapperingAnime: !isOpened,
+    const [disappeared] = useDisappearingAnimationTime({
+        startDisappearing: !isOpened,
         animationTime: animationTime ?? 150,
     });
 
-    if (disappearingAnimeFinished) {
+    if (disappeared) {
         return null;
     }
 

@@ -1,20 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 
 type UseDisappearingAnimationParams = {
-    startDisapperingAnime: boolean;
+    startDisappearing: boolean;
     animationTime: number;
 };
-type UseDisappearingAnimationReturns = [boolean, boolean];
+
+type UseDisappearingAnimationReturns = [boolean];
 
 function useDisappearingAnimation(
     params: UseDisappearingAnimationParams
 ): UseDisappearingAnimationReturns {
-    const { startDisapperingAnime, animationTime } = params;
-    const [isAnimationStarted, setIsAnimationStarted] = useState(false);
-    const [disappearingAnimeFinished, setDisappearingAnimeFinished] =
-        useState(false);
+    const { startDisappearing, animationTime } = params;
+    const [isAnimated, setIsAnimated] = useState(false);
+    const [isAnimationFinished, setIsAnimationFinished] = useState(true);
     const timeoutId = useRef<ReturnType<typeof setTimeout> | null>(null);
     const isMounted = useRef(false);
+    const totallyDisappeared =
+        !isAnimated && startDisappearing && isAnimationFinished;
 
     useEffect(() => {
         if (!isMounted.current) {
@@ -22,26 +24,26 @@ function useDisappearingAnimation(
             return;
         }
 
-        setIsAnimationStarted(true);
+        setIsAnimated(true);
         timeoutId.current = setTimeout(() => {
-            setIsAnimationStarted(false);
+            setIsAnimated(false);
 
-            if (startDisapperingAnime) {
-                setDisappearingAnimeFinished(true);
+            if (startDisappearing) {
+                setIsAnimationFinished(true);
             }
         }, animationTime);
 
-        if (!startDisapperingAnime) {
-            setDisappearingAnimeFinished(false);
+        if (!startDisappearing) {
+            setIsAnimationFinished(false);
         }
 
         return () => {
             if (!timeoutId.current) return;
             clearTimeout(timeoutId.current);
         };
-    }, [startDisapperingAnime]);
+    }, [startDisappearing]);
 
-    return [disappearingAnimeFinished, isAnimationStarted];
+    return [totallyDisappeared];
 }
 
 export default useDisappearingAnimation;

@@ -1,24 +1,23 @@
 import { ReactNode, useEffect, useRef } from "react";
 import styled, { css, keyframes } from "styled-components";
 import { fadeIn, fadeOut } from "../../../lib/styles/animations";
-import media from "../../../lib/styles/media";
 import palette from "../../../lib/styles/palette";
 import { withOpacity } from "../../../lib/styles/utils";
 import { setPreventScroll } from "../../../lib/utils";
 import useDisappearingAnimation from "../../../lib/hooks/useDisappearingAnimation";
 
 export type ModalTemplateProp = {
-    onClick?: Function;
-    isVisible: boolean;
+    handleLayerClick?: Function;
+    visible: boolean;
     children: ReactNode;
     className?: string;
 };
 
 function ModalTemplate(props: ModalTemplateProp) {
-    const { className, isVisible, children, onClick } = props;
+    const { className, visible, children, handleLayerClick } = props;
     const modalWrapperRef = useRef<HTMLDivElement>(null);
-    const [disappearingAnimeFinished] = useDisappearingAnimation({
-        startDisapperingAnime: !isVisible,
+    const [disappeared] = useDisappearingAnimation({
+        startDisappearing: !visible,
         animationTime: 200,
     });
 
@@ -31,13 +30,13 @@ function ModalTemplate(props: ModalTemplateProp) {
     };
 
     const onLayerClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (onClick && e.target === e.currentTarget) {
-            onClick();
+        if (handleLayerClick && e.target === e.currentTarget) {
+            handleLayerClick();
         }
     };
 
     useEffect(() => {
-        if (isVisible) {
+        if (visible) {
             lockScroll();
 
             if (modalWrapperRef.current) {
@@ -46,7 +45,7 @@ function ModalTemplate(props: ModalTemplateProp) {
         } else {
             unlockScroll();
         }
-    }, [isVisible]);
+    }, [visible]);
 
     useEffect(() => {
         return () => {
@@ -54,14 +53,14 @@ function ModalTemplate(props: ModalTemplateProp) {
         };
     }, []);
 
-    if (disappearingAnimeFinished) return null;
+    if (disappeared) return null;
 
     return (
         <Block className={className}>
-            <BackgroundLayer isVisible={isVisible} />
+            <BackgroundLayer visible={visible} />
             <ModalWrapper
                 ref={modalWrapperRef}
-                isVisible={isVisible}
+                visible={visible}
                 onClick={onLayerClick}
             >
                 {children}
@@ -73,103 +72,73 @@ function ModalTemplate(props: ModalTemplateProp) {
 const Block = styled.div`
     position: fixed;
     top: 0;
-    left: 0;
+    max-width: 768px;
     width: 100%;
     height: 100%;
     z-index: 1000;
 `;
 
-const BackgroundLayer = styled.div<{ isVisible: boolean }>`
+const BackgroundLayer = styled.div<{ visible: boolean }>`
     position: fixed;
     top: 0;
-    left: 0;
+    max-width: 768px;
     width: 100%;
     height: 100%;
     z-index: -1;
     opacity: 0;
     background-color: ${palette.black0}${withOpacity(0.85)};
 
-    ${({ isVisible }) => {
-        if (isVisible) {
+    ${({ visible }) => {
+        if (visible) {
             return css`
-                animation: ${fadeIn} 0.2s ease-in-out forwards;
+                animation: ${fadeIn} 0.25s ease-in-out forwards;
             `;
-        } else if (!isVisible) {
+        } else {
             return css`
-                animation: ${fadeOut} 0.2s ease-in-out forwards;
+                animation: ${fadeOut} 0.25s ease-in-out forwards;
             `;
         }
     }}
 `;
 
-const up = keyframes`
+const appear = keyframes`
     0% {
-        transform: translateY(200px);
-        opacity: 0;
+        transform: translateY(100vh);
     }
     100% {
         transform: translateY(0);
-        opacity: 100%;
-    }
-
-    ${media.mobile} {
-        0% {
-            transform: translateY(100px);
-            opacity: 0;
-        }
-        100% {
-            transform: translateY(0);
-            opacity: 100%;
-        }
     }
 `;
 
-const down = keyframes`
+const disappear = keyframes`
     0% {
         transform: translateY(0);
-        opacity: 100%;
     }
     100% {
-        transform: translateY(300px);
-        opacity: 0;
-    }
-
-    ${media.mobile} {
-        0% {
-            transform: translateY(0);
-            opacity: 100%;
-        }
-        100% {
-            transform: translateY(200px);
-            opacity: 0;
-        }
+        transform: translateY(100vh);
     }
 `;
 
-const ModalWrapper = styled.div<{ isVisible: boolean }>`
+const ModalWrapper = styled.div<{ visible: boolean }>`
     display: grid;
-    place-items: center;
+    place-items: end;
     grid-template-columns: 100%;
     grid-template-rows: 100%;
     width: 100%;
     height: 100%;
-    padding: 48px 0;
+    padding-top: 60px;
 
-    ${({ isVisible }) => {
-        if (isVisible) {
+    ${({ visible }) => {
+        if (visible) {
             return css`
-                animation: ${up} 0.2s ease-in-out forwards;
+                animation: ${appear} 0.25s ease-in-out forwards;
             `;
-        } else if (!isVisible) {
+        } else {
             return css`
-                animation: ${down} 0.2s ease-in-out forwards;
+                animation: ${disappear} 0.25s ease-in-out forwards;
             `;
         }
     }}
-
-    ${media.mobile} {
-        padding: 60px 0 0;
-    }
 `;
 
 ModalTemplate.BackgroundLayer = BackgroundLayer;
