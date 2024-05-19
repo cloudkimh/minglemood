@@ -18,8 +18,8 @@ function Banner(props: BannerProps) {
                     onMove={(_, i) => {}}
                 >
                     <BannerSwiperTrack>
-                        {banners.map((aBanner) => (
-                            <BannerSlide>
+                        {banners.map((aBanner, i) => (
+                            <BannerSlide key={`banner-${i}`}>
                                 <SlideImg path={aBanner} alt="배너 이미지" />
                             </BannerSlide>
                         ))}

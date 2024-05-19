@@ -6,6 +6,9 @@ import ReviewSection from "../components/courseDetail/ReviewSection";
 import TagsSection from "../components/courseDetail/TagsSection";
 import PageTemplate from "../components/common/PageTemplate";
 import { getSampleImage } from "../lib/styles/utils";
+import OptionModal from "../components/courseDetail/OptionModal";
+import useToggle from "../lib/hooks/useToggle";
+import { toast } from "react-toastify";
 
 const photo = getSampleImage();
 
@@ -15,13 +18,13 @@ const course = {
     region: "부산",
     price: 50000,
     isLiked: true,
-    likeCnt: 281,
+    likes: 281,
     hostInfo: {
         avatar: photo,
         alias: "월하보이",
         courseCnt: 5,
         reviewCnt: 13,
-        likeCnt: 28,
+        likes: 28,
     },
     rating: 4.8,
     reviewCnt: 127,
@@ -66,13 +69,22 @@ function CourseDetail() {
         region,
         price,
         isLiked,
-        likeCnt,
+        likes,
         hostInfo,
         rating,
         reviewCnt,
         reviews,
         place,
     } = course;
+    const [optionModalOpened, toggleOptionModalOpened] = useToggle(false);
+
+    const onSubmit = () => {
+        toggleOptionModalOpened();
+    };
+
+    const handleToggleLike = () => {
+        // like async
+    };
 
     return (
         <PageTemplate>
@@ -96,7 +108,18 @@ function CourseDetail() {
                 address={place.address}
             />
             <TagsSection tags={[]} />
-            <BottomActionBar isLiked={isLiked} likeCnt={likeCnt} />
+            <BottomActionBar
+                isLiked={isLiked}
+                likes={likes}
+                onSubmit={onSubmit}
+            />
+            <OptionModal
+                visible={optionModalOpened}
+                handleClose={toggleOptionModalOpened}
+                isLiked={isLiked}
+                likes={likes}
+                handleToggleLike={handleToggleLike}
+            />
         </PageTemplate>
     );
 }

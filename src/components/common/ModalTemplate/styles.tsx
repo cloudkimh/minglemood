@@ -5,7 +5,6 @@ export const ModalBody = styled.div`
     width: 100%;
     height: 100%;
     max-height: 100%;
-    overflow-y: auto;
     background-color: ${palette.white0};
     border-radius: 20px;
     border-bottom-left-radius: 0;

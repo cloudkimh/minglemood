@@ -1,45 +1,36 @@
-import { ReactNode, useState } from "react";
-import Trigger from "./Trigger";
+import { ReactNode } from "react";
 import Menu from "./Menu";
-import styled from "styled-components";
-import media from "../../../lib/styles/media";
+import useToggle from "../../../lib/hooks/useToggle";
 
 export type DropdownProps = {
-    className?: string;
     render: (params: {
+        toggleMenu: () => void;
         openMenu: () => void;
         closeMenu: () => void;
         isOpened: boolean;
     }) => ReactNode;
+    className?: string;
 };
 
 function Dropdown(props: DropdownProps) {
     const { className, render } = props;
-    const [isOpened, setIsOpened] = useState(false);
+    const [isOpened, toggleIsOpened, setIsOpened] = useToggle(false);
 
     const openMenu = () => setIsOpened(true);
     const closeMenu = () => setIsOpened(false);
 
     return (
-        <Block className={className}>
+        <div className={className}>
             {render({
+                toggleMenu: toggleIsOpened,
                 openMenu,
                 closeMenu,
                 isOpened,
             })}
-        </Block>
+        </div>
     );
 }
 
-const Block = styled.div`
-    position: relative;
-
-    ${media.mobile} {
-        position: static;
-    }
-`;
-
-Dropdown.Trigger = Trigger;
 Dropdown.Menu = Menu;
 
 export default Dropdown;

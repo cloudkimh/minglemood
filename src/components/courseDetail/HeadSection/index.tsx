@@ -15,7 +15,7 @@ export type HeadSectionProps = {
         alias: string;
         courseCnt: number;
         reviewCnt: number;
-        likeCnt: number;
+        likes: number;
     };
 };
 

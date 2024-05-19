@@ -4,20 +4,21 @@ import palette from "../../lib/styles/palette";
 
 export type BottomActionBarProps = {
     isLiked: boolean;
-    likeCnt: number;
+    likes: number;
+    onSubmit: () => void;
 };
 
 function BottomActionBar(props: BottomActionBarProps) {
-    const { isLiked, likeCnt } = props;
+    const { isLiked, likes, onSubmit } = props;
 
     return (
         <FixedBarTemplate locate="bottom">
             <Block>
                 <LikeBtn>
                     <LikeIco />
-                    <LikeCnt>{likeCnt}</LikeCnt>
+                    <Likes>{likes}</Likes>
                 </LikeBtn>
-                <SubmitBtn>참여하기</SubmitBtn>
+                <SubmitBtn onClick={onSubmit}>참여하기</SubmitBtn>
             </Block>
         </FixedBarTemplate>
     );
@@ -44,7 +45,7 @@ const LikeIco = styled.span`
     background-color: ${palette.red2};
 `;
 
-const LikeCnt = styled.p`
+const Likes = styled.p`
     font-size: 12px;
     text-align: center;
 `;

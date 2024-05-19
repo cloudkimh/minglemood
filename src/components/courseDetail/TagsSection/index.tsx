@@ -20,8 +20,12 @@ function TagsSection(props: TagsSectionProps) {
                     <SectionTitle>포함 사항</SectionTitle>
                 </StyledSectionHeader>
                 <TagGrid>
-                    {tagList1.map((aTag) => (
-                        <StyledRoundTag color="green" text={aTag} />
+                    {tagList1.map((aTag, i) => (
+                        <StyledRoundTag
+                            key={`tag-${i}`}
+                            color="green"
+                            text={aTag}
+                        />
                     ))}
                 </TagGrid>
             </SectionRow>
@@ -30,8 +34,12 @@ function TagsSection(props: TagsSectionProps) {
                     <SectionTitle>비포함 사항</SectionTitle>
                 </StyledSectionHeader>
                 <TagGrid>
-                    {tagList2.map((aTag) => (
-                        <StyledRoundTag color="red" text={aTag} />
+                    {tagList2.map((aTag, i) => (
+                        <StyledRoundTag
+                            key={`tag-${i}`}
+                            color="red"
+                            text={aTag}
+                        />
                     ))}
                 </TagGrid>
             </SectionRow>
@@ -40,8 +48,8 @@ function TagsSection(props: TagsSectionProps) {
                     <SectionTitle>준비물</SectionTitle>
                 </StyledSectionHeader>
                 <TagGrid>
-                    {tagList3.map((aTag) => (
-                        <StyledRoundTag text={aTag} />
+                    {tagList3.map((aTag, i) => (
+                        <StyledRoundTag key={`tag-${i}`} text={aTag} />
                     ))}
                 </TagGrid>
             </SectionRow>

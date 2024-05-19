@@ -20,7 +20,7 @@ const palette = {
     blue2: "#D5ECFC",
     /* white */
     white0: "#ffffff", // trueWhite
-    white1: "#fcf6f6fa", // white
+    white1: "#fafafa", // white
     white2: "#f4f4f4", // creamWhite
     white3: "#f5f5f5",
     /* gray */

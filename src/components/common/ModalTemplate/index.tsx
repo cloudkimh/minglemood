@@ -91,11 +91,11 @@ const BackgroundLayer = styled.div<{ visible: boolean }>`
     ${({ visible }) => {
         if (visible) {
             return css`
-                animation: ${fadeIn} 0.25s ease-in-out forwards;
+                animation: ${fadeIn} 0.3s ease-in-out forwards;
             `;
         } else {
             return css`
-                animation: ${fadeOut} 0.25s ease-in-out forwards;
+                animation: ${fadeOut} 0.3s ease-in-out forwards;
             `;
         }
     }}
@@ -126,16 +126,15 @@ const ModalWrapper = styled.div<{ visible: boolean }>`
     grid-template-rows: 100%;
     width: 100%;
     height: 100%;
-    padding-top: 60px;
 
     ${({ visible }) => {
         if (visible) {
             return css`
-                animation: ${appear} 0.25s ease-in-out forwards;
+                animation: ${appear} 0.3s ease-in-out forwards;
             `;
         } else {
             return css`
-                animation: ${disappear} 0.25s ease-in-out forwards;
+                animation: ${disappear} 0.3s ease-in-out forwards;
             `;
         }
     }}
