@@ -3,6 +3,7 @@ import Thumbnail from "./Thumbnail";
 import Header from "./Header";
 
 export type CoursePostProps = {
+    id: number;
     thumbnail: string;
     region: string;
     title: string;
@@ -11,12 +12,13 @@ export type CoursePostProps = {
 };
 
 function CoursePost(props: CoursePostProps) {
-    const { thumbnail, region, title, rating, price } = props;
+    const { id, thumbnail, region, title, rating, price } = props;
 
     return (
         <Block>
-            <Thumbnail thumbnail={thumbnail} />
+            <Thumbnail id={id} thumbnail={thumbnail} />
             <Header
+                id={id}
                 region={region}
                 title={title}
                 rating={rating}

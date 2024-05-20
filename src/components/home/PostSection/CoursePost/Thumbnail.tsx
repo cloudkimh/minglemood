@@ -1,16 +1,20 @@
 import styled from "styled-components";
 import palette from "../../../../lib/styles/palette";
+import { Link } from "react-router-dom";
 
 export type ThumbnailProps = {
+    id: number;
     thumbnail: string;
 };
 
 function Thumbnail(props: ThumbnailProps) {
-    const { thumbnail } = props;
+    const { id, thumbnail } = props;
 
     return (
         <Block>
-            <ThumbnailImage src={thumbnail} alt="코스 썸네일" />
+            <Link to={`course/${id}`}>
+                <ThumbnailImage src={thumbnail} alt="코스 썸네일" />
+            </Link>
             <Button />
         </Block>
     );

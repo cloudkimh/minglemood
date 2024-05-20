@@ -15,6 +15,7 @@ const banners = Array(4).fill(photo);
 
 const bestPosts = [
     {
+        id: 1,
         thumbnail: photo,
         region: "부산",
         title: "테스트 제목 테스트 제목 테스트 제목 테스트 제목 ",
@@ -22,6 +23,7 @@ const bestPosts = [
         price: 33000,
     },
     {
+        id: 2,
         thumbnail: photo,
         region: "서울",
         title: "테스트 제목 테스트 제목 테스트 제목 테스트 제목 ",
@@ -29,6 +31,7 @@ const bestPosts = [
         price: 33000,
     },
     {
+        id: 3,
         thumbnail: photo,
         region: "대구",
         title: "테스트 제목 테스트 제목 테스트 제목 테스트 제목 ",
@@ -36,6 +39,7 @@ const bestPosts = [
         price: 33000,
     },
     {
+        id: 4,
         thumbnail: photo,
         region: "울산",
         title: "테스트 제목 테스트 제목 테스트 제목 테스트 제목 ",
