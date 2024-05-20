@@ -1,13 +1,16 @@
 import styled from "styled-components";
 import palette from "../../../lib/styles/palette";
 import Avatar from "./Avatar";
+import { Link } from "react-router-dom";
 
 export type GnbProps = {};
 
 function Gnb(props: GnbProps) {
     return (
         <Block>
-            <Logo>밍글무드</Logo>
+            <Link to="/">
+                <Logo>밍글무드</Logo>
+            </Link>
             <Container>
                 <SearchBtn></SearchBtn>
                 <Avatar />
