@@ -8,7 +8,6 @@ import PageTemplate from "../components/common/PageTemplate";
 import { getSampleImage } from "../lib/styles/utils";
 import OptionModal from "../components/courseDetail/OptionModal";
 import useToggle from "../lib/hooks/useToggle";
-import { toast } from "react-toastify";
 
 const photo = getSampleImage();
 

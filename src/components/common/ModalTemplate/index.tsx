@@ -18,7 +18,7 @@ function ModalTemplate(props: ModalTemplateProp) {
     const modalWrapperRef = useRef<HTMLDivElement>(null);
     const [disappeared] = useDisappearingAnimation({
         startDisappearing: !visible,
-        animationTime: 200,
+        animationTime: 300,
     });
 
     const lockScroll = () => {
