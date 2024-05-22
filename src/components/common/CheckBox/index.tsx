@@ -1,38 +1,42 @@
-import React from "react";
+import React, { InputHTMLAttributes, forwardRef } from "react";
+import styled from "styled-components";
 
-export type CheckBoxProps = {
-    onChange: React.ChangeEventHandler;
-    value: number;
+export type CheckBoxProps = Omit<
+    InputHTMLAttributes<HTMLInputElement>,
+    "id" | "name" | "value"
+> & {
     name: string;
-    checked: boolean;
+    value: string | number;
     id?: string;
     label?: string;
     className?: string;
 };
 
-function CheckBox(props: CheckBoxProps) {
-    const { onChange, value, label, id, name, checked, className } = props;
+function CheckBox(props: CheckBoxProps, ref: React.Ref<HTMLInputElement>) {
+    const { name, label, id, value, className, ...htmlProps } = props;
 
     return (
-        <div
-            className={className}
-            tabIndex={-1}
-            aria-label={`${checked ? "선택 됨" : ""} ${label} 체크박스`}
-        >
+        <Block className={className}>
             <input
+                ref={ref}
                 type="checkbox"
                 value={value}
                 id={id ?? `${name}-${value}`}
-                name={name}
-                checked={checked}
-                onChange={onChange}
-                aria-hidden="true"
+                {...htmlProps}
             />
             <label htmlFor={id ?? `${name}-${value}`}>
                 {label ? label : ""}
             </label>
-        </div>
+        </Block>
     );
 }
 
-export default CheckBox;
+const Block = styled.div`
+    input {
+        position: absolute;
+        left: -9999px;
+        opacity: 0;
+    }
+`;
+
+export default forwardRef(CheckBox);

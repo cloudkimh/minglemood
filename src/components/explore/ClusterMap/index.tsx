@@ -10,12 +10,11 @@ import clusterMarker4 from "../../../assets/img/cluster-marker-4.png";
 import clusterMarker5 from "../../../assets/img/cluster-marker-5.png";
 
 export type ClusterMapProps = {
-    lat: number;
-    lng: number;
+    centerLocation: { lat: number; lng: number };
 };
 
 function ClusterMap(props: ClusterMapProps) {
-    const { lat, lng } = props;
+    const { centerLocation } = props;
     const mapRef = useRef(null);
     const mapInstance = useRef<naver.maps.Map | null>(null);
 
@@ -23,7 +22,10 @@ function ClusterMap(props: ClusterMapProps) {
         if (mapRef.current) {
             const map = new naver.maps.Map(mapRef.current, {
                 zoom: 15,
-                center: new naver.maps.LatLng(lat, lng),
+                center: new naver.maps.LatLng(
+                    centerLocation.lat,
+                    centerLocation.lng
+                ),
                 zoomControl: false,
             });
             const markers = [];
@@ -94,11 +96,14 @@ function ClusterMap(props: ClusterMapProps) {
 
     useEffect(() => {
         if (mapInstance.current) {
-            const targetLocation = new naver.maps.LatLng(lat, lng);
+            const targetLocation = new naver.maps.LatLng(
+                centerLocation.lat,
+                centerLocation.lng
+            );
             mapInstance.current.setCenter(targetLocation);
             mapInstance.current.setZoom(15);
         }
-    }, [lat, lng]);
+    }, [centerLocation.lat, centerLocation.lng]);
 
     return <MapCanvas ref={mapRef} />;
 }
