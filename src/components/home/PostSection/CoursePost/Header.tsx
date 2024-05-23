@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import palette from "../../../../lib/styles/palette";
 import { multiLineEllipsis } from "../../../../lib/styles/utils";
-import { HorizontalBar } from "../../../../styles/Common";
+import { HorizontalBar } from "../../../common/styles/Common";
+import { Link } from "react-router-dom";
 
 export type HeaderProps = {
+    id: number;
     region: string;
     title: string;
     rating: number;
@@ -11,10 +13,10 @@ export type HeaderProps = {
 };
 
 function Header(props: HeaderProps) {
-    const { region, title, rating, price } = props;
+    const { id, region, title, rating, price } = props;
 
     return (
-        <Block>
+        <Block as={Link} to={`course/${id}`}>
             <Region>{region}</Region>
             <Title>{title}</Title>
             <RatingBlock>
@@ -44,6 +46,7 @@ const Title = styled.p`
     font-size: 12px;
     line-height: 18px;
     margin-top: 8px;
+    color: ${palette.black0};
 `;
 
 const RatingBlock = styled.div`
@@ -69,6 +72,7 @@ const StyledHorizontalBar = styled(HorizontalBar)`
 const Price = styled.p`
     font-size: 14px;
     font-weight: 800;
+    color: ${palette.black0};
     margin-top: 14px;
 `;
 

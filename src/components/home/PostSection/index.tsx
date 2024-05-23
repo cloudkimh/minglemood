@@ -8,6 +8,7 @@ export type PostSectionProps = {
     title: string;
     headerButton?: ReactElement;
     posts: Array<{
+        id: number;
         thumbnail: string;
         region: string;
         title: string;
@@ -26,6 +27,7 @@ function PostSection(props: PostSectionProps) {
                 <PostGrid>
                     {posts.map((aPost) => (
                         <CoursePost
+                            id={aPost.id}
                             thumbnail={aPost.thumbnail}
                             region={aPost.region}
                             title={aPost.title}

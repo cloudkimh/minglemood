@@ -1,20 +1,20 @@
 import { useEffect, useReducer } from "react";
 import { handleAxiosError } from "../utils";
 
-type UseAsyncParams = {
-    callback: Function;
-    args?: Array<any>;
+type UseAsyncParams<ParamsType, ReturnType> = {
+    callback: (params?: ParamsType) => Promise<ReturnType | undefined>;
+    args?: ParamsType;
     deps?: Array<any>;
     skip?: boolean;
 };
 
-type UseAsyncReturns = [
+type UseAsyncReturns<ParamsType, ReturnType> = [
     {
         loading: boolean;
-        data: any;
+        data: ReturnType | null;
         error: any;
     },
-    Function
+    (params?: ParamsType) => Promise<void>
 ];
 
 type Action = {
@@ -28,7 +28,7 @@ const reducer = (state: any, action: Action) => {
         case "LOADING":
             return {
                 loading: true,
-                data: state.data ?? null,
+                data: null,
                 error: null,
             };
         case "SUCCESS":
@@ -48,22 +48,25 @@ const reducer = (state: any, action: Action) => {
     }
 };
 
-function useAsync({
+function useAsync<ParamsType, ReturnType>({
     callback,
-    args = [],
+    args,
     deps = [],
     skip = false,
-}: UseAsyncParams): UseAsyncReturns {
+}: UseAsyncParams<ParamsType, ReturnType>): UseAsyncReturns<
+    ParamsType,
+    ReturnType
+> {
     const [state, dispatch] = useReducer(reducer, {
         loading: false,
         data: null,
         error: null,
     });
 
-    const refetch = async (...refetchArgs: Array<any>) => {
+    const refetch = async (refetchParams?: ParamsType) => {
         dispatch({ type: "LOADING" });
         try {
-            const data = await callback(...refetchArgs);
+            const data = await callback(refetchParams);
             dispatch({ type: "SUCCESS", data });
         } catch (e) {
             handleAxiosError(e);
@@ -76,7 +79,7 @@ function useAsync({
             dispatch({ type: "LOADING" });
 
             try {
-                const data = await callback(...args);
+                const data = await callback(args);
                 dispatch({ type: "SUCCESS", data });
             } catch (e) {
                 handleAxiosError(e);
@@ -92,98 +95,3 @@ function useAsync({
 }
 
 export default useAsync;
-
-// import { useEffect, useReducer } from "react";
-// import { handleAxiosError } from "../utils";
-
-// type UseAsyncParams<T> = {
-//     callback: Function;
-//     args?: Array<any>;
-//     deps?: Array<any>;
-//     skip?: boolean;
-// };
-
-// type UseAsyncReturns<T> = [
-//     {
-//         loading: boolean;
-//         data: T | null;
-//         error: any;
-//     },
-//     Function
-// ];
-
-// type Action<T> = {
-//     data?: T;
-//     error?: any;
-//     type: "LOADING" | "SUCCESS" | "ERROR";
-// };
-
-// function reducer<T>(state: { loading: boolean, data: T | null, error: any }, action: Action<T>) {
-//     switch (action.type) {
-//         case "LOADING":
-//             return {
-//                 loading: true,
-//                 data: null,
-//                 error: null,
-//             };
-//         case "SUCCESS":
-//             return {
-//                 loading: false,
-//                 data: action.data,
-//                 error: null,
-//             };
-//         case "ERROR":
-//             return {
-//                 loading: false,
-//                 data: null,
-//                 error: action.error,
-//             };
-//         default:
-//             throw new Error(`Unhandled type of action: ${action.type}`);
-//     }
-// };
-
-// function useAsync<T>({
-//     callback,
-//     args = [],
-//     deps = [],
-//     skip = false,
-// }: UseAsyncParams<T>): UseAsyncReturns<T> {
-//     const [state, dispatch] = useReducer(reducer, {
-//         loading: false,
-//         data: null,
-//         error: null,
-//     });
-
-//     const refetch = async (...refetchArgs: Array<any>) => {
-//         dispatch({ type: "LOADING" });
-//         try {
-//             const data = await callback(...refetchArgs);
-//             dispatch({ type: "SUCCESS", data });
-//         } catch (e) {
-//             handleAxiosError(e);
-//             dispatch({ type: "ERROR", error: e });
-//         }
-//     };
-
-//     useEffect(() => {
-//         const fetchData = async () => {
-//             dispatch({ type: "LOADING" });
-
-//             try {
-//                 const data = await callback(...args);
-//                 dispatch({ type: "SUCCESS", data });
-//             } catch (e) {
-//                 handleAxiosError(e);
-//                 dispatch({ type: "ERROR", error: e });
-//             }
-//         };
-
-//         if (skip) return;
-//         fetchData();
-//     }, deps);
-
-//     return [state, refetch];
-// }
-
-// export default useAsync;

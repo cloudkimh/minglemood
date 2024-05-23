@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import CourseInfo from "./CourseInfo";
 import HostInfo from "./HostInfo";
-import { HorizontalBar } from "../../../styles/Common";
+import { HorizontalBar } from "../../common/styles/Common";
 import palette from "../../../lib/styles/palette";
+import Banner from "./Banner";
 
 export type HeadSectionProps = {
+    banners: Array<string>;
     title: string;
     region: string;
     price: number;
@@ -13,23 +15,26 @@ export type HeadSectionProps = {
         alias: string;
         courseCnt: number;
         reviewCnt: number;
-        likeCnt: number;
+        likes: number;
     };
 };
 
 function HeadSection(props: HeadSectionProps) {
-    const { title, region, price, hostInfo } = props;
+    const { banners, title, region, price, hostInfo } = props;
 
     return (
-        <Block>
-            <CourseInfo title={title} region={region} price={price} />
-            <StyledHorizontalBar />
-            <HostInfo hostInfo={hostInfo} />
-        </Block>
+        <>
+            <Banner banners={banners} />
+            <HeaderContainer>
+                <CourseInfo title={title} region={region} price={price} />
+                <StyledHorizontalBar />
+                <HostInfo hostInfo={hostInfo} />
+            </HeaderContainer>
+        </>
     );
 }
 
-const Block = styled.header`
+const HeaderContainer = styled.header`
     padding: 24px;
     border-bottom: 1px solid ${palette.gray5};
 `;

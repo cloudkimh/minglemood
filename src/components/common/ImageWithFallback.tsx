@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import fallbackImg from "../../static/imgs/global/fall_back_img.svg";
-import emptyImg from "../../static/imgs/global/empty_img.png";
+import fallbackImg from "../../assets/img/fallback.svg";
+import emptyImg from "../../assets/img/empty.png";
 
 export interface ImageWithFallbackProps
     extends Omit<React.HTMLProps<HTMLImageElement>, "src"> {
