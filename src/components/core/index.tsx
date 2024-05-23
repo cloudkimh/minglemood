@@ -1,9 +1,9 @@
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { mediaQuery } from "../../lib/styles/media";
 import useTasksOnChangingPage from "./hooks/useTasksOnChangingPage";
-import GlobalStyles from "../global/GlobalStyles";
+import palette from "../../lib/styles/palette";
 
 export type CoreProp = {};
 
@@ -30,6 +30,17 @@ function Core(props: CoreProp) {
         </>
     );
 }
+
+const GlobalStyles = createGlobalStyle`
+    html, body, #root {
+        height: 100%
+    }
+
+    body {
+        overflow-y: overlay;
+        color: ${palette.black0};
+    }
+`;
 
 const StyledToastContainer = styled(ToastContainer)`
     bottom: 0;

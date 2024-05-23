@@ -6,25 +6,6 @@
             name="viewport"
             content="width=device-width, initial-scale=1, user-scalable=no"
         />
-        <!-- naver SEO verification -->
-        <meta
-            name="naver-site-verification"
-            content="fd95dc9a18db1d9c90be1f952495eb018b6f30e7"
-        />
-        <!-- naver SEO verification end -->
-        <!-- google SEO verification -->
-        <meta
-            name="google-site-verification"
-            content="6a4cD7waY1aS5kFCKy6wITaT-MAnx_-IBujgc3HnjKM"
-        />
-        <!-- google SEO verification end -->
-        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-        <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-        <link
-            href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css"
-            rel="stylesheet"
-        />
         <!-- Noto Sans font -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -33,79 +14,12 @@
             rel="stylesheet"
         />
         <!-- Noto Sans font end -->
-        <!-- google tag manager -->
-        <script>
-            (function (w, d, s, l, i) {
-                w[l] = w[l] || [];
-                w[l].push({
-                    "gtm.start": new Date().getTime(),
-                    event: "gtm.js",
-                });
-                var f = d.getElementsByTagName(s)[0],
-                    j = d.createElement(s),
-                    dl = l != "dataLayer" ? "&l=" + l : "";
-                j.async = true;
-                j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-                f.parentNode.insertBefore(j, f);
-            })(window, document, "script", "dataLayer", "GTM-PFDW294");
-        </script>
-        <!-- google tag manager end -->
-        <!-- kakao sdk -->
-        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-        <!-- kakao sdk end -->
-        <!-- jQuery -->
         <script
             type="text/javascript"
-            src="https://code.jquery.com/jquery-1.12.4.min.js"
+            src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=<%=process.env.REACT_APP_NAVER_CP_CLIENT_ID%>"
         ></script>
-        <!-- jQuery end -->
-        <!-- iamport.payment.js -->
-        <script
-            type="text/javascript"
-            src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"
-        ></script>
-        <!-- iamport.payment.js end -->
     </head>
     <body>
         <div id="root"></div>
-        <!-- google tag manager (noscript) -->
-        <noscript>
-            <iframe
-                src="https://www.googletagmanager.com/ns.html?id=GTM-PFDW294"
-                height="0"
-                width="0"
-                style="display: none; visibility: hidden"
-            ></iframe>
-        </noscript>
-        <!-- google tag manager (noscript) end -->
     </body>
-    <!-- naver search advisor -->
-    <span itemscope="" itemtype="http://schema.org/Organization">
-        <link aria-hidden="true" itemprop="url" href="http://app.wemuz.me" />
-        <a
-            aria-hidden="true"
-            itemprop="sameAs"
-            href="https://pf.kakao.com/_Nxfcrs"
-        ></a>
-        <a
-            aria-hidden="true"
-            itemprop="sameAs"
-            href="https://www.youtube.com/channel/UC4dc_EMQc0Y_QqcBoMsIfqA"
-        ></a>
-        <a
-            aria-hidden="true"
-            itemprop="sameAs"
-            href="https://www.facebook.com/wemuz_official-100305832049391/"
-        ></a>
-        <a
-            aria-hidden="true"
-            itemprop="sameAs"
-            href="https://www.instagram.com/wemuz_official/"
-        ></a>
-    </span>
-    <script>
-        // if (typeof navigator.serviceWorker !== "undefined") {
-        //     navigator.serviceWorker.register("sw.js");
-        // }
-    </script>
 </html>

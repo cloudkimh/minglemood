@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { ButtonLoader } from "../../styles/Common";
+import { ButtonLoader } from "./styles/Common";
 import Loader from "./Loader";
 
 export interface LoaderButtonProps

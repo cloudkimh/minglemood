@@ -31,8 +31,8 @@ function ReviewSection(props: ReviewSectionProps) {
                 <ReviewCount>• {reviewCnt}개 후기</ReviewCount>
             </Summary>
             <Reviews>
-                {reviews.map((aReview) => (
-                    <ReviewCard reviewInfo={aReview} />
+                {reviews.map((aReview, i) => (
+                    <ReviewCard key={`review-card-${i}`} reviewInfo={aReview} />
                 ))}
             </Reviews>
         </Block>

@@ -5,6 +5,7 @@ import PageHelmet from "./components/common/PageHelmet";
 import Core from "./components/core";
 import Home from "./pages/Home";
 import CourseDetail from "./pages/CourseDetail";
+import Explore from "./pages/Explore";
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
             <Routes>
                 <Route index element={<Home />} />
                 <Route path="course/:id" element={<CourseDetail />} />
+                <Route path="explore" element={<Explore />} />
                 {/* <Route path="*" element={<NotFoundPage />} /> */}
             </Routes>
             <Core />

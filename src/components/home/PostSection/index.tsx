@@ -9,6 +9,7 @@ export type PostSectionProps = {
     highlight?: string;
     headerButton?: ReactElement;
     posts: Array<{
+        id: number;
         thumbnail: string;
         region: string;
         title: string;
@@ -36,6 +37,7 @@ function PostSection(props: PostSectionProps) {
                     {posts.map((aPost, i) => (
                         <CoursePost
                             key={i}
+                            id={aPost.id}
                             thumbnail={aPost.thumbnail}
                             region={aPost.region}
                             title={aPost.title}

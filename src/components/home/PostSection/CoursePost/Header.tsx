@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import palette from "../../../../lib/styles/palette";
 import { multiLineEllipsis } from "../../../../lib/styles/utils";
+import { Link } from "react-router-dom";
 
 export type HeaderProps = {
+    id: number;
     region: string;
     title: string;
     starScore: number;
@@ -13,11 +15,19 @@ export type HeaderProps = {
 };
 
 function Header(props: HeaderProps) {
-    const { region, title, starScore, starCnt, heartCnt, price, discountRate } =
-        props;
+    const {
+        id,
+        region,
+        title,
+        starScore,
+        starCnt,
+        heartCnt,
+        price,
+        discountRate,
+    } = props;
 
     return (
-        <Block>
+        <Block as={Link} to={`course/${id}`}>
             <Region>{region}</Region>
             <Title>{title}</Title>
             <RatingBlock>

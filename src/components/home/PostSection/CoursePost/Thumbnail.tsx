@@ -1,13 +1,16 @@
 import { useState } from "react";
 import styled from "styled-components";
+import palette from "../../../../lib/styles/palette";
+import { Link } from "react-router-dom";
 
 export type ThumbnailProps = {
+    id: number;
     thumbnail: string;
     isLiked: boolean;
 };
 
 function Thumbnail(props: ThumbnailProps) {
-    const { thumbnail, isLiked } = props;
+    const { id, thumbnail, isLiked } = props;
     const [liked, setLiked] = useState<boolean>(isLiked);
 
     const onButtonClick = () => {
@@ -16,7 +19,9 @@ function Thumbnail(props: ThumbnailProps) {
 
     return (
         <Block>
-            <ThumbnailImage src={thumbnail} alt="코스 썸네일" />
+            <Link to={`course/${id}`}>
+                <ThumbnailImage src={thumbnail} alt="코스 썸네일" />
+            </Link>
             <Button onClick={onButtonClick}>
                 <img
                     alt="hear for like function"
