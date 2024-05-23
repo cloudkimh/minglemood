@@ -7,8 +7,6 @@ export const ellipsis = css`
     overflow-y: hidden;
 `;
 
-export const nbsp = "\u00A0";
-
 export const withOpacity = (opacity: number) =>
     Math.floor(opacity * 255)
         .toString(16)
@@ -18,7 +16,7 @@ export const getSampleImage = (sizes?: {
     width?: number;
     height?: number;
 }): string => {
-    // max: 1000, min: 200
+    // 최대크기 1000px, 최소크기 200px
     const _width =
         sizes && sizes.width
             ? sizes.width

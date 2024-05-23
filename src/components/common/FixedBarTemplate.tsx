@@ -8,7 +8,7 @@ export type FixedBarTemplateProp = {
     children: ReactNode;
 };
 
-export type Locate = "TOP" | "BOTTOM";
+export type Locate = "top" | "bottom";
 
 function FixedBarTemplate(props: FixedBarTemplateProp) {
     const { locate, className, children } = props;
@@ -22,12 +22,12 @@ function FixedBarTemplate(props: FixedBarTemplateProp) {
 
 const Block = styled.div<{ locate: Locate }>`
     position: fixed;
-    left: 0;
+    max-width: 768px;
     width: 100%;
     z-index: ${zIndexes.FixedBarTemplate};
 
     ${({ locate }) => {
-        return locate === "TOP"
+        return locate === "top"
             ? css`
                   top: 0px;
               `

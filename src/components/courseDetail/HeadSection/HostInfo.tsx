@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import palette from "../../../lib/styles/palette";
-import { VerticalBar } from "../../../styles/Common";
 
 export type HostInfoProps = {
     hostInfo: {
@@ -8,7 +7,7 @@ export type HostInfoProps = {
         alias: string;
         courseCnt: number;
         reviewCnt: number;
-        likeCnt: number;
+        likes: number;
     };
 };
 
@@ -22,8 +21,7 @@ function HostInfo(props: HostInfoProps) {
                 <Alias>{hostInfo.alias}</Alias>
                 <Infos>
                     개최모임 {hostInfo.courseCnt} <span>|</span>
-                    후기 {hostInfo.reviewCnt} <span>|</span>찜{" "}
-                    {hostInfo.likeCnt}
+                    후기 {hostInfo.reviewCnt} <span>|</span>찜 {hostInfo.likes}
                 </Infos>
             </InfoBlock>
             <LikeBtn />

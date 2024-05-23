@@ -7,9 +7,9 @@ const palette = {
     purple3: "#afa1f7", // softPurple
     purple2: "#7c22d1", // deepPurple
     purple1: "#323040", // darkPurple
-    purple0: "#785ffa", // purple
+    purple0: "#FF5816", // purple -> main red로 바꿈
     /* red */
-    red0: "#fe5c5d", // red
+    red0: "#FF5816", // red -> main red로 바꿈
     red1: "#ffeeee",
     red2: "#FE8E84",
     /* orange */
@@ -20,7 +20,7 @@ const palette = {
     blue2: "#D5ECFC",
     /* white */
     white0: "#ffffff", // trueWhite
-    white1: "#fcf6f6fa", // white
+    white1: "#fafafa", // white
     white2: "#f4f4f4", // creamWhite
     white3: "#f5f5f5",
     /* gray */
@@ -38,6 +38,9 @@ const palette = {
     /* shadow */
     shadow0: "#33333333",
     shadow1: "#00000019",
+
+    red100: "#FFDED0",
+    red500: "#FF5816",
 };
 
 export default palette;

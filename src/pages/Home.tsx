@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import PageTemplate from "../components/global/PageTemplate";
+import PageTemplate from "../components/common/PageTemplate";
 import Banner from "../components/home/Banner";
 import Categories from "../components/home/Categories";
 import LocalList from "../components/home/LocalList";
@@ -8,7 +8,6 @@ import PostSection from "../components/home/PostSection";
 import SectionBanner from "../components/home/SectionBanner";
 import PhotoFeeds from "../components/home/PhotoFeeds";
 import palette from "../lib/styles/palette";
-// import { useEffect, useState } from "react";
 
 const photo = getSampleImage();
 
@@ -20,6 +19,7 @@ const banners = Array(4).fill({
 
 const bestPosts = [
     {
+        id: 1,
         thumbnail: photo,
         region: "부산",
         title: "테스트 제목 테스트 제목 테스트 제목 테스트 제목 ",
@@ -31,6 +31,7 @@ const bestPosts = [
         isLiked: true,
     },
     {
+        id: 2,
         thumbnail: photo,
         region: "서울",
         title: "테스트 제목 테스트 제목 테스트 제목 테스트 제목 ",
