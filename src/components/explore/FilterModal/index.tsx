@@ -5,11 +5,15 @@ import palette from "../../../lib/styles/palette";
 import CheckBoxOptions from "./CheckBoxOptions";
 import { SectionGap } from "./styles";
 import SliderOptions from "./SliderOptions";
+import { Cost, FilterSettings, Option } from "../types";
+import { useState } from "react";
+import { MAX_COST, MIN_COST } from "../variables";
 
 export type FilterModalProps = {
     visible: boolean;
+    values: FilterSettings;
     handleClose: () => void;
-    handleFilterChange: () => void;
+    handleSubmit: (value: FilterSettings) => void;
 };
 
 const sampleLocations = [
@@ -75,44 +79,77 @@ const sampleTypes = [
 ];
 
 function FilterModal(props: FilterModalProps) {
-    const { visible, handleClose, handleFilterChange } = props;
+    const { visible, values, handleClose, handleSubmit } = props;
+    const [currentValues, setCurrentValues] = useState<FilterSettings>(values);
+
+    const resetCurrentValues = () => setCurrentValues(values);
 
     const onClose = () => {
         handleClose();
+        resetCurrentValues();
     };
 
-    const handleOptionSelect = () => {};
+    const handleSelectLocations = (value: Array<Option>) => {
+        const nextValue = {
+            ...currentValues,
+            locations: value,
+        };
+        setCurrentValues(nextValue);
+    };
+
+    const handleSelectTypes = (value: Array<Option>) => {
+        const nextValue = {
+            ...currentValues,
+            types: value,
+        };
+        setCurrentValues(nextValue);
+    };
+
+    const handleChangeCost = (value: Cost) => {
+        const nextValue = {
+            ...currentValues,
+            cost: value,
+        };
+        setCurrentValues(nextValue);
+    };
+
+    const onSubmit = () => {
+        handleSubmit(currentValues);
+    };
 
     return (
-        <ModalTemplate visible={visible} handleLayerClick={onClose}>
+        <ModalTemplate visible={visible} handleClickLayer={onClose}>
             <StyledModalBody>
                 <ModalHeader>
                     <Title>필터</Title>
-                    <CloseBtn>닫기</CloseBtn>
+                    <CloseBtn onClick={onClose}>닫기</CloseBtn>
                 </ModalHeader>
                 <CheckBoxOptions
                     title="지역"
-                    optionName="location"
+                    optionName="locations"
                     options={sampleLocations}
-                    handleOptionSelect={handleOptionSelect}
+                    selectedOptions={currentValues.locations}
+                    handleSelectOption={handleSelectLocations}
                 />
                 <SectionGap />
                 <CheckBoxOptions
                     title="모임 종류"
                     optionName="types"
                     options={sampleTypes}
-                    handleOptionSelect={handleOptionSelect}
+                    selectedOptions={currentValues.types}
+                    handleSelectOption={handleSelectTypes}
                 />
                 <SectionGap />
                 <SliderOptions
                     title="비용"
-                    min={0}
-                    max={100000}
-                    step={1000}
-                    onChange={() => {}}
+                    min={MIN_COST}
+                    max={MAX_COST}
+                    step={10000}
+                    initialValues={currentValues.cost}
+                    handleChange={handleChangeCost}
                 />
                 <BottomBlock>
-                    <SummitBtn>필터 적용</SummitBtn>
+                    <SummitBtn onClick={onSubmit}>필터 적용</SummitBtn>
                 </BottomBlock>
             </StyledModalBody>
         </ModalTemplate>

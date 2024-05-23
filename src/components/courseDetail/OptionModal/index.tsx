@@ -143,7 +143,7 @@ function OptionModal(props: OptionModalProps) {
     const handleSubmit = () => {};
 
     return (
-        <ModalTemplate visible={visible} handleLayerClick={onClose}>
+        <ModalTemplate visible={visible} handleClickLayer={onClose}>
             <StyledModalBody>
                 <ToggleBtn onClick={onClose}>
                     <ChevronDownIco />

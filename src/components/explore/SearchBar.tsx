@@ -4,18 +4,18 @@ import { SEARCH_BAR_HEIGHT } from "./variables";
 
 export type SearchBarProps = {
     currentLocation: string;
-    handleSearchBtnClick: () => void;
+    handleClickSearchBtn: () => void;
 };
 
-function SearchSBar(props: SearchBarProps) {
-    const { currentLocation, handleSearchBtnClick } = props;
+function SearchBar(props: SearchBarProps) {
+    const { currentLocation, handleClickSearchBtn } = props;
 
     return (
         <Block>
             <CurrentLocation>{currentLocation}</CurrentLocation>
             <SearchBtn
                 onClick={() => {
-                    handleSearchBtnClick();
+                    handleClickSearchBtn();
                 }}
             >
                 검색
@@ -45,4 +45,4 @@ const SearchBtn = styled.button`
     margin-left: auto;
 `;
 
-export default SearchSBar;
+export default SearchBar;

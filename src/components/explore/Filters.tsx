@@ -1,20 +1,47 @@
 import styled from "styled-components";
 import palette from "../../lib/styles/palette";
-import { FILTERS_HEIGHT } from "./variables";
+import { FILTERS_HEIGHT, MAX_COST, MIN_COST } from "./variables";
+import { FilterSettings } from "./types";
 
 export type FiltersProps = {
-    handleFilterBtnClick: () => void;
+    handleClickFilterBtn: () => void;
+    filterSettings: FilterSettings;
 };
 
 function Filters(props: FiltersProps) {
-    const { handleFilterBtnClick } = props;
+    const { handleClickFilterBtn, filterSettings } = props;
+    const hasLocationsFilter = filterSettings.locations.length > 0;
+    const hasTypesFilter = filterSettings.types.length > 0;
+    const hasCostFilter =
+        filterSettings.cost.min > MIN_COST ||
+        filterSettings.cost.max < MAX_COST;
+
+    const costText = `${
+        filterSettings.cost.min === 0 ? 0 : filterSettings.cost.min / 10000
+    }만원 ~ ${filterSettings.cost.max / 10000}만원`;
 
     return (
         <Block>
-            <FilterBtn onClick={handleFilterBtnClick}>필터</FilterBtn>
-            <ChipItem>강서구</ChipItem>
-            <ChipItem>요가</ChipItem>
-            <ChipItem>4만원 ~ 10만원</ChipItem>
+            <FilterBtn onClick={handleClickFilterBtn}>필터</FilterBtn>
+            {hasLocationsFilter && (
+                <ChipItem>
+                    {filterSettings.locations.length > 1
+                        ? `${filterSettings.locations[0].name} 외 ${
+                              filterSettings.locations.length - 1
+                          }곳`
+                        : filterSettings.locations[0].name}
+                </ChipItem>
+            )}
+            {hasTypesFilter && (
+                <ChipItem>
+                    {filterSettings.types.length > 1
+                        ? `${filterSettings.types[0].name} 외 ${
+                              filterSettings.types.length - 1
+                          }개`
+                        : filterSettings.types[0].name}
+                </ChipItem>
+            )}
+            {hasCostFilter && <ChipItem>{costText}</ChipItem>}
         </Block>
     );
 }

@@ -79,7 +79,7 @@ function SearchModal(props: SearchModalProps) {
     };
 
     return (
-        <ModalTemplate visible={visible} handleLayerClick={onClose}>
+        <ModalTemplate visible={visible} handleClickLayer={onClose}>
             <StyledModalBody>
                 <SearchInputBlock>
                     <CloseBtn onClick={onClose}>닫기</CloseBtn>

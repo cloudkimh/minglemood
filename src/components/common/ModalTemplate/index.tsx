@@ -7,14 +7,14 @@ import { setPreventScroll } from "../../../lib/utils";
 import useDisappearingAnimation from "../../../lib/hooks/useDisappearingAnimation";
 
 export type ModalTemplateProp = {
-    handleLayerClick?: Function;
+    handleClickLayer?: Function;
     visible: boolean;
     children: ReactNode;
     className?: string;
 };
 
 function ModalTemplate(props: ModalTemplateProp) {
-    const { className, visible, children, handleLayerClick } = props;
+    const { className, visible, children, handleClickLayer } = props;
     const modalWrapperRef = useRef<HTMLDivElement>(null);
     const [disappeared] = useDisappearingAnimation({
         startDisappearing: !visible,
@@ -29,9 +29,9 @@ function ModalTemplate(props: ModalTemplateProp) {
         setPreventScroll(false);
     };
 
-    const onLayerClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (handleLayerClick && e.target === e.currentTarget) {
-            handleLayerClick();
+    const onClickLayer = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (handleClickLayer && e.target === e.currentTarget) {
+            handleClickLayer();
         }
     };
 
@@ -61,7 +61,7 @@ function ModalTemplate(props: ModalTemplateProp) {
             <ModalWrapper
                 ref={modalWrapperRef}
                 visible={visible}
-                onClick={onLayerClick}
+                onClick={onClickLayer}
             >
                 {children}
             </ModalWrapper>
