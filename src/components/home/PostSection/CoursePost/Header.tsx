@@ -2,6 +2,8 @@ import styled from "styled-components";
 import palette from "../../../../lib/styles/palette";
 import { multiLineEllipsis } from "../../../../lib/styles/utils";
 import { Link } from "react-router-dom";
+import starIcon from "../../../../assets/icon/star.png";
+import heartIcon from "../../../../assets/icon/heart.png";
 
 export type HeaderProps = {
     id: number;
@@ -33,7 +35,7 @@ function Header(props: HeaderProps) {
             <RatingBlock>
                 <StarBlock>
                     <RatingIcon>
-                        <img src="static/icon/star.png" alt="star icon" />
+                        <img src={starIcon} alt="star icon" />
                     </RatingIcon>
                     <div>
                         {starScore}({starCnt})
@@ -41,7 +43,7 @@ function Header(props: HeaderProps) {
                 </StarBlock>
                 <HeartBlock>
                     <RatingIcon>
-                        <img src="static/icon/heart.png" alt="heart icon" />
+                        <img src={heartIcon} alt="heart icon" />
                     </RatingIcon>
                     <div>{heartCnt <= 999 ? heartCnt : "999+"}</div>
                 </HeartBlock>

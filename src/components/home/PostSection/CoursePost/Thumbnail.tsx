@@ -1,7 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
-import palette from "../../../../lib/styles/palette";
 import { Link } from "react-router-dom";
+import heartDeactiveIcon from "../../../../assets/icon/like-heart.svg";
+import heartActiveIcon from "../../../../assets/icon/like-heart-active.svg";
 
 export type ThumbnailProps = {
     id: number;
@@ -25,11 +26,7 @@ function Thumbnail(props: ThumbnailProps) {
             <Button onClick={onButtonClick}>
                 <img
                     alt="hear for like function"
-                    src={
-                        liked
-                            ? "static/icon/like-heart-active.svg"
-                            : "static/icon/like-heart.svg"
-                    }
+                    src={liked ? heartActiveIcon : heartDeactiveIcon}
                 />
             </Button>
         </Block>
