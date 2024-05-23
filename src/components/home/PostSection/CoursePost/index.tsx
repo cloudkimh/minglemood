@@ -6,21 +6,38 @@ export type CoursePostProps = {
     thumbnail: string;
     region: string;
     title: string;
-    rating: number;
+    starScore: number;
+    starCnt: number;
+    heartCnt: number;
     price: number;
+    isLiked: boolean;
+    discountRate?: number;
 };
 
 function CoursePost(props: CoursePostProps) {
-    const { thumbnail, region, title, rating, price } = props;
+    const {
+        thumbnail,
+        region,
+        title,
+        starScore,
+        starCnt,
+        heartCnt,
+        price,
+        isLiked,
+        discountRate,
+    } = props;
 
     return (
         <Block>
-            <Thumbnail thumbnail={thumbnail} />
+            <Thumbnail thumbnail={thumbnail} isLiked={isLiked} />
             <Header
                 region={region}
                 title={title}
-                rating={rating}
+                starScore={starScore}
+                starCnt={starCnt}
+                heartCnt={heartCnt}
                 price={price}
+                discountRate={discountRate}
             />
         </Block>
     );

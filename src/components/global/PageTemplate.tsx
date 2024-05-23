@@ -35,7 +35,6 @@ const PageContainer = styled.div`
     height: 100%;
     overflow: auto;
     box-shadow: ${palette.gray2}${withOpacity(0.2)} 0px 0px 20px;
-    padding-top: 80px;
     margin: 0 auto;
 `;
 

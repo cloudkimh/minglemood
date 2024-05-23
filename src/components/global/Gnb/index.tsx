@@ -7,9 +7,12 @@ export type GnbProps = {};
 function Gnb(props: GnbProps) {
     return (
         <Block>
-            <Logo>밍글무드</Logo>
+            <Logo>
+                <LogoImg src="minglemood-logo.png" alt="minglemood logo" />
+            </Logo>
             <Container>
                 <SearchBtn></SearchBtn>
+                <NotificationBtn></NotificationBtn>
                 <Avatar />
             </Container>
         </Block>
@@ -23,18 +26,19 @@ const Block = styled.nav`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 80px;
+    height: 61px;
     width: 100%;
     max-width: 768px;
-    background-color: ${palette.white0};
-    border-bottom: 1px solid ${palette.gray5};
     padding: 0 20px;
 `;
 
 const Logo = styled.div`
-    width: 120px;
-    height: 30px;
-    background-color: ${palette.red2};
+    width: 151px;
+`;
+
+const LogoImg = styled.img`
+    width: 100%;
+    vertical-align: middle;
 `;
 
 const Container = styled.div`
@@ -43,10 +47,19 @@ const Container = styled.div`
 `;
 
 const SearchBtn = styled.button`
-    width: 40px;
-    height: 40px;
-    background-color: ${palette.red2};
-    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    margin-right: 7px;
+    background: url("static/icon/search-white.png") center;
+    background-size: cover;
+`;
+
+const NotificationBtn = styled.button`
+    width: 22px;
+    height: 22px;
+    margin-right: 7px;
+    background: url("static/icon/notification.png") center;
+    background-size: cover;
 `;
 
 export default Gnb;
