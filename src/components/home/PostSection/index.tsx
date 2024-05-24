@@ -6,33 +6,47 @@ import SectionHeader from "../SectionHeader";
 export type PostSectionProps = {
     className?: string;
     title: string;
+    highlight?: string;
     headerButton?: ReactElement;
     posts: Array<{
         id: number;
         thumbnail: string;
         region: string;
         title: string;
-        rating: number;
+        starScore: number;
+        starCnt: number;
+        heartCnt: number;
         price: number;
+        isLiked: boolean;
+        discountRate?: number;
     }>;
 };
 
 function PostSection(props: PostSectionProps) {
-    const { className, title, headerButton, posts } = props;
+    const { className, title, headerButton, posts, highlight } = props;
 
     return (
         <Block className={className}>
-            <SectionHeader title={title} button={headerButton} />
+            <SectionHeader
+                title={title}
+                button={headerButton}
+                highlight={highlight}
+            />
             <Body>
                 <PostGrid>
-                    {posts.map((aPost) => (
+                    {posts.map((aPost, i) => (
                         <CoursePost
+                            key={i}
                             id={aPost.id}
                             thumbnail={aPost.thumbnail}
                             region={aPost.region}
                             title={aPost.title}
-                            rating={aPost.rating}
+                            starScore={aPost.starScore}
+                            starCnt={aPost.starCnt}
+                            heartCnt={aPost.heartCnt}
                             price={aPost.price}
+                            isLiked={aPost.isLiked}
+                            discountRate={aPost.discountRate}
                         />
                     ))}
                 </PostGrid>

@@ -3,15 +3,27 @@ import styled, { css } from "styled-components";
 
 export type SectionHeaderProps = {
     title: string;
+    highlight?: string;
     button?: ReactNode;
 };
 
 function SectionHeader(props: SectionHeaderProps) {
-    const { title, button } = props;
+    const { title, button, highlight } = props;
+    const splited = title.split(new RegExp(`(${highlight})`, "gi"));
 
     return (
         <Block hasBtn={!!button}>
-            <Title>{title}</Title>
+            <Title>
+                {splited.map((part, index) =>
+                    part.toLowerCase() === highlight?.toLowerCase() ? (
+                        <span key={index} style={{ color: "#ff5816" }}>
+                            {part}
+                        </span>
+                    ) : (
+                        part
+                    )
+                )}
+            </Title>
             {button}
         </Block>
     );

@@ -13,11 +13,11 @@ function LocalList(props: LocalListProps) {
             <SectionHeader title="로컬 찾기" />
             <Body>
                 <List>
-                    <CategoryItem image={photo} text="전국" />
-                    <CategoryItem image={photo} text="부산" />
-                    <CategoryItem image={photo} text="경남" />
-                    <CategoryItem image={photo} text="경북" />
-                    <CategoryItem image={photo} text="제주" />
+                    <CategoryItem image={photo} text="전국" inner />
+                    <CategoryItem image={photo} text="부산" inner />
+                    <CategoryItem image={photo} text="경남" inner />
+                    <CategoryItem image={photo} text="경북" inner />
+                    <CategoryItem image={photo} text="제주" inner />
                 </List>
             </Body>
         </Block>

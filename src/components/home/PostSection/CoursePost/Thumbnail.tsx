@@ -1,21 +1,34 @@
+import { useState } from "react";
 import styled from "styled-components";
-import palette from "../../../../lib/styles/palette";
 import { Link } from "react-router-dom";
+import heartDeactiveIcon from "../../../../assets/icon/like-heart.svg";
+import heartActiveIcon from "../../../../assets/icon/like-heart-active.svg";
 
 export type ThumbnailProps = {
     id: number;
     thumbnail: string;
+    isLiked: boolean;
 };
 
 function Thumbnail(props: ThumbnailProps) {
-    const { id, thumbnail } = props;
+    const { id, thumbnail, isLiked } = props;
+    const [liked, setLiked] = useState<boolean>(isLiked);
+
+    const onButtonClick = () => {
+        setLiked(!liked);
+    };
 
     return (
         <Block>
             <Link to={`course/${id}`}>
                 <ThumbnailImage src={thumbnail} alt="코스 썸네일" />
             </Link>
-            <Button />
+            <Button onClick={onButtonClick}>
+                <img
+                    alt="hear for like function"
+                    src={liked ? heartActiveIcon : heartDeactiveIcon}
+                />
+            </Button>
         </Block>
     );
 }
@@ -37,11 +50,15 @@ const ThumbnailImage = styled.img`
 
 const Button = styled.button`
     position: absolute;
-    bottom: 6px;
-    right: 4px;
-    width: 32px;
-    height: 32px;
-    background-color: ${palette.red2};
+    bottom: 10px;
+    right: 10px;
+    width: 18px;
+    height: 18px;
+
+    & img {
+        width: 100%;
+        vertical-align: middle;
+    }
 `;
 
 export default Thumbnail;
