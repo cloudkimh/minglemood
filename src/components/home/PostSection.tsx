@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import CoursePost from "./CoursePost";
 import { ReactElement } from "react";
-import SectionHeader from "../SectionHeader";
+import SectionHeader from "./SectionHeader";
+import CoursePost from "../common/CoursePost";
 
 export type PostSectionProps = {
     className?: string;

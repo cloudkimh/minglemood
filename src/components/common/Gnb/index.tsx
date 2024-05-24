@@ -4,7 +4,6 @@ import searchBlackIcon from "../../../assets/icon/search-black.svg";
 import notificationWhiteIcon from "../../../assets/icon/notification.png";
 import notificationBlackIcon from "../../../assets/icon/notification-black.png";
 import Avatar from "./Avatar";
-import { Link } from "react-router-dom";
 
 export type GnbProps = { isScrolled: boolean };
 

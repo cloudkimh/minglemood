@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import palette from "../../../../lib/styles/palette";
-import { multiLineEllipsis } from "../../../../lib/styles/utils";
+import palette from "../../../lib/styles/palette";
+import { multiLineEllipsis } from "../../../lib/styles/utils";
 import { Link } from "react-router-dom";
-import starIcon from "../../../../assets/icon/star.png";
-import heartIcon from "../../../../assets/icon/heart.png";
+import starIcon from "../../../assets/icon/star.png";
+import heartIcon from "../../../assets/icon/heart.png";
 
 export type HeaderProps = {
     id: number;
@@ -29,7 +29,7 @@ function Header(props: HeaderProps) {
     } = props;
 
     return (
-        <Block as={Link} to={`course/${id}`}>
+        <Block as={Link} to={`/course/${id}`}>
             <Region>{region}</Region>
             <Title>{title}</Title>
             <RatingBlock>

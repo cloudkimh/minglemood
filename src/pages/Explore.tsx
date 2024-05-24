@@ -8,6 +8,7 @@ import SearchModal from "../components/explore/SearchModal";
 import { FilterSettings, Location } from "../components/explore/types";
 import FilterModal from "../components/explore/FilterModal";
 import { MAX_COST, MIN_COST } from "../components/explore/variables";
+import BottomSheetModal from "../components/explore/BottomSheetModal";
 
 const initFilterSettings = {
     locations: [],
@@ -64,6 +65,7 @@ function Explore() {
                 handleClose={toggleFilterModalOpened}
                 handleSubmit={handleChangeFilter}
             />
+            <BottomSheetModal location={currentLocation} onClose={() => {}} />
         </PageTemplate>
     );
 }

@@ -108,12 +108,11 @@ function ClusterMap(props: ClusterMapProps) {
     return <MapCanvas ref={mapRef} />;
 }
 
-const GNB_HEIGHT = "80px";
 const HEADER_HEIGHT = "100px";
 
 const MapCanvas = styled.div`
     width: 100%;
-    height: calc(100vh - ${HEADER_HEIGHT} - ${GNB_HEIGHT});
+    height: calc(100vh - ${HEADER_HEIGHT});
 `;
 
 export default ClusterMap;

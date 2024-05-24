@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import heartDeactiveIcon from "../../../../assets/icon/like-heart.svg";
-import heartActiveIcon from "../../../../assets/icon/like-heart-active.svg";
+import heartDeactiveIcon from "../../../assets/icon/like-heart.svg";
+import heartActiveIcon from "../../../assets/icon/like-heart-active.svg";
 
 export type ThumbnailProps = {
     id: number;
@@ -20,7 +20,7 @@ function Thumbnail(props: ThumbnailProps) {
 
     return (
         <Block>
-            <Link to={`course/${id}`}>
+            <Link to={`/course/${id}`}>
                 <ThumbnailImage src={thumbnail} alt="코스 썸네일" />
             </Link>
             <Button onClick={onButtonClick}>
