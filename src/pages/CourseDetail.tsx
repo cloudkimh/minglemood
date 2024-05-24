@@ -15,6 +15,7 @@ const course = {
     banners: Array(4).fill(photo),
     title: "오감으로 맛보고 느끼는 힐링, 월하보이 차와 함께 계절 다회",
     region: "부산",
+    discountRate: 15,
     price: 50000,
     isLiked: true,
     likes: 281,
@@ -66,6 +67,7 @@ function CourseDetail() {
         banners,
         title,
         region,
+        discountRate,
         price,
         isLiked,
         likes,
@@ -91,6 +93,7 @@ function CourseDetail() {
                 banners={banners}
                 title={title}
                 region={region}
+                discountRate={discountRate}
                 price={price}
                 hostInfo={hostInfo}
             />
