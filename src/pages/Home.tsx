@@ -22,7 +22,7 @@ const bestPosts = [
         id: 1,
         thumbnail: photo,
         region: "부산",
-        title: "테스트 제목 테스트 제목 테스트 제목 테스트 제목 ",
+        title: "테스트 제목 테스트 제목 테스트 제목 테스트 제목 테스트 제목 테스트 제목 테스트 제목 테스트 제목  ",
         starScore: 4.5,
         starCnt: 1000,
         heartCnt: 2000,

@@ -58,6 +58,7 @@ function Header(props: HeaderProps) {
 }
 
 const Block = styled.div`
+    display: block;
     margin-top: 7px;
 `;
 
@@ -75,6 +76,12 @@ const Title = styled.p`
     line-height: normal;
     color: ${palette.black0};
     margin-bottom: 6px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
 `;
 
 const RatingBlock = styled.div`
@@ -116,6 +123,7 @@ const DiscountRate = styled.span`
 `;
 
 const Price = styled.p`
+    color: #333;
     font-size: 14px;
     font-weight: 700;
 `;
