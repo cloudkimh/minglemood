@@ -1,15 +1,16 @@
 import styled from "styled-components";
 import searchWhiteIcon from "../../../assets/icon/search-white.png";
 import notificationIcon from "../../../assets/icon/notification.png";
-import palette from "../../../lib/styles/palette";
 import Avatar from "./Avatar";
 import { Link } from "react-router-dom";
 
-export type GnbProps = {};
+export type GnbProps = { isScrolled: boolean };
 
 function Gnb(props: GnbProps) {
+    const { isScrolled } = props;
+
     return (
-        <Block>
+        <Block isScrolled={isScrolled}>
             <Logo>
                 <LogoImg src="minglemood-logo.png" alt="minglemood logo" />
             </Logo>
@@ -26,7 +27,7 @@ function Gnb(props: GnbProps) {
     );
 }
 
-const Block = styled.nav`
+const Block = styled.nav<{ isScrolled: boolean }>`
     position: fixed;
     top: 0;
     z-index: 100;
@@ -37,6 +38,7 @@ const Block = styled.nav`
     width: 100%;
     max-width: 768px;
     padding: 0 20px;
+    background-color: ${(props) => (props.isScrolled ? "#fff" : "transparent")};
 `;
 
 const Logo = styled.div`

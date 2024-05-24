@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import palette from "../../lib/styles/palette";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState, useRef } from "react";
 import { hideScrollBar, withOpacity } from "../../lib/styles/utils";
 import Gnb from "./Gnb";
 import Footer from "./Footer";
+import throttle from "lodash/throttle";
 
 type PageTemplateProps = {
     children: ReactNode;
@@ -11,11 +12,26 @@ type PageTemplateProps = {
 
 function PageTemplate(props: PageTemplateProps) {
     const { children } = props;
+    const [isScrolled, setIsScrolled] = useState<boolean>(false);
+    const pageContainerRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        const handleScroll = throttle(() => {
+            const offset = pageContainerRef.current?.scrollTop || 0;
+            setIsScrolled(offset > 0);
+        }, 200);
+        const pageContainer = pageContainerRef.current;
+        pageContainer && pageContainer.addEventListener("scroll", handleScroll);
+        return () => {
+            pageContainer &&
+                pageContainer.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
     return (
         <Block>
-            <PageContainer>
-                <Gnb />
+            <PageContainer ref={pageContainerRef}>
+                <Gnb isScrolled={isScrolled} />
                 <PageContents>{children}</PageContents>
                 <Footer />
             </PageContainer>
