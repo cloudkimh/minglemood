@@ -1,43 +1,69 @@
 import styled from "styled-components";
-import palette from "../../../lib/styles/palette";
+import searchWhiteIcon from "../../../assets/icon/search-white.png";
+import searchBlackIcon from "../../../assets/icon/search-black.svg";
+import notificationWhiteIcon from "../../../assets/icon/notification.png";
+import notificationBlackIcon from "../../../assets/icon/notification-black.png";
 import Avatar from "./Avatar";
 import { Link } from "react-router-dom";
 
-export type GnbProps = {};
+export type GnbProps = { isScrolled: boolean };
 
 function Gnb(props: GnbProps) {
+    const { isScrolled } = props;
+
     return (
-        <Block>
-            <Link to="/">
-                <Logo>밍글무드</Logo>
-            </Link>
+        <Block isScrolled={isScrolled}>
+            <Logo>
+                <LogoImg src="minglemood-logo.png" alt="minglemood logo" />
+            </Logo>
             <Container>
-                <SearchBtn></SearchBtn>
+                <SearchBtn>
+                    <img
+                        alt="search icon"
+                        src={
+                            isScrolled
+                                ? `${searchBlackIcon}`
+                                : `${searchWhiteIcon}`
+                        }
+                    />
+                </SearchBtn>
+                <NotificationBtn>
+                    <img
+                        alt="notification icon"
+                        src={
+                            isScrolled
+                                ? `${notificationBlackIcon}`
+                                : `${notificationWhiteIcon}`
+                        }
+                    />
+                </NotificationBtn>
                 <Avatar />
             </Container>
         </Block>
     );
 }
 
-const Block = styled.nav`
+const Block = styled.nav<{ isScrolled: boolean }>`
     position: fixed;
     top: 0;
     z-index: 100;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 80px;
+    height: 61px;
     width: 100%;
     max-width: 768px;
-    background-color: ${palette.white0};
-    border-bottom: 1px solid ${palette.gray5};
     padding: 0 20px;
+    background-color: ${(props) => (props.isScrolled ? "#fff" : "transparent")};
 `;
 
 const Logo = styled.div`
-    width: 120px;
-    height: 30px;
-    background-color: ${palette.red2};
+    width: 151px;
+`;
+
+const LogoImg = styled.img`
+    width: 100%;
+    vertical-align: middle;
 `;
 
 const Container = styled.div`
@@ -46,10 +72,27 @@ const Container = styled.div`
 `;
 
 const SearchBtn = styled.button`
-    width: 40px;
-    height: 40px;
-    background-color: ${palette.red2};
-    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    margin-right: 7px;
+
+    & img {
+        width: 100%;
+        vertical-align: milddle;
+    }
+`;
+
+const NotificationBtn = styled.button`
+    width: 22px;
+    height: 22px;
+    margin-right: 7px;
+    background-position: center;
+    background-size: cover;
+
+    & img {
+        width: 100%;
+        vertical-align: milddle;
+    }
 `;
 
 export default Gnb;
