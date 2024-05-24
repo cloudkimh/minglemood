@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import searchWhiteIcon from "../../../assets/icon/search-white.png";
-import notificationIcon from "../../../assets/icon/notification.png";
+import searchBlackIcon from "../../../assets/icon/search-black.svg";
+import notificationWhiteIcon from "../../../assets/icon/notification.png";
+import notificationBlackIcon from "../../../assets/icon/notification-black.png";
 import Avatar from "./Avatar";
 import { Link } from "react-router-dom";
 
@@ -15,12 +17,26 @@ function Gnb(props: GnbProps) {
                 <LogoImg src="minglemood-logo.png" alt="minglemood logo" />
             </Logo>
             <Container>
-                <SearchBtn
-                    style={{ backgroundImage: `url(${searchWhiteIcon})` }}
-                />
-                <NotificationBtn
-                    style={{ backgroundImage: `url(${notificationIcon})` }}
-                />
+                <SearchBtn>
+                    <img
+                        alt="search icon"
+                        src={
+                            isScrolled
+                                ? `${searchBlackIcon}`
+                                : `${searchWhiteIcon}`
+                        }
+                    />
+                </SearchBtn>
+                <NotificationBtn>
+                    <img
+                        alt="notification icon"
+                        src={
+                            isScrolled
+                                ? `${notificationBlackIcon}`
+                                : `${notificationWhiteIcon}`
+                        }
+                    />
+                </NotificationBtn>
                 <Avatar />
             </Container>
         </Block>
@@ -59,8 +75,11 @@ const SearchBtn = styled.button`
     width: 18px;
     height: 18px;
     margin-right: 7px;
-    background-position: center;
-    background-size: cover;
+
+    & img {
+        width: 100%;
+        vertical-align: milddle;
+    }
 `;
 
 const NotificationBtn = styled.button`
@@ -69,6 +88,11 @@ const NotificationBtn = styled.button`
     margin-right: 7px;
     background-position: center;
     background-size: cover;
+
+    & img {
+        width: 100%;
+        vertical-align: milddle;
+    }
 `;
 
 export default Gnb;
