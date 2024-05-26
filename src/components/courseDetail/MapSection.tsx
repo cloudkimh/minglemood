@@ -3,6 +3,7 @@ import { SectionContainer, SectionHeader, SectionTitle } from "./styles";
 import { useEffect, useRef } from "react";
 import palette from "../../lib/styles/palette";
 import { copyToClipboard } from "../../lib/utils";
+import CopyContentIcon from "../../assets/icon/CourseDetail/MapSection/copy-content.svg";
 
 export type MapSectionProps = {
     lat: number;
@@ -35,64 +36,46 @@ function MapSection(props: MapSectionProps) {
 
     return (
         <SectionContainer>
-            <SectionHeader>
-                <SectionTitle>진행하는 장소</SectionTitle>
-            </SectionHeader>
+            <StyledSectionHeader>
+                <SectionTitle>장소</SectionTitle>
+            </StyledSectionHeader>
             <MapCanvas ref={mapRef} />
             <PlaceInfo>
-                <Wrapper>
-                    <Name>{name}</Name>
-                    <Address>{address}</Address>
-                </Wrapper>
-                <CopyBtn onClick={onCopyBtnClick}>
-                    <CopyIco />
-                </CopyBtn>
+                <AddressCopy onClick={onCopyBtnClick}>
+                    <img alt="btn to copy address" src={CopyContentIcon} />{" "}
+                    주소복사
+                </AddressCopy>
+                <Address>{address}</Address>
             </PlaceInfo>
         </SectionContainer>
     );
 }
 
+const StyledSectionHeader = styled(SectionHeader)`
+    margin-bottom: 11px;
+`;
+
 const MapCanvas = styled.div`
-    width: 100%;
-    height: 250px;
-    border-top: 1px solid ${palette.gray5};
-    border-bottom: 1px solid ${palette.gray5};
+    width: calc(100% - 40px);
+    aspect-ratio: 1/ 0.8;
+    margin: 0 auto;
 `;
 
 const PlaceInfo = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid ${palette.gray5};
-    padding: 20px;
+    margin-top: 10px;
+    padding: 0 20px;
 `;
 
-const Wrapper = styled.div``;
-
-const Name = styled.p`
-    font-size: 14px;
-    font-weight: 700;
+const AddressCopy = styled.button`
+    color: ${palette.gray2};
+    font-size: 11px;
+    font-weight: 500;
 `;
 
 const Address = styled.p`
-    font-size: 14px;
-    color: ${palette.gray1};
-    margin-top: 10px;
-`;
-
-const CopyBtn = styled.button`
-    display: grid;
-    place-content: center;
-    width: 56px;
-    height: 56px;
-    border-radius: 5px;
-    border: 1px solid ${palette.gray5};
-`;
-
-const CopyIco = styled.div`
-    width: 24px;
-    height: 24px;
-    background-color: ${palette.red2};
+    margin-top: 5px;
+    font-size: 12px;
+    font-weight: 600;
 `;
 
 export default MapSection;

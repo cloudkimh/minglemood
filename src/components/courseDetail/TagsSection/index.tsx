@@ -20,7 +20,7 @@ function TagsSection(props: TagsSectionProps) {
             <SectionContainer>
                 <SectionRow>
                     <StyledSectionHeader>
-                        <SectionTitle>준비물</SectionTitle>
+                        <StyledSectionTitle>준비물</StyledSectionTitle>
                     </StyledSectionHeader>
                     <TagGrid>
                         {tagList3.map((aTag, i) => (
@@ -30,7 +30,7 @@ function TagsSection(props: TagsSectionProps) {
                 </SectionRow>
                 <SectionRow>
                     <StyledSectionHeader>
-                        <SectionTitle>포함 사항</SectionTitle>
+                        <StyledSectionTitle>포함 사항</StyledSectionTitle>
                     </StyledSectionHeader>
                     <TagGrid>
                         {tagList1.map((aTag, i) => (
@@ -44,7 +44,7 @@ function TagsSection(props: TagsSectionProps) {
                 </SectionRow>
                 <SectionRow>
                     <StyledSectionHeader>
-                        <SectionTitle>불포함 사항</SectionTitle>
+                        <StyledSectionTitle>불포함 사항</StyledSectionTitle>
                     </StyledSectionHeader>
                     <TagGrid>
                         {tagList2.map((aTag, i) => (
@@ -70,6 +70,10 @@ const SectionRow = styled.div`
 
 const StyledSectionHeader = styled(SectionHeader)`
     margin-bottom: 7px;
+`;
+
+const StyledSectionTitle = styled(SectionTitle)`
+    font-size: 12px;
 `;
 
 const TagGrid = styled.div`
