@@ -12,6 +12,7 @@ import {
     SwiperPagination,
     swiperCirclePageBtnStyle,
 } from "../../common/Swiper/styles";
+import { useNavigate } from "react-router-dom";
 
 export type BannerProps = {
     banners: Array<string>;
@@ -19,12 +20,16 @@ export type BannerProps = {
 
 function Banner(props: BannerProps) {
     const { banners } = props;
+    const navigate = useNavigate();
+    const onPrevBtnClick = () => {
+        navigate(-1);
+    };
 
     return (
         <Block>
             <Inner>
                 <Header>
-                    <HeaderBtn>
+                    <HeaderBtn onClick={onPrevBtnClick}>
                         <img alt="prev button" src={PrevIcon} />
                     </HeaderBtn>
                     <HeaderBtn>
