@@ -2,6 +2,7 @@ import styled from "styled-components";
 import palette from "../../../lib/styles/palette";
 import ReviewCard from "./ReviewCard";
 import { hideScrollBar } from "../../../lib/styles/utils";
+import { HorizontalBar } from "../../common/styles/Common";
 
 export type ReviewSectionProps = {
     rating: number;
@@ -18,60 +19,55 @@ function ReviewSection(props: ReviewSectionProps) {
     const { rating, reviewCnt, reviews } = props;
 
     return (
-        <Block>
-            <Summary>
-                <RatingBlock>
-                    <RatingStar />
-                    <RatingStar />
-                    <RatingStar />
-                    <RatingStar />
-                    <RatingStar />
-                    <Rating>{rating}</Rating>
-                </RatingBlock>
-                <ReviewCount>• {reviewCnt}개 후기</ReviewCount>
-            </Summary>
-            <Reviews>
-                {reviews.map((aReview, i) => (
-                    <ReviewCard key={`review-card-${i}`} reviewInfo={aReview} />
-                ))}
-            </Reviews>
-        </Block>
+        <>
+            <Block>
+                <Summary>
+                    <ReviewPhotos>
+                        참여 후기 사진 <span>{reviewCnt}</span>
+                    </ReviewPhotos>
+                    <MoreBtn>더보기</MoreBtn>
+                </Summary>
+                <Reviews>
+                    {reviews.map((aReview, i) => (
+                        <ReviewCard
+                            key={`review-card-${i}`}
+                            reviewInfo={aReview}
+                        />
+                    ))}
+                </Reviews>
+            </Block>
+            <StyledHorizontalBar />
+        </>
     );
 }
 
-const Block = styled.section``;
+const Block = styled.section`
+    padding: 30px 20px;
+`;
 
 const Summary = styled.div`
     display: flex;
     align-items: center;
-    padding: 32px 24px;
+    justify-content: space-between;
+    margin-bottom: 15px;
 `;
 
-const RatingBlock = styled.div`
+const ReviewPhotos = styled.div`
     display: flex;
-    align-items: center;
-`;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: normal;
 
-const RatingStar = styled.span`
-    width: 11px;
-    height: 10px;
-    background-color: ${palette.red2};
-
-    & + & {
-        margin-left: 1px;
+    span {
+        color: ${palette.purple0};
     }
 `;
 
-const Rating = styled.p`
-    font-size: 16px;
-    font-weight: 800;
-    margin-left: 9px;
-`;
-
-const ReviewCount = styled.p`
+const MoreBtn = styled.button`
+    color: ${palette.gray6};
     font-size: 13px;
-    color: ${palette.gray1};
-    margin-left: 6px;
+    font-weight: 500;
+    line-height: normal;
 `;
 
 const Reviews = styled.div`
@@ -79,10 +75,11 @@ const Reviews = styled.div`
     display: flex;
     width: 100%;
     overflow-x: auto;
-    background-color: ${palette.white2};
-    border-top: 1px solid ${palette.gray5};
-    border-bottom: 1px solid ${palette.gray5};
-    padding: 24px;
+`;
+
+const StyledHorizontalBar = styled(HorizontalBar)`
+    height: 8px;
+    background-color: ${palette.white3};
 `;
 
 export default ReviewSection;
