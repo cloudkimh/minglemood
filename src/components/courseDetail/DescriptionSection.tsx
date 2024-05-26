@@ -2,6 +2,8 @@ import styled, { css } from "styled-components";
 import { SectionContainer, SectionHeader, SectionTitle } from "./styles";
 import palette from "../../lib/styles/palette";
 import useToggle from "../../lib/hooks/useToggle";
+import BottomArrowIcon from "../../assets/icon/CourseDetail/DescriptionSection/bottom-arrow.svg";
+import { HorizontalBar } from "../common/styles/Common";
 
 export type DescriptionSectionProps = {};
 
@@ -13,25 +15,32 @@ function DescriptionSection(props: DescriptionSectionProps) {
     };
 
     return (
-        <SectionContainer>
-            <SectionHeader>
-                <SectionTitle>코스 소개</SectionTitle>
-            </SectionHeader>
-            <DescriptionContents showAll={showContentsAll}>
-                <TestContent />
-                <TestContent />
-                <TestContent />
-                <TestContent />
-            </DescriptionContents>
-            <ShowContentsBtn onClick={onShowContentsBtnClick}>
-                {showContentsAll ? "간략히" : "상세정보 더보기"}
-            </ShowContentsBtn>
-        </SectionContainer>
+        <>
+            <SectionContainer>
+                <SectionHeader>
+                    <SectionTitle>소개</SectionTitle>
+                </SectionHeader>
+                <DescriptionContents showAll={showContentsAll}>
+                    <TestContent />
+                    <TestContent />
+                    <TestContent />
+                    <TestContent />
+                </DescriptionContents>
+                <ShowContentsBtn onClick={onShowContentsBtnClick}>
+                    {showContentsAll ? "간략히" : "상세정보 더보기"}
+                    <MoreBtn showAll={showContentsAll}>
+                        <img alt="more button icon" src={BottomArrowIcon} />
+                    </MoreBtn>
+                </ShowContentsBtn>
+            </SectionContainer>
+            <StyledHorizontalBar />
+        </>
     );
 }
 
 const DescriptionContents = styled.div<{ showAll: boolean }>`
     overflow: hidden;
+    padding: 20px 20px 30px;
 
     ${(props) =>
         props.showAll
@@ -57,11 +66,34 @@ const ShowContentsBtn = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 320px;
+    width: calc(100% - 40px);
     border: 1px solid ${palette.black0};
-    border-radius: 3px;
     padding: 21px 0 19px;
     margin: 80px auto 0;
+    font-size: 12px;
+    font-weight: 600;
+`;
+
+const MoreBtn = styled.div<{ showAll: boolean }>`
+    width: 14px;
+    height: 14px;
+    margin-left: 5px;
+
+    ${(props) =>
+        props.showAll &&
+        css`
+            transform: rotate(180deg);
+        `}
+
+    img {
+        widght: 100%;
+        vertical-align: middle;
+    }
+`;
+
+const StyledHorizontalBar = styled(HorizontalBar)`
+    height: 8px;
+    background-color: ${palette.white3};
 `;
 
 export default DescriptionSection;

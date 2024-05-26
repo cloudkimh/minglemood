@@ -103,13 +103,13 @@ function CourseDetail() {
                 reviews={reviews}
             />
             <DescriptionSection />
+            <TagsSection tags={[]} />
             <MapSection
                 lat={place.lat}
                 lng={place.lng}
                 name={place.name}
                 address={place.address}
             />
-            <TagsSection tags={[]} />
             <BottomActionBar
                 isLiked={isLiked}
                 likes={likes}
