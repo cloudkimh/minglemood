@@ -4,6 +4,7 @@ import searchBlackIcon from "../../../assets/icon/search-black.svg";
 import notificationWhiteIcon from "../../../assets/icon/notification.png";
 import notificationBlackIcon from "../../../assets/icon/notification-black.png";
 import Avatar from "./Avatar";
+import MinglemoodLogoImg from "../../../assets/img/minglemood-logo.png";
 
 export type GnbProps = { isScrolled: boolean };
 
@@ -13,7 +14,7 @@ function Gnb(props: GnbProps) {
     return (
         <Block isScrolled={isScrolled}>
             <Logo>
-                <LogoImg src="minglemood-logo.png" alt="minglemood logo" />
+                <LogoImg src={MinglemoodLogoImg} alt="minglemood logo" />
             </Logo>
             <Container>
                 <SearchBtn>
