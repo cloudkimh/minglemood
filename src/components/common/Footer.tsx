@@ -27,7 +27,7 @@ function Footer(props: FooterProps) {
 const Block = styled.footer`
     width: 100%;
     background-color: ${palette.white2};
-    padding: 40px 20px 40px;
+    padding: 40px 20px 100px;
 `;
 
 const CompanyName = styled.p`

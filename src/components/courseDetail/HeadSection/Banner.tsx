@@ -1,6 +1,18 @@
 import styled from "styled-components";
 import Swiper from "../../common/Swiper";
 import ImageWithFallback from "../../common/ImageWithFallback";
+import PrevIcon from "../../../assets/icon/left-arrow.png";
+import ShareIcon from "../../../assets/icon/share.png";
+import LeftArrowIcon from "../../../assets/icon/left-arrow-small.png";
+import RightArrowIcon from "../../../assets/icon/right-arrow-small.png";
+import {
+    SwiperPageBtnContainer,
+    SwiperPageNextBtn,
+    SwiperPagePrevBtn,
+    SwiperPagination,
+    swiperCirclePageBtnStyle,
+} from "../../common/Swiper/styles";
+import { useNavigate } from "react-router-dom";
 
 export type BannerProps = {
     banners: Array<string>;
@@ -8,11 +20,24 @@ export type BannerProps = {
 
 function Banner(props: BannerProps) {
     const { banners } = props;
+    const navigate = useNavigate();
+    const onPrevBtnClick = () => {
+        navigate(-1);
+    };
 
     return (
         <Block>
             <Inner>
+                <Header>
+                    <HeaderBtn onClick={onPrevBtnClick}>
+                        <img alt="prev button" src={PrevIcon} />
+                    </HeaderBtn>
+                    <HeaderBtn>
+                        <img alt="share button" src={ShareIcon} />
+                    </HeaderBtn>
+                </Header>
                 <BannerSwiper
+                    hasBtns
                     hasTrack={false}
                     options={{ type: "loop" }}
                     onMove={(_, i) => {}}
@@ -24,6 +49,15 @@ function Banner(props: BannerProps) {
                             </BannerSlide>
                         ))}
                     </BannerSwiperTrack>
+                    <BannerPageContainer>
+                        <BannerPrevBtn>
+                            <img alt="prev banner btn" src={LeftArrowIcon} />
+                        </BannerPrevBtn>
+                        <BannerNextBtn>
+                            <img alt="next banner btn" src={RightArrowIcon} />
+                        </BannerNextBtn>
+                    </BannerPageContainer>
+                    <BannerPagination />
                 </BannerSwiper>
             </Inner>
         </Block>
@@ -44,6 +78,28 @@ const Inner = styled.div`
     height: 100%;
 `;
 
+const Header = styled.nav`
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    position: absolute;
+    left: 0;
+    top: 61px;
+    z-index: 100;
+    padding: 0 20px;
+`;
+
+const HeaderBtn = styled.button`
+    width: 24px;
+    height: 24px;
+    background-color: transprent;
+
+    & img {
+        width: 100%;
+        vertical-align: middle;
+    }
+`;
+
 const BannerSwiperTrack = styled(Swiper.Track)`
     width: 100%;
     height: 100%;
@@ -62,6 +118,60 @@ const BannerSlide = styled(Swiper.Slide)`
 const SlideImg = styled(ImageWithFallback)`
     width: 100%;
     height: 100%;
+`;
+
+const BannerPageContainer = styled(SwiperPageBtnContainer)`
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    padding: 0 20px;
+    justify-content: space-between;
+`;
+
+const BannerPrevBtn = styled(SwiperPagePrevBtn)`
+    background-color: rgba(51, 51, 51, 0.4);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & > img {
+        width: 12px;
+        height: 12px;
+        opacity: 1;
+    }
+`;
+
+const BannerNextBtn = styled(SwiperPageNextBtn)`
+    background-color: rgba(51, 51, 51, 0.4);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & > img {
+        width: 12px;
+        height: 12px;
+        opacity: 1;
+    }
+`;
+
+const BannerPagination = styled(SwiperPagination)`
+    ${swiperCirclePageBtnStyle}
+    position: absolute;
+    left: 50%;
+    bottom: 14px;
+    transform: translateX(-50%);
+
+    & li:not(:first-child) {
+        margin-left: 7px;
+    }
 `;
 
 export default Banner;

@@ -8,6 +8,7 @@ import PageTemplate from "../components/common/PageTemplate";
 import { getSampleImage } from "../lib/styles/utils";
 import OptionModal from "../components/courseDetail/OptionModal";
 import useToggle from "../lib/hooks/useToggle";
+import PolicySection from "../components/courseDetail/PolicySection";
 
 const photo = getSampleImage();
 
@@ -15,6 +16,7 @@ const course = {
     banners: Array(4).fill(photo),
     title: "오감으로 맛보고 느끼는 힐링, 월하보이 차와 함께 계절 다회",
     region: "부산",
+    discountRate: 15,
     price: 50000,
     isLiked: true,
     likes: 281,
@@ -66,6 +68,7 @@ function CourseDetail() {
         banners,
         title,
         region,
+        discountRate,
         price,
         isLiked,
         likes,
@@ -91,6 +94,7 @@ function CourseDetail() {
                 banners={banners}
                 title={title}
                 region={region}
+                discountRate={discountRate}
                 price={price}
                 hostInfo={hostInfo}
             />
@@ -100,13 +104,14 @@ function CourseDetail() {
                 reviews={reviews}
             />
             <DescriptionSection />
+            <TagsSection tags={[]} />
             <MapSection
                 lat={place.lat}
                 lng={place.lng}
                 name={place.name}
                 address={place.address}
             />
-            <TagsSection tags={[]} />
+            <PolicySection />
             <BottomActionBar
                 isLiked={isLiked}
                 likes={likes}

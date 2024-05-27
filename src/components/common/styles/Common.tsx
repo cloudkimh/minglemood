@@ -24,6 +24,11 @@ export const HorizontalBar = styled.div`
     border-radius: 0.5px;
 `;
 
+export const HorizontalBarThick = styled(HorizontalBar)`
+    height: 8px;
+    background-color: ${palette.white3};
+`;
+
 export const VerticalBar = styled.div`
     width: 1px;
     height: 100%;

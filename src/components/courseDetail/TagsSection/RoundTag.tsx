@@ -19,17 +19,17 @@ function RoundTag(props: RoundTagProps) {
 
 const Block = styled.div<{ color: "default" | "green" | "red" }>`
     width: fit-content;
-    font-size: 13px;
-    border-radius: 18px;
-    padding: 9px 12px;
+    font-size: 11px;
+    border-radius: 100px;
+    padding: 5px 10px;
 
     ${(props) => {
         switch (props.color) {
             case "default":
                 return css`
-                    background-color: ${palette.white0};
+                    background-color: ${palette.gray5};
                     border: 1px solid ${palette.gray4};
-                    color: ${palette.gray0};
+                    color: ${palette.gray2};
                 `;
             case "green":
                 return css`
@@ -39,9 +39,9 @@ const Block = styled.div<{ color: "default" | "green" | "red" }>`
                 `;
             case "red":
                 return css`
-                    background-color: #fff9f7;
-                    border: 1px solid #d49991;
-                    color: #4e0000;
+                    background-color: ${palette.gray5};
+                    border: 1px solid ${palette.gray4};
+                    color: #ff9b73;
                 `;
         }
     }}
