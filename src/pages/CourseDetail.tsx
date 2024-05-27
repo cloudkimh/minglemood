@@ -8,6 +8,7 @@ import PageTemplate from "../components/common/PageTemplate";
 import { getSampleImage } from "../lib/styles/utils";
 import OptionModal from "../components/courseDetail/OptionModal";
 import useToggle from "../lib/hooks/useToggle";
+import PolicySection from "../components/courseDetail/PolicySection";
 
 const photo = getSampleImage();
 
@@ -110,6 +111,7 @@ function CourseDetail() {
                 name={place.name}
                 address={place.address}
             />
+            <PolicySection />
             <BottomActionBar
                 isLiked={isLiked}
                 likes={likes}

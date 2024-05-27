@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import { SectionContainer, SectionHeader, SectionTitle } from "./styles";
 import palette from "../../lib/styles/palette";
 import useToggle from "../../lib/hooks/useToggle";
-import BottomArrowIcon from "../../assets/icon/CourseDetail/DescriptionSection/bottom-arrow.svg";
+import BottomArrowIcon from "../../assets/icon/CourseDetail/bottom-arrow.svg";
 import { HorizontalBarThick } from "../common/styles/Common";
 
 export type DescriptionSectionProps = {};
