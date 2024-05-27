@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import { SectionContainer, SectionHeader, SectionTitle } from "../styles";
 import RoundTag from "./RoundTag";
-import { HorizontalBar } from "../../common/styles/Common";
-import palette from "../../../lib/styles/palette";
+import { HorizontalBarThick } from "../../common/styles/Common";
 
 export type TagsSectionProps = {
     tags: Array<string>;
@@ -57,7 +56,7 @@ function TagsSection(props: TagsSectionProps) {
                     </TagGrid>
                 </SectionRow>
             </SectionContainer>
-            <StyledHorizontalBar />
+            <HorizontalBarThick />
         </>
     );
 }
@@ -86,11 +85,6 @@ const TagGrid = styled.div`
 
 const StyledRoundTag = styled(RoundTag)`
     margin-right: 9px;
-`;
-
-const StyledHorizontalBar = styled(HorizontalBar)`
-    height: 8px;
-    background-color: ${palette.white3};
 `;
 
 export default TagsSection;

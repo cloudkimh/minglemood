@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import palette from "../../lib/styles/palette";
 import { copyToClipboard } from "../../lib/utils";
 import CopyContentIcon from "../../assets/icon/CourseDetail/MapSection/copy-content.svg";
+import { HorizontalBarThick } from "../common/styles/Common";
 
 export type MapSectionProps = {
     lat: number;
@@ -35,19 +36,22 @@ function MapSection(props: MapSectionProps) {
     };
 
     return (
-        <SectionContainer>
-            <StyledSectionHeader>
-                <SectionTitle>장소</SectionTitle>
-            </StyledSectionHeader>
-            <MapCanvas ref={mapRef} />
-            <PlaceInfo>
-                <AddressCopy onClick={onCopyBtnClick}>
-                    <img alt="btn to copy address" src={CopyContentIcon} />{" "}
-                    주소복사
-                </AddressCopy>
-                <Address>{address}</Address>
-            </PlaceInfo>
-        </SectionContainer>
+        <>
+            <SectionContainer>
+                <StyledSectionHeader>
+                    <SectionTitle>장소</SectionTitle>
+                </StyledSectionHeader>
+                <MapCanvas ref={mapRef} />
+                <PlaceInfo>
+                    <AddressCopy onClick={onCopyBtnClick}>
+                        <img alt="btn to copy address" src={CopyContentIcon} />{" "}
+                        주소복사
+                    </AddressCopy>
+                    <Address>{address}</Address>
+                </PlaceInfo>
+            </SectionContainer>
+            <HorizontalBarThick />
+        </>
     );
 }
 

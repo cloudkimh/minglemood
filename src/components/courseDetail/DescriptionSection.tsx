@@ -3,7 +3,7 @@ import { SectionContainer, SectionHeader, SectionTitle } from "./styles";
 import palette from "../../lib/styles/palette";
 import useToggle from "../../lib/hooks/useToggle";
 import BottomArrowIcon from "../../assets/icon/CourseDetail/DescriptionSection/bottom-arrow.svg";
-import { HorizontalBar } from "../common/styles/Common";
+import { HorizontalBarThick } from "../common/styles/Common";
 
 export type DescriptionSectionProps = {};
 
@@ -33,7 +33,7 @@ function DescriptionSection(props: DescriptionSectionProps) {
                     </MoreBtn>
                 </ShowContentsBtn>
             </SectionContainer>
-            <StyledHorizontalBar />
+            <HorizontalBarThick />
         </>
     );
 }
@@ -89,11 +89,6 @@ const MoreBtn = styled.div<{ showAll: boolean }>`
         widght: 100%;
         vertical-align: middle;
     }
-`;
-
-const StyledHorizontalBar = styled(HorizontalBar)`
-    height: 8px;
-    background-color: ${palette.white3};
 `;
 
 export default DescriptionSection;

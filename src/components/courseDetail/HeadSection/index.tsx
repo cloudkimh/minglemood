@@ -2,8 +2,7 @@ import styled from "styled-components";
 import CourseInfo from "./CourseInfo";
 import HostInfo from "./HostInfo";
 import Banner from "./Banner";
-import { HorizontalBar } from "../../common/styles/Common";
-import palette from "../../../lib/styles/palette";
+import { HorizontalBarThick } from "../../common/styles/Common";
 
 export type HeadSectionProps = {
     banners: Array<string>;
@@ -35,18 +34,13 @@ function HeadSection(props: HeadSectionProps) {
                 />
                 <HostInfo hostInfo={hostInfo} />
             </HeaderContainer>
-            <StyledHorizontalBar />
+            <HorizontalBarThick />
         </>
     );
 }
 
 const HeaderContainer = styled.header`
     padding: 24px;
-`;
-
-const StyledHorizontalBar = styled(HorizontalBar)`
-    height: 8px;
-    background-color: ${palette.white3};
 `;
 
 export default HeadSection;
