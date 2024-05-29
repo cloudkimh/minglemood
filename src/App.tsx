@@ -6,6 +6,7 @@ import Core from "./components/core";
 import Home from "./pages/Home";
 import CourseDetail from "./pages/CourseDetail";
 import Explore from "./pages/Explore";
+import MyPage from "./pages/MyPage";
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                 <Route index element={<Home />} />
                 <Route path="course/:id" element={<CourseDetail />} />
                 <Route path="explore" element={<Explore />} />
+                <Route path="mypage" element={<MyPage />} />
                 {/* <Route path="*" element={<NotFoundPage />} /> */}
             </Routes>
             <Core />

@@ -3,7 +3,11 @@ import styled from "styled-components";
 import { useSpring, animated } from "react-spring";
 import { useDrag } from "react-use-gesture";
 import palette from "../../lib/styles/palette";
-import { getSampleImage, withOpacity } from "../../lib/styles/utils";
+import {
+    getSampleImage,
+    hideScrollBar,
+    withOpacity,
+} from "../../lib/styles/utils";
 import CoursePost from "../common/CoursePost";
 const photo = getSampleImage();
 
@@ -91,12 +95,12 @@ function BottomSheetModal(props: BottomSheetModalProps) {
     }, [isExpanded]);
 
     const open = ({ canceled }: { canceled: boolean }) => {
-        setYPosition({ y: 0 });
+        setYPosition.start({ y: 0 });
         setIsExpanded(true);
     };
 
     const close = (velocity = 0) => {
-        setYPosition({
+        setYPosition.start({
             y: 100,
             config: { ...{ tension: 300, friction: 30 }, velocity },
         });
@@ -153,8 +157,9 @@ function BottomSheetModal(props: BottomSheetModalProps) {
                         {location.name} • {posts.length}개의 모임
                     </PostsCount>
                     <PostGrid>
-                        {posts.map((aPost) => (
+                        {posts.map((aPost, i) => (
                             <CoursePost
+                                key={`post-${i}`}
                                 id={aPost.id}
                                 thumbnail={aPost.thumbnail}
                                 region={aPost.region}
@@ -187,6 +192,7 @@ const Block = styled.div`
 `;
 
 const Sheet = styled(animated.div)`
+    ${hideScrollBar}
     position: absolute;
     bottom: 0;
     width: 100%;

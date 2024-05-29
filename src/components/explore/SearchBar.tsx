@@ -29,7 +29,8 @@ const Block = styled.div`
     align-items: center;
     height: ${SEARCH_BAR_HEIGHT};
     border-bottom: 1px solid ${palette.gray5};
-    padding: 0px 20px;
+    background-color: ${palette.white0};
+    padding: 60px 20px 0;
 `;
 
 const CurrentLocation = styled.p`

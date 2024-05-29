@@ -1,10 +1,12 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import searchWhiteIcon from "../../../assets/icon/search-white.png";
 import searchBlackIcon from "../../../assets/icon/search-black.svg";
 import notificationWhiteIcon from "../../../assets/icon/notification.png";
 import notificationBlackIcon from "../../../assets/icon/notification-black.png";
 import Avatar from "./Avatar";
 import MinglemoodLogoImg from "../../../assets/img/minglemood-logo.png";
+import palette from "../../../lib/styles/palette";
+import { Link } from "react-router-dom";
 
 export type GnbProps = { isScrolled: boolean };
 
@@ -13,9 +15,11 @@ function Gnb(props: GnbProps) {
 
     return (
         <Block isScrolled={isScrolled}>
-            <Logo>
-                <LogoImg src={MinglemoodLogoImg} alt="minglemood logo" />
-            </Logo>
+            <Link to="/">
+                <Logo>
+                    <LogoImg src={MinglemoodLogoImg} alt="minglemood logo" />
+                </Logo>
+            </Link>
             <Container>
                 <SearchBtn>
                     <img
@@ -50,11 +54,22 @@ const Block = styled.nav<{ isScrolled: boolean }>`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 61px;
+    height: 60px;
     width: 100%;
     max-width: 768px;
     padding: 0 20px;
-    background-color: ${(props) => (props.isScrolled ? "#fff" : "transparent")};
+    transition: background-color 0.2s, border-bottom 0.2s;
+
+    ${(props) =>
+        props.isScrolled
+            ? css`
+                  background-color: ${palette.white0};
+                  border-bottom: 1px solid ${palette.gray5};
+              `
+            : css`
+                  background-color: transparent;
+                  border-bottom: none;
+              `};
 `;
 
 const Logo = styled.div`
