@@ -3,15 +3,16 @@ import searchWhiteIcon from "../../../assets/icon/search-white.png";
 import searchBlackIcon from "../../../assets/icon/search-black.svg";
 import notificationWhiteIcon from "../../../assets/icon/notification.png";
 import notificationBlackIcon from "../../../assets/icon/notification-black.png";
-import Avatar from "./Avatar";
 import MinglemoodLogoImg from "../../../assets/img/minglemood-logo.png";
 import palette from "../../../lib/styles/palette";
 import { Link } from "react-router-dom";
+import { getSampleUser } from "../../../lib/data/sampleUserData";
 
 export type GnbProps = { isScrolled: boolean };
 
 function Gnb(props: GnbProps) {
     const { isScrolled } = props;
+    const user = getSampleUser();
 
     return (
         <Block isScrolled={isScrolled}>
@@ -41,7 +42,9 @@ function Gnb(props: GnbProps) {
                         }
                     />
                 </NotificationBtn>
-                <Avatar />
+                <AvatarLink to={"/mypage"}>
+                    <Avatar src={user.avatar} alt="유저 아바타" />
+                </AvatarLink>
             </Container>
         </Block>
     );
@@ -58,7 +61,7 @@ const Block = styled.nav<{ isScrolled: boolean }>`
     width: 100%;
     max-width: 768px;
     padding: 0 20px;
-    transition: background-color 0.2s, border-bottom 0.2s;
+    transition: background-color 0.2s;
 
     ${(props) =>
         props.isScrolled
@@ -108,6 +111,17 @@ const NotificationBtn = styled.button`
         width: 100%;
         vertical-align: milddle;
     }
+`;
+
+const AvatarLink = styled(Link)`
+    width: 24px;
+    height: 24px;
+`;
+
+const Avatar = styled.img`
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
 `;
 
 export default Gnb;

@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import CourseDetail from "./pages/CourseDetail";
 import Explore from "./pages/Explore";
 import MyPage from "./pages/MyPage";
+import Setting from "./pages/Setting";
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
                 <Route path="course/:id" element={<CourseDetail />} />
                 <Route path="explore" element={<Explore />} />
                 <Route path="mypage" element={<MyPage />} />
+                <Route path="setting" element={<Setting />} />
                 {/* <Route path="*" element={<NotFoundPage />} /> */}
             </Routes>
             <Core />
