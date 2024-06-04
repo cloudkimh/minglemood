@@ -3,6 +3,7 @@ import palette from "../../lib/styles/palette";
 import { withOpacity } from "../../lib/styles/utils";
 import { getSampleUser } from "../../lib/data/sampleUserData";
 import ImageWithFallback from "../common/ImageWithFallback";
+import { Link } from "react-router-dom";
 
 export type UserHeaderProps = {};
 
@@ -10,13 +11,15 @@ function UserHeader(props: UserHeaderProps) {
     const user = getSampleUser();
 
     return (
-        <Block>
-            <Avatar alt="유저 아바타" path={user.avatar} />
-            <AliasBlock>
-                <Alias>{user.alias}</Alias>
-                <SnsType>카카오톡 계정</SnsType>
-            </AliasBlock>
-        </Block>
+        <Link to={"/setting"}>
+            <Block>
+                <Avatar alt="유저 아바타" path={user.avatar} />
+                <AliasBlock>
+                    <Alias>{user.alias}</Alias>
+                    <SnsType>카카오톡 계정</SnsType>
+                </AliasBlock>
+            </Block>
+        </Link>
     );
 }
 
@@ -38,6 +41,7 @@ const Avatar = styled(ImageWithFallback)`
 const AliasBlock = styled.div``;
 
 const Alias = styled.p`
+    color: ${palette.black0};
     font-size: 18px;
     font-weight: 800;
     margin-bottom: 10px;

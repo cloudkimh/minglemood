@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import media from "../../../lib/styles/media";
 import palette from "../../../lib/styles/palette";
 import { withOpacity } from "../../../lib/styles/utils";
+import zIndexes from "../../../lib/styles/zIndexes";
 
 export const BasicModalContainer = styled.div`
     width: 530px;
@@ -38,38 +39,19 @@ export const ModalContainer = styled.div`
     }
 `;
 
-export const StoryContainer = styled.div<{ center?: boolean; dark?: boolean }>`
+export const FixedBarContainer = styled.div<{ locate: "top" | "bottom" }>`
+    position: fixed;
+    max-width: 768px;
     width: 100%;
+    z-index: ${zIndexes.Gnb};
 
-    ${(props) =>
-        props.center
+    ${({ locate }) => {
+        return locate === "top"
             ? css`
-                  display: grid;
-                  place-content: center;
-                  padding: 100px 0;
+                  top: 0px;
               `
             : css`
-                  padding: 40px;
-              `}
-
-    ${(props) =>
-        props.dark &&
-        css`
-            background-color: ${palette.black2};
-        `}
-`;
-
-export const StoryMobileContainer = styled.div`
-    position: relative;
-    max-width: 500px;
-    margin: 0 auto;
-`;
-
-export const StoryRow = styled.div`
-    display: grid;
-    row-gap: 20px;
-
-    & + & {
-        margin-top: 60px;
-    }
+                  bottom: 0px;
+              `;
+    }}
 `;

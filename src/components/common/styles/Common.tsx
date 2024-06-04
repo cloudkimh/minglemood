@@ -94,3 +94,9 @@ export const FadeInOutBlock = styled.div<{ startFadeOut: boolean }>`
             animation: ${fadeOut} 0.25s ease-in-out forwards;
         `}
 `;
+
+export const SampleIco = styled.div`
+    width: 20px;
+    height: 20px;
+    background-color: ${palette.red2};
+`;

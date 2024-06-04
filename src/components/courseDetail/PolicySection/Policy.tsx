@@ -11,6 +11,7 @@ function Policy(props: PolicyProps) {
     const { header, children } = props;
     const [isDescriptionOpened, setIsDescriptionOpen] =
         useState<boolean>(false);
+
     const onHeaderClick = () => {
         setIsDescriptionOpen(!isDescriptionOpened);
     };

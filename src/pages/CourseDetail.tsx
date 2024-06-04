@@ -112,17 +112,17 @@ function CourseDetail() {
                 address={place.address}
             />
             <PolicySection />
-            <BottomActionBar
-                isLiked={isLiked}
-                likes={likes}
-                onSubmit={onSubmit}
-            />
             <OptionModal
                 visible={optionModalOpened}
                 handleClose={toggleOptionModalOpened}
                 isLiked={isLiked}
                 likes={likes}
                 handleToggleLike={handleToggleLike}
+            />
+            <BottomActionBar
+                isLiked={isLiked}
+                likes={likes}
+                onSubmit={onSubmit}
             />
         </PageTemplate>
     );
