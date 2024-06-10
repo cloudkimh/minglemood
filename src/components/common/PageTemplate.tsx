@@ -5,7 +5,6 @@ import { hideScrollBar, withOpacity } from "../../lib/styles/utils";
 import Footer from "./Footer";
 import throttle from "lodash/throttle";
 import Gnb from "./Gnb";
-import { FadeInBlock } from "./styles/Common";
 
 type PageTemplateProps = {
     children: ReactNode;
@@ -25,6 +24,7 @@ function PageTemplate(props: PageTemplateProps) {
         if (pageContainerRef.current) {
             pageContainerRef.current.addEventListener("scroll", handleScroll);
         }
+
         return () => {
             if (pageContainerRef.current) {
                 pageContainerRef.current.removeEventListener(
@@ -64,8 +64,5 @@ const PageContainer = styled.div`
 const PageContents = styled.div`
     min-height: 100%;
 `;
-// const PageContents = styled(FadeInBlock)`
-//     min-height: 100%;
-// `;
 
 export default PageTemplate;

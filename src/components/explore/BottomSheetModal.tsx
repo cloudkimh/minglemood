@@ -11,56 +11,18 @@ import {
 import CoursePost from "../common/CoursePost";
 const photo = getSampleImage();
 
-const samplePosts = [
-    {
-        id: 1,
-        thumbnail: photo,
-        region: "부산",
-        title: "테스트 제목 테스트 제목 테스트 제목 테스트 제목 테스트 제목 테스트 제목 테스트 제목 테스트 제목  ",
-        starScore: 4.5,
-        starCnt: 1000,
-        heartCnt: 2000,
-        price: 33000,
-        discountRate: undefined,
-        isLiked: true,
-    },
-    {
-        id: 2,
-        thumbnail: photo,
-        region: "서울",
-        title: "테스트 제목 테스트 제목 테스트 제목 테스트 제목 ",
-        starScore: 4.5,
-        starCnt: 1000,
-        heartCnt: 2000,
-        price: 33000,
-        discountRate: 15,
-        isLiked: false,
-    },
-    {
-        id: 3,
-        thumbnail: photo,
-        region: "대구",
-        title: "테스트 제목 테스트 제목 테스트 제목 테스트 제목 ",
-        starScore: 4.5,
-        starCnt: 1000,
-        heartCnt: 2000,
-        price: 33000,
-        discountRate: 15,
-        isLiked: false,
-    },
-    {
-        id: 4,
-        thumbnail: photo,
-        region: "울산",
-        title: "테스트 제목 테스트 제목 테스트 제목 테스트 제목 ",
-        starScore: 4.5,
-        starCnt: 1000,
-        heartCnt: 2000,
-        price: 33000,
-        discountRate: 15,
-        isLiked: false,
-    },
-];
+const samplePosts = Array(8).fill({
+    id: 1,
+    thumbnail: photo,
+    region: "부산",
+    title: "테스트 제목 테스트 제목 테스트 제목 테스트 제목 테스트 제목 테스트 제목 테스트 제목 테스트 제목  ",
+    starScore: 4.5,
+    starCnt: 1000,
+    heartCnt: 2000,
+    price: 33000,
+    discountRate: undefined,
+    isLiked: true,
+});
 
 type BottomSheetModalProps = {
     location: {
@@ -147,32 +109,32 @@ function BottomSheetModal(props: BottomSheetModalProps) {
             <Sheet
                 {...bind()}
                 style={{
-                    transform: yPosition.to(
-                        (py) => `translateY(calc(${py}% - 50px))`
-                    ),
+                    transform: yPosition.to((py) => `translateY(calc(${py}%))`),
                 }}
             >
                 <Content onClick={(e) => e.stopPropagation()}>
                     <PostsCount>
                         {location.name} • {posts.length}개의 모임
                     </PostsCount>
-                    <PostGrid>
-                        {posts.map((aPost, i) => (
-                            <CoursePost
-                                key={`post-${i}`}
-                                id={aPost.id}
-                                thumbnail={aPost.thumbnail}
-                                region={aPost.region}
-                                title={aPost.title}
-                                starScore={aPost.starScore}
-                                starCnt={aPost.starCnt}
-                                heartCnt={aPost.heartCnt}
-                                price={aPost.price}
-                                isLiked={aPost.isLiked}
-                                discountRate={aPost.discountRate}
-                            />
-                        ))}
-                    </PostGrid>
+                    <PostsWrapper>
+                        <PostGrid>
+                            {posts.map((aPost, i) => (
+                                <CoursePost
+                                    key={`post-${i}`}
+                                    id={aPost.id}
+                                    thumbnail={aPost.thumbnail}
+                                    region={aPost.region}
+                                    title={aPost.title}
+                                    starScore={aPost.starScore}
+                                    starCnt={aPost.starCnt}
+                                    heartCnt={aPost.heartCnt}
+                                    price={aPost.price}
+                                    isLiked={aPost.isLiked}
+                                    discountRate={aPost.discountRate}
+                                />
+                            ))}
+                        </PostGrid>
+                    </PostsWrapper>
                 </Content>
             </Sheet>
         </Block>
@@ -197,20 +159,35 @@ const Sheet = styled(animated.div)`
     bottom: 0;
     width: 100%;
     max-width: 768px;
-    background: ${palette.white0};
-    border-radius: 16px 16px 0 0;
+    background-color: ${palette.white0};
     box-shadow: 0 -2px 10px ${palette.black2}${withOpacity(0.1)};
 `;
 
 const Content = styled.div`
+    position: relative;
     height: 75vh;
-    padding: 24px 20px 0;
-    overflow-y: auto;
+    padding: 10px 20px 0;
 `;
 
-const PostsCount = styled.p`
+const PostsCount = styled.div`
+    position: absolute;
+    top: -49px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
     color: ${palette.gray1};
+    background-color: ${palette.white0};
     font-size: 13px;
+    border-radius: 16px 16px 0 0;
+    padding: 0 20px;
+`;
+
+const PostsWrapper = styled.div`
+    height: 100%;
+    overflow-y: auto;
+    padding-bottom: 50px;
 `;
 
 const PostGrid = styled.div`
