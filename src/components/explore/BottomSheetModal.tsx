@@ -195,7 +195,6 @@ const PostGrid = styled.div`
     grid-template-columns: 1fr 1fr;
     column-gap: 15px;
     row-gap: 25px;
-    margin-top: 30px;
 `;
 
 export default BottomSheetModal;

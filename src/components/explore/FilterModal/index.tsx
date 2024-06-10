@@ -124,30 +124,32 @@ function FilterModal(props: FilterModalProps) {
                     <Title>필터</Title>
                     <CloseBtn onClick={onClose}>닫기</CloseBtn>
                 </ModalHeader>
-                <CheckBoxOptions
-                    title="지역"
-                    optionName="locations"
-                    options={sampleLocations}
-                    selectedOptions={currentValues.locations}
-                    handleSelectOption={handleSelectLocations}
-                />
-                <SectionGap />
-                <CheckBoxOptions
-                    title="모임 종류"
-                    optionName="types"
-                    options={sampleTypes}
-                    selectedOptions={currentValues.types}
-                    handleSelectOption={handleSelectTypes}
-                />
-                <SectionGap />
-                <SliderOptions
-                    title="비용"
-                    min={MIN_COST}
-                    max={MAX_COST}
-                    step={10000}
-                    initialValues={currentValues.cost}
-                    handleChange={handleChangeCost}
-                />
+                <Wrapper>
+                    <CheckBoxOptions
+                        title="지역"
+                        optionName="locations"
+                        options={sampleLocations}
+                        selectedOptions={currentValues.locations}
+                        handleSelectOption={handleSelectLocations}
+                    />
+                    <SectionGap />
+                    <CheckBoxOptions
+                        title="모임 종류"
+                        optionName="types"
+                        options={sampleTypes}
+                        selectedOptions={currentValues.types}
+                        handleSelectOption={handleSelectTypes}
+                    />
+                    <SectionGap />
+                    <SliderOptions
+                        title="비용"
+                        min={MIN_COST}
+                        max={MAX_COST}
+                        step={10000}
+                        initialValues={currentValues.cost}
+                        handleChange={handleChangeCost}
+                    />
+                </Wrapper>
                 <BottomBlock>
                     <SummitBtn onClick={onSubmit}>필터 적용</SummitBtn>
                 </BottomBlock>
@@ -185,12 +187,21 @@ const CloseBtn = styled.button`
     margin-left: auto;
 `;
 
+const Wrapper = styled.div`
+    height: 100%;
+    overflow-y: scroll;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+    padding-bottom: 200px;
+`;
+
 const BottomBlock = styled.div`
     position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
-    padding: 10px 20px 40px;
+    background-color: ${palette.white0};
+    padding: 20px 20px 40px;
 `;
 
 const SummitBtn = styled.button`
