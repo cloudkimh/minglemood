@@ -160,7 +160,7 @@ function FilterModal(props: FilterModalProps) {
 
 const StyledModalBody = styled(ModalBody)`
     position: relative;
-    height: 90vh;
+    height: calc(100vh - 100px);
 `;
 
 const ModalHeader = styled.div`
