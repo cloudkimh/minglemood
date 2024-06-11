@@ -3,9 +3,13 @@ import Swiper from "../../common/Swiper";
 import palette from "../../../lib/styles/palette";
 import { withOpacity } from "../../../lib/styles/utils";
 import React, { useState } from "react";
+import ImageWithFallback from "../../common/ImageWithFallback";
 
 export type BannerProps = {
-    banners: Array<{ image: string; title: Array<string> }>;
+    banners: Array<{
+        image: string;
+        title: Array<string>;
+    }>;
 };
 
 function Banner(props: BannerProps) {
@@ -24,7 +28,7 @@ function Banner(props: BannerProps) {
             <Swiper.Track>
                 {banners.map((aBanner, index) => (
                     <BannerSlide key={index}>
-                        <BannerImg src={aBanner.image} alt="배너 이미지" />
+                        <BannerImg path={aBanner.image} alt="배너 이미지" />
                         <BannerTitle>
                             {aBanner.title.map((line, index) => (
                                 <React.Fragment key={index}>
@@ -56,7 +60,7 @@ const BannerSlide = styled(Swiper.Slide)`
     aspect-ratio: 1 / 0.97;
 `;
 
-const BannerImg = styled.img`
+const BannerImg = styled(ImageWithFallback)`
     width: 100%;
     height: 100%;
 `;
