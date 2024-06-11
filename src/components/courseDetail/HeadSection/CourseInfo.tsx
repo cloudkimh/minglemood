@@ -24,7 +24,9 @@ function CourseInfo(props: CourseInfoProps) {
     );
 }
 
-const Block = styled.div``;
+const Block = styled.div`
+    margin-bottom: 20px;
+`;
 
 const Title = styled.h1`
     font-size: 18px;

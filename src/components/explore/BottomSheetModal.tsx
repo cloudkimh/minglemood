@@ -9,8 +9,8 @@ import {
     withOpacity,
 } from "../../lib/styles/utils";
 import CoursePost from "../common/CoursePost";
-const photo = getSampleImage();
 
+const photo = getSampleImage();
 const samplePosts = Array(8).fill({
     id: 1,
     thumbnail: photo,

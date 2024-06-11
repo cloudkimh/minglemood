@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import CourseInfo from "./CourseInfo";
-import HostInfo from "./HostInfo";
+import HostInfoCard from "../../common/HostInfoCard";
 import Banner from "./Banner";
 import { HorizontalBarThick } from "../../common/styles/Common";
 
@@ -32,7 +32,13 @@ function HeadSection(props: HeadSectionProps) {
                     price={price}
                     discountRate={discountRate}
                 />
-                <HostInfo hostInfo={hostInfo} />
+                <HostInfoCard
+                    avatar={hostInfo.avatar}
+                    alias={hostInfo.alias}
+                    courseCnt={hostInfo.courseCnt}
+                    reviewCnt={hostInfo.reviewCnt}
+                    likes={hostInfo.likes}
+                />
             </HeaderContainer>
             <HorizontalBarThick />
         </>

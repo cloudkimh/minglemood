@@ -1,8 +1,9 @@
-import { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import heartDeactiveIcon from "../../../assets/icon/like-heart.svg";
 import heartActiveIcon from "../../../assets/icon/like-heart-active.svg";
+import ImageWithFallback from "../ImageWithFallback";
+import useToggle from "../../../lib/hooks/useToggle";
 
 export type ThumbnailProps = {
     id: number;
@@ -12,20 +13,20 @@ export type ThumbnailProps = {
 
 function Thumbnail(props: ThumbnailProps) {
     const { id, thumbnail, isLiked } = props;
-    const [liked, setLiked] = useState<boolean>(isLiked);
+    const [liked, toggleLiked] = useToggle(isLiked);
 
     const onButtonClick = () => {
-        setLiked(!liked);
+        toggleLiked();
     };
 
     return (
         <Block>
             <Link to={`/course/${id}`}>
-                <ThumbnailImage src={thumbnail} alt="코스 썸네일" />
+                <ThumbnailImage path={thumbnail} alt="코스 썸네일" />
             </Link>
             <Button onClick={onButtonClick}>
                 <img
-                    alt="hear for like function"
+                    alt="좋아요 버튼"
                     src={liked ? heartActiveIcon : heartDeactiveIcon}
                 />
             </Button>
@@ -39,7 +40,7 @@ const Block = styled.div`
     padding-bottom: 100%;
 `;
 
-const ThumbnailImage = styled.img`
+const ThumbnailImage = styled(ImageWithFallback)`
     position: absolute;
     top: 0;
     left: 0;
@@ -55,7 +56,7 @@ const Button = styled.button`
     width: 18px;
     height: 18px;
 
-    & img {
+    img {
         width: 100%;
         vertical-align: middle;
     }

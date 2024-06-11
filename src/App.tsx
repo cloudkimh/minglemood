@@ -9,6 +9,7 @@ import Explore from "./pages/Explore";
 import MyPage from "./pages/MyPage";
 import Setting from "./pages/Setting";
 import SocialFeeds from "./pages/SocialFeeds";
+import Likes from "./pages/Likes";
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                 <Route path="mypage" element={<MyPage />} />
                 <Route path="setting" element={<Setting />} />
                 <Route path="social-feeds" element={<SocialFeeds />} />
+                <Route path="likes/*" element={<Likes />} />
                 {/* <Route path="*" element={<NotFoundPage />} /> */}
             </Routes>
             <Core />
