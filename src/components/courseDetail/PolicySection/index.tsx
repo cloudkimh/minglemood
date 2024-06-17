@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { HorizontalBarThick } from "../../common/styles/Common";
+import { SectionDivider } from "../../common/styles/Common";
 import { SectionContainer } from "../styles";
 import Policy from "./Policy";
 
@@ -26,7 +26,7 @@ function PolicySection() {
                     <LineBreaker />- 유의사항 내용입니다. 유의사항 내용입니다.
                 </Policy>
             </StyledSectionContainer>
-            <HorizontalBarThick />
+            <SectionDivider />
         </>
     );
 }

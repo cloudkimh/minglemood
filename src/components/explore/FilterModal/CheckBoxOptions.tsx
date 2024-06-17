@@ -37,6 +37,7 @@ function CheckBoxOptions(props: CheckBoxOptionsProps) {
                         key={`checkbox-${i}`}
                         ref={(elem) => (inputRefs.current[i] = elem)}
                         as={CheckBox}
+                        type="checkbox"
                         name={optionName}
                         value={aOption.id}
                         label={aOption.name}

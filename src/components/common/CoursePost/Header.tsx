@@ -2,7 +2,7 @@ import styled from "styled-components";
 import palette from "../../../lib/styles/palette";
 import { multiLineEllipsis } from "../../../lib/styles/utils";
 import { Link } from "react-router-dom";
-import starIcon from "../../../assets/icon/star.png";
+import starIcon from "../../../assets/icon/star.svg";
 import heartIcon from "../../../assets/icon/heart.png";
 
 export type HeaderProps = {
@@ -35,7 +35,7 @@ function Header(props: HeaderProps) {
             <RatingBlock>
                 <StarBlock>
                     <RatingIcon>
-                        <img src={starIcon} alt="star icon" />
+                        <img src={starIcon} alt="별점" />
                     </RatingIcon>
                     <div>
                         {starScore}({starCnt})
@@ -43,12 +43,11 @@ function Header(props: HeaderProps) {
                 </StarBlock>
                 <HeartBlock>
                     <RatingIcon>
-                        <img src={heartIcon} alt="heart icon" />
+                        <img src={heartIcon} alt="좋아요" />
                     </RatingIcon>
                     <div>{heartCnt <= 999 ? heartCnt : "999+"}</div>
                 </HeartBlock>
             </RatingBlock>
-            {/* <StyledHorizontalBar /> */}
             <Price>
                 {discountRate && <DiscountRate>{discountRate}%</DiscountRate>}
                 {price.toLocaleString()}원

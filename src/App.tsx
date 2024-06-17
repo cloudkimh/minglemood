@@ -10,6 +10,7 @@ import MyPage from "./pages/MyPage";
 import Setting from "./pages/Setting";
 import SocialFeeds from "./pages/SocialFeeds";
 import Likes from "./pages/Likes";
+import Purchase from "./pages/Purchase";
 
 function App() {
     return (
@@ -28,6 +29,7 @@ function App() {
                 <Route path="setting" element={<Setting />} />
                 <Route path="social-feeds" element={<SocialFeeds />} />
                 <Route path="likes/*" element={<Likes />} />
+                <Route path="purchase/:id" element={<Purchase />} />
                 {/* <Route path="*" element={<NotFoundPage />} /> */}
             </Routes>
             <Core />

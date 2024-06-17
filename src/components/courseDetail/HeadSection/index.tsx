@@ -2,7 +2,7 @@ import styled from "styled-components";
 import CourseInfo from "./CourseInfo";
 import HostInfoCard from "../../common/HostInfoCard";
 import Banner from "./Banner";
-import { HorizontalBarThick } from "../../common/styles/Common";
+import { SectionDivider } from "../../common/styles/Common";
 
 export type HeadSectionProps = {
     banners: Array<string>;
@@ -40,7 +40,7 @@ function HeadSection(props: HeadSectionProps) {
                     likes={hostInfo.likes}
                 />
             </HeaderContainer>
-            <HorizontalBarThick />
+            <SectionDivider />
         </>
     );
 }

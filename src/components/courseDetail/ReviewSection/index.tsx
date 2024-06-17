@@ -2,7 +2,7 @@ import styled from "styled-components";
 import palette from "../../../lib/styles/palette";
 import ReviewCard from "./ReviewCard";
 import { hideScrollBar } from "../../../lib/styles/utils";
-import { HorizontalBarThick } from "../../common/styles/Common";
+import { SectionDivider } from "../../common/styles/Common";
 
 export type ReviewSectionProps = {
     rating: number;
@@ -36,7 +36,7 @@ function ReviewSection(props: ReviewSectionProps) {
                     ))}
                 </Reviews>
             </Block>
-            <HorizontalBarThick />
+            <SectionDivider />
         </>
     );
 }

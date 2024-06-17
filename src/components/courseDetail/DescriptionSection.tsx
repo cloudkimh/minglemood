@@ -3,7 +3,7 @@ import { SectionContainer, SectionHeader, SectionTitle } from "./styles";
 import palette from "../../lib/styles/palette";
 import useToggle from "../../lib/hooks/useToggle";
 import BottomArrowIcon from "../../assets/icon/CourseDetail/bottom-arrow.svg";
-import { HorizontalBarThick } from "../common/styles/Common";
+import { SectionDivider } from "../common/styles/Common";
 
 export type DescriptionSectionProps = {};
 
@@ -33,7 +33,7 @@ function DescriptionSection(props: DescriptionSectionProps) {
                     </MoreBtn>
                 </ShowContentsBtn>
             </SectionContainer>
-            <HorizontalBarThick />
+            <SectionDivider />
         </>
     );
 }

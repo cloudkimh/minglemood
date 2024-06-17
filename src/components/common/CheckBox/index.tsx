@@ -3,8 +3,9 @@ import styled from "styled-components";
 
 export type CheckBoxProps = Omit<
     InputHTMLAttributes<HTMLInputElement>,
-    "id" | "name" | "value"
+    "id" | "name" | "value" | "type"
 > & {
+    type: "checkbox" | "radio";
     name: string;
     value: string | number;
     id?: string;
@@ -13,14 +14,15 @@ export type CheckBoxProps = Omit<
 };
 
 function CheckBox(props: CheckBoxProps, ref: React.Ref<HTMLInputElement>) {
-    const { name, label, id, value, className, ...htmlProps } = props;
+    const { name, label, id, value, type, className, ...htmlProps } = props;
 
     return (
         <Block className={className}>
             <input
                 ref={ref}
-                type="checkbox"
+                type={type}
                 value={value}
+                name={name}
                 id={id ?? `${name}-${value}`}
                 {...htmlProps}
             />

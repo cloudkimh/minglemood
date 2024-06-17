@@ -24,7 +24,7 @@ export const HorizontalBar = styled.div`
     border-radius: 0.5px;
 `;
 
-export const HorizontalBarThick = styled(HorizontalBar)`
+export const SectionDivider = styled(HorizontalBar)`
     height: 8px;
     background-color: ${palette.white3};
 `;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { SectionContainer, SectionHeader, SectionTitle } from "../styles";
 import RoundTag from "./RoundTag";
-import { HorizontalBarThick } from "../../common/styles/Common";
+import { SectionDivider } from "../../common/styles/Common";
 
 export type TagsSectionProps = {
     tags: Array<string>;
@@ -56,7 +56,7 @@ function TagsSection(props: TagsSectionProps) {
                     </TagGrid>
                 </SectionRow>
             </SectionContainer>
-            <HorizontalBarThick />
+            <SectionDivider />
         </>
     );
 }

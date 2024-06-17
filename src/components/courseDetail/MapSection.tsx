@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import palette from "../../lib/styles/palette";
 import { copyToClipboard } from "../../lib/utils";
 import CopyContentIcon from "../../assets/icon/CourseDetail/MapSection/copy-content.svg";
-import { HorizontalBarThick } from "../common/styles/Common";
+import { SectionDivider } from "../common/styles/Common";
 
 export type MapSectionProps = {
     lat: number;
@@ -50,7 +50,7 @@ function MapSection(props: MapSectionProps) {
                     <Address>{address}</Address>
                 </PlaceInfo>
             </SectionContainer>
-            <HorizontalBarThick />
+            <SectionDivider />
         </>
     );
 }
