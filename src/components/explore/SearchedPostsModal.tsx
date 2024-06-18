@@ -2,6 +2,7 @@ import styled from "styled-components";
 import CoursePost from "../common/CoursePost";
 import ModalTemplate from "../common/ModalTemplate";
 import { ModalBody } from "../common/ModalTemplate/styles";
+import { hideScrollBar } from "../../lib/styles/utils";
 
 type SearchedPostsModalProps = {
     visible: boolean;
@@ -42,11 +43,12 @@ function SearchedPostsModal(props: SearchedPostsModalProps) {
 }
 
 const StyledModalBody = styled(ModalBody)`
-    height: calc(100vh - 100px);
+    height: calc(100% - 100px);
     padding: 33px 20px 0;
 `;
 
 const PostsWrapper = styled.div`
+    ${hideScrollBar}
     height: 100%;
     overflow-y: auto;
     padding-bottom: 50px;

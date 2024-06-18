@@ -164,7 +164,7 @@ function FilterModal(props: FilterModalProps) {
 
 const StyledModalBody = styled(ModalBody)`
     position: relative;
-    height: calc(100vh - 100px);
+    height: calc(100% - 100px);
     padding-top: 33px;
 `;
 

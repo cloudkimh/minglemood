@@ -50,7 +50,7 @@ function Filters(props: FiltersProps) {
                 </FilterChipsContainer>
             )}
             <ResetBtn onClick={onClickResetBtn}>
-                <ResetIco />
+                <StyledResetIco />
                 초기화
             </ResetBtn>
         </Block>
@@ -98,6 +98,10 @@ const ResetBtn = styled.button`
     color: ${palette.gray2};
     flex-shrink: 0;
     padding: 4px;
+`;
+
+const StyledResetIco = styled(ResetIco)`
+    margin-right: 2px;
 `;
 
 export default Filters;
