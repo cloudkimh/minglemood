@@ -1,50 +1,62 @@
 import styled from "styled-components";
 import palette from "../../../lib/styles/palette";
 import Header from "./Header";
-import { getSampleImage } from "../../../lib/styles/utils";
 import Photos from "./Photos";
 import CourseTag from "./CourseTag";
 import TextSection from "./TextSection";
 import ButtonSection from "./ButtonSection";
 
-export type FeedProps = {};
-
-const photo = getSampleImage();
-const photos = Array(5).fill(photo);
-const feed = {
-    id: 10,
-    timestamp: "1시간 전",
-    avatar: photo,
-    alias: "초코뮤직",
-    url: "/course/10",
-    name: "코스이름 코스이름 코스이름 코스이름 코스이름 코스이름 ",
-    photos,
-    text: "텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 텍스트 ",
+export type FeedProps = {
+    id: number;
+    photos: Array<string>;
+    timestamp: string;
+    avatar: string;
+    alias: string;
+    url: string;
+    name: string;
+    text: string;
+    likes: number;
+    isLiked: boolean;
+    comments: number;
 };
 
 function Feed(props: FeedProps) {
-    const onClickLike = () => {};
+    const {
+        id,
+        photos,
+        timestamp,
+        avatar,
+        alias,
+        url,
+        name,
+        text,
+        likes,
+        isLiked,
+        comments,
+    } = props;
+    const handleClickLike = () => {};
 
     return (
         <Block>
             <Wrapper>
-                <Header
-                    timestamp={feed.timestamp}
-                    avatar={feed.avatar}
-                    alias={feed.alias}
+                <Header timestamp={timestamp} avatar={avatar} alias={alias} />
+                <Photos photos={photos} />
+                <CourseTag url={url} name={name} />
+                <TextSection text={text} />
+                <ButtonSection
+                    handleClickLike={handleClickLike}
+                    id={id}
+                    likes={likes}
+                    isLiked={isLiked}
+                    comments={comments}
                 />
-                <Photos photos={feed.photos} />
-                <CourseTag url={feed.url} name={feed.name} />
-                <TextSection text={feed.text} />
-                <ButtonSection onLike={onClickLike} id={feed.id} />
             </Wrapper>
         </Block>
     );
 }
 
 const Block = styled.div`
-    border-bottom: 1px solid ${palette.gray5};
-    padding: 30px 20px;
+    padding: 0 20px;
 `;
 
 const Wrapper = styled.div`

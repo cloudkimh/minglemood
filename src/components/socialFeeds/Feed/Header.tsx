@@ -28,15 +28,15 @@ const Block = styled.div`
 `;
 
 const Avatar = styled(ImageWithFallback)`
-    width: 36px;
-    height: 36px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 8px;
 `;
 
 const AliasBlock = styled.div`
     display: grid;
-    row-gap: 8px;
+    row-gap: 5px;
 `;
 
 const Alias = styled.p`
@@ -46,7 +46,7 @@ const Alias = styled.p`
 `;
 
 const Timestamp = styled.p`
-    font-size: 12px;
+    font-size: 11px;
     color: ${palette.gray3};
 `;
 

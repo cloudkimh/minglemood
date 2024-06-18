@@ -1,31 +1,41 @@
-import styled from "styled-components";
-import { SampleIco } from "../../common/styles/Common";
-import palette from "../../../lib/styles/palette";
+import styled, { css } from "styled-components";
 import { useNavigate } from "react-router-dom";
+import useToggle from "../../../lib/hooks/useToggle";
+import { ReactComponent as LikeIco } from "../../../assets/icon/like-heart-active.svg";
+import { ReactComponent as CommentIco } from "../../../assets/icon/speech-bubble.svg";
 
 export type ButtonSectionProps = {
-    onLike: () => void;
+    handleClickLike: () => void;
     id: number;
+    likes: number;
+    isLiked: boolean;
+    comments: number;
 };
 
 function ButtonSection(props: ButtonSectionProps) {
-    const { onLike, id } = props;
+    const { handleClickLike, id, likes, isLiked, comments } = props;
+    const [currentIsLiked, toggleCurrentIsLiked] = useToggle(isLiked);
     const navigate = useNavigate();
 
     const onClickCommentBtn = () => {
         navigate(`/social-feeds/${id}/comments`);
     };
 
+    const onLike = () => {
+        toggleCurrentIsLiked();
+        handleClickLike();
+    };
+
     return (
         <Block>
-            <ButtonBlock onClick={onLike}>
-                <SampleIco />
-                <span>0</span>
-            </ButtonBlock>
-            <ButtonBlock onClick={onClickCommentBtn}>
-                <SampleIco />
-                <span>0</span>
-            </ButtonBlock>
+            <LikeBtn onClick={onLike}>
+                <LikeIco />
+                {likes}
+            </LikeBtn>
+            <CommentBtn onClick={onClickCommentBtn}>
+                <CommentIco />
+                {comments}
+            </CommentBtn>
         </Block>
     );
 }
@@ -33,22 +43,24 @@ function ButtonSection(props: ButtonSectionProps) {
 const Block = styled.div`
     display: flex;
     align-items: center;
-    margin-top: 30px;
+    column-gap: 22px;
+    margin-top: 15px;
 `;
 
-const ButtonBlock = styled.button`
+const buttonStyle = css`
     display: flex;
     align-items: center;
-    font-size: 14px;
+    column-gap: 4px;
+    font-size: 13px;
+    font-weight: 700;
+`;
 
-    & + & {
-        margin-left: 20px;
-    }
+const LikeBtn = styled.button`
+    ${buttonStyle}
+`;
 
-    span {
-        color: ${palette.gray0};
-        margin-left: 7px;
-    }
+const CommentBtn = styled.button`
+    ${buttonStyle}
 `;
 
 export default ButtonSection;

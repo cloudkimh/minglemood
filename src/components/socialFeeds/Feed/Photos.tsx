@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Swiper from "../../common/Swiper";
 import {
     SwiperPageBtnContainer,
@@ -9,6 +9,8 @@ import {
 import palette from "../../../lib/styles/palette";
 import { withOpacity } from "../../../lib/styles/utils";
 import ImageWithFallback from "../../common/ImageWithFallback";
+import { ReactComponent as PrevPageIco } from "../../../assets/icon/chevron-left-sm.svg";
+import { ReactComponent as NextPageIco } from "../../../assets/icon/chevron-right-sm.svg";
 
 export type PhotosProps = {
     photos: Array<string>;
@@ -33,8 +35,12 @@ function Photos(props: PhotosProps) {
                     ))}
                 </PhotosSwiperTrack>
                 <SwiperPageBtnContainer>
-                    <NextPageBtn></NextPageBtn>
-                    <PrevPageBtn></PrevPageBtn>
+                    <NextPageBtn>
+                        <NextPageIco />
+                    </NextPageBtn>
+                    <PrevPageBtn>
+                        <PrevPageIco />
+                    </PrevPageBtn>
                 </SwiperPageBtnContainer>
                 <FeedPhotoPagination />
             </PhotosSwiper>
@@ -49,7 +55,7 @@ const Block = styled.div`
 const PhotosSwiper = styled(Swiper)`
     position: relative;
     width: 100%;
-    border-radius: 10px;
+    border-radius: 5px;
     overflow: hidden;
 `;
 
@@ -57,24 +63,26 @@ const PhotosSwiperTrack = styled(Swiper.Track)`
     width: 100%;
 `;
 
-const NextPageBtn = styled(SwiperPageNextBtn)`
+const pageBtnStyle = css`
     position: absolute;
     top: 50%;
-    right: 10px;
     transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    background-color: ${palette.red2};
+    display: grid;
+    place-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: ${palette.gray4}${withOpacity(0.45)};
+`;
+
+const NextPageBtn = styled(SwiperPageNextBtn)`
+    ${pageBtnStyle}
+    right: 10px;
 `;
 
 const PrevPageBtn = styled(SwiperPagePrevBtn)`
-    position: absolute;
-    top: 50%;
+    ${pageBtnStyle}
     left: 10px;
-    transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    background-color: ${palette.red2};
 `;
 
 const FeedPhotoSlide = styled(Swiper.Slide)`
