@@ -1,15 +1,17 @@
 import styled from "styled-components";
 import palette from "../../lib/styles/palette";
-import { FILTERS_HEIGHT, MAX_COST, MIN_COST } from "./variables";
+import { FILTERS_BAR_HEIGHT, MAX_COST, MIN_COST } from "./variables";
 import { FilterSettings } from "./types";
+import { ReactComponent as ResetIco } from "../../assets/icon/refresh.svg";
 
 export type FiltersProps = {
-    handleClickFilterBtn: () => void;
+    isFilterNotApplied: boolean;
     filterSettings: FilterSettings;
+    onClickResetBtn: () => void;
 };
 
 function Filters(props: FiltersProps) {
-    const { handleClickFilterBtn, filterSettings } = props;
+    const { isFilterNotApplied, filterSettings, onClickResetBtn } = props;
     const hasLocationsFilter = filterSettings.locations.length > 0;
     const hasTypesFilter = filterSettings.types.length > 0;
     const hasCostFilter =
@@ -20,28 +22,37 @@ function Filters(props: FiltersProps) {
         filterSettings.cost.min === 0 ? 0 : filterSettings.cost.min / 10000
     }만원 ~ ${filterSettings.cost.max / 10000}만원`;
 
+    const formatLocationText = () =>
+        filterSettings.locations.length > 1
+            ? `${filterSettings.locations[0].name} 외 ${
+                  filterSettings.locations.length - 1
+              }곳`
+            : filterSettings.locations[0].name;
+
+    const formatTypesText = () =>
+        filterSettings.types.length > 1
+            ? `${filterSettings.types[0].name} 외 ${
+                  filterSettings.types.length - 1
+              }개`
+            : filterSettings.types[0].name;
+
     return (
         <Block>
-            <FilterBtn onClick={handleClickFilterBtn}>필터</FilterBtn>
-            {hasLocationsFilter && (
-                <ChipItem>
-                    {filterSettings.locations.length > 1
-                        ? `${filterSettings.locations[0].name} 외 ${
-                              filterSettings.locations.length - 1
-                          }곳`
-                        : filterSettings.locations[0].name}
-                </ChipItem>
+            {isFilterNotApplied ? (
+                <FilterNotAppliedText>필터 없음</FilterNotAppliedText>
+            ) : (
+                <FilterChipsContainer>
+                    {hasLocationsFilter && (
+                        <ChipItem>{formatLocationText()}</ChipItem>
+                    )}
+                    {hasTypesFilter && <ChipItem>{formatTypesText()}</ChipItem>}
+                    {hasCostFilter && <ChipItem>{costText}</ChipItem>}
+                </FilterChipsContainer>
             )}
-            {hasTypesFilter && (
-                <ChipItem>
-                    {filterSettings.types.length > 1
-                        ? `${filterSettings.types[0].name} 외 ${
-                              filterSettings.types.length - 1
-                          }개`
-                        : filterSettings.types[0].name}
-                </ChipItem>
-            )}
-            {hasCostFilter && <ChipItem>{costText}</ChipItem>}
+            <ResetBtn onClick={onClickResetBtn}>
+                <ResetIco />
+                초기화
+            </ResetBtn>
         </Block>
     );
 }
@@ -49,29 +60,44 @@ function Filters(props: FiltersProps) {
 const Block = styled.div`
     display: flex;
     align-items: center;
-    height: ${FILTERS_HEIGHT};
+    justify-content: space-between;
+    min-height: ${FILTERS_BAR_HEIGHT};
     border-bottom: 1px solid ${palette.gray5};
-    padding: 0 20px;
+    padding: 10px 20px;
 `;
 
-const FilterBtn = styled.button`
-    width: 32px;
-    height: 32px;
-    background-color: ${palette.red2};
-    margin-right: 12px;
+const FilterNotAppliedText = styled.p`
+    font-size: 13px;
+    color: ${palette.gray2};
+`;
+
+const FilterChipsContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    width: 100%;
 `;
 
 const ChipItem = styled.div`
-    font-size: 13px;
+    width: fit-content;
+    font-size: 11px;
+    font-weight: 700;
     color: ${palette.red500};
     border-radius: 20px;
-    background-color: ${palette.red100};
+    background-color: ${palette.white0};
     border: 1px solid ${palette.red500};
     padding: 7px 10px 6px;
+`;
 
-    & + & {
-        margin-left: 8px;
-    }
+const ResetBtn = styled.button`
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    font-size: 12px;
+    font-weight: 700;
+    color: ${palette.gray2};
+    flex-shrink: 0;
+    padding: 4px;
 `;
 
 export default Filters;

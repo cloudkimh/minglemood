@@ -18,7 +18,7 @@ function CheckBoxOptions(props: CheckBoxOptionsProps) {
         props;
     const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
 
-    const onClick = () => {
+    const onClickOption = () => {
         const nextValues: Array<Option> = [];
         inputRefs.current.forEach((aInput, i) => {
             if (aInput?.checked) {
@@ -41,7 +41,7 @@ function CheckBoxOptions(props: CheckBoxOptionsProps) {
                         name={optionName}
                         value={aOption.id}
                         label={aOption.name}
-                        onClick={onClick}
+                        onClick={onClickOption}
                         checked={
                             !!selectedOptions.find(
                                 (aSelectedOption) =>
@@ -62,8 +62,8 @@ const OptionBlock = styled.div`
 `;
 
 const OptionCheckBox = styled(ChipCheckBox)`
-    margin-right: 6px;
-    margin-bottom: 10px;
+    margin-right: 8px;
+    margin-bottom: 8px;
 `;
 
 export default CheckBoxOptions;

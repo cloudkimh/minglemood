@@ -4,6 +4,7 @@ import { ModalBody } from "../common/ModalTemplate/styles";
 import palette from "../../lib/styles/palette";
 import { useRef, useState } from "react";
 import { Location } from "./types";
+import { ReactComponent as SearchIco } from "../../assets/icon/magnifier.svg";
 
 export type SearchModalProps = {
     visible: boolean;
@@ -81,16 +82,18 @@ function SearchModal(props: SearchModalProps) {
     return (
         <ModalTemplate visible={visible} handleClickLayer={onClose}>
             <StyledModalBody>
-                <SearchInputBlock>
+                <InputContainer>
+                    <SearchInputBlock>
+                        <SearchIco />
+                        <SearchInput
+                            ref={searchInputRef}
+                            type="text"
+                            placeholder="지역, 제목, 태그, 호스트 이름 검색"
+                            onChange={onChange}
+                        />
+                    </SearchInputBlock>
                     <CloseBtn onClick={onClose}>닫기</CloseBtn>
-                    <SearchInput
-                        ref={searchInputRef}
-                        type="text"
-                        placeholder="지역, 제목, 태그, 호스트 이름 검색"
-                        onChange={onChange}
-                    />
-                    <SearchIco />
-                </SearchInputBlock>
+                </InputContainer>
                 <SearchResultsBlock>
                     {hasSearchResults ? (
                         <SearchResults>
@@ -125,37 +128,42 @@ const StyledModalBody = styled(ModalBody)`
     padding: 24px 20px 24px;
 `;
 
+const InputContainer = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
 const SearchInputBlock = styled.div`
     display: flex;
     align-items: center;
+    width: 100%;
+    height: 35px;
+    border-radius: 18px;
+    background-color: ${palette.white3};
+    padding: 0 15px;
 `;
 
 const CloseBtn = styled.button`
     width: 32px;
     height: 32px;
+    font-size: 12px;
+    font-weight: 700;
+    color: ${palette.gray2};
     flex-shrink: 0;
-    background-color: ${palette.red2};
-    margin-right: 10px;
+    margin-left: 10px;
 `;
 
 const SearchInput = styled.input`
     width: 100%;
-    font-size: 14px;
+    font-size: 12px;
     border: none;
     outline: none;
-    padding: 8px 10px;
-    margin-right: 10px;
+    padding: 8px 5px;
+    background: none;
 
     &::placeholder {
         color: ${palette.gray3};
     }
-`;
-
-const SearchIco = styled.span`
-    width: 32px;
-    height: 32px;
-    flex-shrink: 0;
-    background-color: ${palette.red2};
 `;
 
 const SearchResultsBlock = styled.div`
@@ -171,7 +179,8 @@ const SearchResultItem = styled.li`
 `;
 
 const EmptyResult = styled.div`
-    font-size: 14px;
+    font-size: 12px;
+    color: ${palette.gray2};
     line-height: 20px;
     text-align: center;
     margin-top: 200px;

@@ -49,7 +49,7 @@ function RangeSlider(props: RangeSliderProps) {
 }
 
 const Track = styled.div<{ values: number[]; min: number; max: number }>`
-    height: 4px;
+    height: 5px;
     width: 100%;
     border-radius: 2px;
     background: ${({ values, min, max }) =>

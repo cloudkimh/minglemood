@@ -3,11 +3,11 @@ import ModalTemplate from "../../common/ModalTemplate";
 import { ModalBody } from "../../common/ModalTemplate/styles";
 import palette from "../../../lib/styles/palette";
 import CheckBoxOptions from "./CheckBoxOptions";
-import { SectionGap } from "./styles";
 import SliderOptions from "./SliderOptions";
 import { Cost, FilterSettings, Option } from "../types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MAX_COST, MIN_COST } from "../variables";
+import { ReactComponent as CloseIco } from "../../../assets/icon/cross.svg";
 
 export type FilterModalProps = {
     visible: boolean;
@@ -82,6 +82,10 @@ function FilterModal(props: FilterModalProps) {
     const { visible, values, handleClose, handleSubmit } = props;
     const [currentValues, setCurrentValues] = useState<FilterSettings>(values);
 
+    useEffect(() => {
+        setCurrentValues(values);
+    }, [values]);
+
     const resetCurrentValues = () => setCurrentValues(values);
 
     const onClose = () => {
@@ -120,10 +124,12 @@ function FilterModal(props: FilterModalProps) {
     return (
         <ModalTemplate visible={visible} handleClickLayer={onClose}>
             <StyledModalBody>
-                <ModalHeader>
+                <Header>
                     <Title>필터</Title>
-                    <CloseBtn onClick={onClose}>닫기</CloseBtn>
-                </ModalHeader>
+                    <CloseBtn onClick={onClose}>
+                        <CloseIco />
+                    </CloseBtn>
+                </Header>
                 <Wrapper>
                     <CheckBoxOptions
                         title="지역"
@@ -132,7 +138,6 @@ function FilterModal(props: FilterModalProps) {
                         selectedOptions={currentValues.locations}
                         handleSelectOption={handleSelectLocations}
                     />
-                    <SectionGap />
                     <CheckBoxOptions
                         title="모임 종류"
                         optionName="types"
@@ -140,7 +145,6 @@ function FilterModal(props: FilterModalProps) {
                         selectedOptions={currentValues.types}
                         handleSelectOption={handleSelectTypes}
                     />
-                    <SectionGap />
                     <SliderOptions
                         title="비용"
                         min={MIN_COST}
@@ -161,30 +165,28 @@ function FilterModal(props: FilterModalProps) {
 const StyledModalBody = styled(ModalBody)`
     position: relative;
     height: calc(100vh - 100px);
+    padding-top: 33px;
 `;
 
-const ModalHeader = styled.div`
-    display: grid;
-    grid-template-areas: ". title button";
-    grid-template-columns: 1fr 1fr 1fr;
+const Header = styled.div`
+    display: flex;
     align-items: center;
-    padding: 24px 20px;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin-bottom: 20px;
 `;
 
 const Title = styled.p`
-    grid-area: title;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     text-align: center;
 `;
 
 const CloseBtn = styled.button`
-    grid-area: button;
-    display: block;
+    display: grid;
+    place-content: center;
     width: 32px;
     height: 32px;
-    background-color: ${palette.red2};
-    margin-left: auto;
 `;
 
 const Wrapper = styled.div`
@@ -206,13 +208,13 @@ const BottomBlock = styled.div`
 
 const SummitBtn = styled.button`
     width: 100%;
-    height: 56px;
-    font-size: 15px;
+    height: 40px;
+    font-size: 13px;
     font-weight: 700;
     color: ${palette.white0};
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: ${palette.red500};
-    padding: 16px;
+    padding: 12px 0;
 `;
 
 export default FilterModal;

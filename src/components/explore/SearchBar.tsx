@@ -1,25 +1,27 @@
 import styled from "styled-components";
 import palette from "../../lib/styles/palette";
+import { ReactComponent as PrevPageIco } from "../../assets/icon/arrow-left.svg";
+import filterIco from "../../assets/icon/filter.png";
 import { SEARCH_BAR_HEIGHT } from "./variables";
 
 export type SearchBarProps = {
     currentLocation: string;
-    handleClickSearchBtn: () => void;
+    onClickSearchBtn: () => void;
+    onClickFilterBtn: () => void;
 };
 
 function SearchBar(props: SearchBarProps) {
-    const { currentLocation, handleClickSearchBtn } = props;
+    const { currentLocation, onClickSearchBtn, onClickFilterBtn } = props;
 
     return (
         <Block>
-            <CurrentLocation>{currentLocation}</CurrentLocation>
-            <SearchBtn
-                onClick={() => {
-                    handleClickSearchBtn();
-                }}
-            >
-                검색
-            </SearchBtn>
+            {/* <PrevPageBtn>
+                <PrevPageIco />
+            </PrevPageBtn> */}
+            <CurrentLocation onClick={onClickSearchBtn}>
+                {currentLocation}
+            </CurrentLocation>
+            <FilterBtn onClick={onClickFilterBtn} />
         </Block>
     );
 }
@@ -30,20 +32,31 @@ const Block = styled.div`
     height: ${SEARCH_BAR_HEIGHT};
     border-bottom: 1px solid ${palette.gray5};
     background-color: ${palette.white0};
-    padding: 60px 20px 0;
+    padding: 10px 20px;
 `;
 
-const CurrentLocation = styled.p`
-    font-size: 14px;
-    font-weight: 800;
+const PrevPageBtn = styled.button``;
+
+const CurrentLocation = styled.div`
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-size: 12px;
+    height: 35px;
+    background-color: ${palette.white3};
+    border-radius: 20px;
+    padding: 0 15px;
+    margin-right: 15px;
 `;
 
-const SearchBtn = styled.button`
-    display: block;
-    width: 32px;
-    height: 32px;
-    background-color: ${palette.red2};
-    margin-left: auto;
+const FilterBtn = styled.button`
+    width: 20px;
+    height: 20px;
+    felx-shrink: 0;
+    background-image: url(${filterIco});
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 `;
 
 export default SearchBar;

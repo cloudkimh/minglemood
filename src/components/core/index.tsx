@@ -38,7 +38,7 @@ const GlobalStyles = createGlobalStyle`
 
     body {
         overflow-y: overlay;
-        color: ${palette.black0};
+        color: ${palette.black2};
     }
 `;
 

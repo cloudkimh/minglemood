@@ -52,8 +52,8 @@ function SliderOptions(props: SliderOptionsProps) {
 }
 
 const Output = styled.output`
-    font-size: 16px;
-    font-weight: 800;
+    font-size: 13px;
+    font-weight: 700;
     color: ${palette.red500};
 `;
 

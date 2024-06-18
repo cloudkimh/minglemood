@@ -2,15 +2,18 @@ import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { MarkerClustering } from "../../../lib/static/MarkerClustering.js";
 import { sampleMarkerData } from "../../../lib/data/sampleMarkerData";
-
 import clusterMarker1 from "../../../assets/img/cluster-marker-1.png";
 import clusterMarker2 from "../../../assets/img/cluster-marker-2.png";
 import clusterMarker3 from "../../../assets/img/cluster-marker-3.png";
 import clusterMarker4 from "../../../assets/img/cluster-marker-4.png";
 import clusterMarker5 from "../../../assets/img/cluster-marker-5.png";
+import { FILTERS_BAR_HEIGHT, SEARCH_BAR_HEIGHT } from "../variables";
 
 export type ClusterMapProps = {
-    centerLocation: { lat: number; lng: number };
+    centerLocation: {
+        lat: number;
+        lng: number;
+    };
 };
 
 function ClusterMap(props: ClusterMapProps) {
@@ -108,11 +111,9 @@ function ClusterMap(props: ClusterMapProps) {
     return <MapCanvas ref={mapRef} />;
 }
 
-const HEADER_HEIGHT = "100px";
-
 const MapCanvas = styled.div`
     width: 100%;
-    height: calc(100vh - ${HEADER_HEIGHT});
+    height: calc(100vh - ${FILTERS_BAR_HEIGHT} - ${SEARCH_BAR_HEIGHT});
 `;
 
 export default ClusterMap;
