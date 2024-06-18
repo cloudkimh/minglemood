@@ -3,8 +3,7 @@ import Empty from "./Empty";
 import { getSampleImage } from "../../lib/styles/utils";
 import HostInfoCard from "../common/HostInfoCard";
 import { FadeInBlock } from "../common/styles/Common";
-
-export type LikedHostsProps = {};
+import { useNavigate } from "react-router-dom";
 
 const photo = getSampleImage();
 const hosts = Array(5).fill({
@@ -15,15 +14,21 @@ const hosts = Array(5).fill({
     likes: 28,
 });
 
-function LikedHosts(props: LikedHostsProps) {
+function LikedHosts() {
+    const navigate = useNavigate();
     const isEmpty = hosts.length === 0;
+
+    const onRedirect = () => {
+        navigate("/");
+    };
 
     return (
         <Block>
             {isEmpty ? (
                 <Empty
                     mainText="아직 찜한 호스트가 없어요."
-                    subText="관심있는 호스트를 찜해보세요!"
+                    subText="마음에 드는 호스트를 찜 해두면 빠르게 다시 찾아볼 수 있어요."
+                    onRedirect={onRedirect}
                 />
             ) : (
                 <CardGrid>

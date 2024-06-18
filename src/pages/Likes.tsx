@@ -1,20 +1,18 @@
-import PageTemplate from "../components/common/PageTemplate";
 import TapNav from "../components/likes/TapNav";
 import { Route, Routes } from "react-router-dom";
 import LikedCourses from "../components/likes/LikedCourses";
 import LikedHosts from "../components/likes/LikedHosts";
+import PageTemplatexxx from "../components/common/PageTemplatexxx";
 
-export type LikesProps = {};
-
-function Likes(props: LikesProps) {
+function Likes() {
     return (
-        <PageTemplate>
+        <PageTemplatexxx>
             <TapNav />
             <Routes>
                 <Route path="/course" element={<LikedCourses />} />
                 <Route path="/host" element={<LikedHosts />} />
             </Routes>
-        </PageTemplate>
+        </PageTemplatexxx>
     );
 }
 

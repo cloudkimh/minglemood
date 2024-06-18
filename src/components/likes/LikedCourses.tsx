@@ -3,6 +3,7 @@ import Empty from "./Empty";
 import { getSampleImage } from "../../lib/styles/utils";
 import CoursePost from "../common/CoursePost";
 import { FadeInBlock } from "../common/styles/Common";
+import { useNavigate } from "react-router-dom";
 
 export type LikedCoursesProps = {};
 
@@ -21,14 +22,20 @@ const courses = Array(8).fill({
 });
 
 function LikedCourses(props: LikedCoursesProps) {
+    const navigate = useNavigate();
     const isEmpty = courses.length === 0;
+
+    const onRedirect = () => {
+        navigate("/");
+    };
 
     return (
         <Block>
             {isEmpty ? (
                 <Empty
-                    mainText="아직 찜한 코스가 없어요."
-                    subText="관심있는 코스를 찜해보세요!"
+                    mainText="아직 찜한 프로그램이 없어요."
+                    subText="마음에 드는 프로그램를 찜 해두면 빠르게 다시 찾아볼 수 있어요."
+                    onRedirect={onRedirect}
                 />
             ) : (
                 <PostGrid>

@@ -1,20 +1,22 @@
 import styled from "styled-components";
-import { SampleIco } from "../common/styles/Common";
 import palette from "../../lib/styles/palette";
+import { ReactComponent as HeartIco } from "../../assets/icon/like-heart.svg";
 
 export type EmptyProps = {
     mainText: string;
     subText: string;
+    onRedirect: () => void;
 };
 
 function Empty(props: EmptyProps) {
-    const { mainText, subText } = props;
+    const { mainText, subText, onRedirect } = props;
 
     return (
         <Block>
-            <SampleIco />
+            <StyledHeartIco />
             <MainText>{mainText}</MainText>
             <SubText>{subText}</SubText>
+            <RedirectBtn onClick={onRedirect}>둘러보기</RedirectBtn>
         </Block>
     );
 }
@@ -26,16 +28,36 @@ const Block = styled.div`
     padding: 100px 0;
 `;
 
+const StyledHeartIco = styled(HeartIco)`
+    width: 60px;
+    height: 60px;
+`;
+
 const MainText = styled.strong`
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 700;
     margin-top: 24px;
 `;
 
 const SubText = styled.p`
-    font-size: 14px;
+    width: 200px;
+    font-size: 12px;
+    text-align: center;
+    word-break: keep-all;
+    line-height: 18px;
     color: ${palette.gray0};
     margin-top: 10px;
+`;
+
+const RedirectBtn = styled.button`
+    width: 130px;
+    font-size: 12px;
+    font-weight: 700;
+    color: ${palette.red500};
+    border: 1px solid ${palette.red500};
+    border-radius: 5px;
+    padding: 8px 0;
+    margin-top: 20px;
 `;
 
 export default Empty;
