@@ -40,6 +40,10 @@ const GlobalStyles = createGlobalStyle`
         overflow-y: overlay;
         color: ${palette.black2};
     }
+
+    button, a {
+        color: ${palette.black2};
+    }
 `;
 
 const StyledToastContainer = styled(ToastContainer)`
