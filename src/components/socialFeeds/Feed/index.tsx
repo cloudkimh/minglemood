@@ -5,6 +5,8 @@ import Photos from "./Photos";
 import CourseTag from "./CourseTag";
 import TextSection from "./TextSection";
 import ButtonSection from "./ButtonSection";
+import CommentModal from "../CommentModal";
+import useToggle from "../../../lib/hooks/useToggle";
 
 export type FeedProps = {
     id: number;
@@ -34,24 +36,39 @@ function Feed(props: FeedProps) {
         isLiked,
         comments,
     } = props;
+    const [commentModalOpened, toggleCommentModalOpened] = useToggle(false);
+
     const handleClickLike = () => {};
 
+    const handleClickComments = () => toggleCommentModalOpened();
+
     return (
-        <Block>
-            <Wrapper>
-                <Header timestamp={timestamp} avatar={avatar} alias={alias} />
-                <Photos photos={photos} />
-                <CourseTag url={url} name={name} />
-                <TextSection text={text} />
-                <ButtonSection
-                    handleClickLike={handleClickLike}
-                    id={id}
-                    likes={likes}
-                    isLiked={isLiked}
-                    comments={comments}
-                />
-            </Wrapper>
-        </Block>
+        <>
+            <Block>
+                <Wrapper>
+                    <Header
+                        timestamp={timestamp}
+                        avatar={avatar}
+                        alias={alias}
+                    />
+                    <Photos photos={photos} />
+                    <CourseTag url={url} name={name} />
+                    <TextSection text={text} />
+                    <ButtonSection
+                        handleClickLike={handleClickLike}
+                        handleClickComments={handleClickComments}
+                        id={id}
+                        likes={likes}
+                        isLiked={isLiked}
+                        comments={comments}
+                    />
+                </Wrapper>
+            </Block>
+            <CommentModal
+                visible={commentModalOpened}
+                handleClose={toggleCommentModalOpened}
+            />
+        </>
     );
 }
 

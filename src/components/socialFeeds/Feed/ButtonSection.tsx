@@ -6,6 +6,7 @@ import { ReactComponent as CommentIco } from "../../../assets/icon/speech-bubble
 
 export type ButtonSectionProps = {
     handleClickLike: () => void;
+    handleClickComments: () => void;
     id: number;
     likes: number;
     isLiked: boolean;
@@ -13,26 +14,32 @@ export type ButtonSectionProps = {
 };
 
 function ButtonSection(props: ButtonSectionProps) {
-    const { handleClickLike, id, likes, isLiked, comments } = props;
+    const {
+        handleClickLike,
+        handleClickComments,
+        id,
+        likes,
+        isLiked,
+        comments,
+    } = props;
     const [currentIsLiked, toggleCurrentIsLiked] = useToggle(isLiked);
-    const navigate = useNavigate();
 
-    const onClickCommentBtn = () => {
-        navigate(`/social-feeds/${id}/comments`);
+    const onClickComments = () => {
+        handleClickComments();
     };
 
-    const onLike = () => {
+    const onClickLike = () => {
         toggleCurrentIsLiked();
         handleClickLike();
     };
 
     return (
         <Block>
-            <LikeBtn onClick={onLike}>
+            <LikeBtn onClick={onClickLike}>
                 <LikeIco />
                 {likes}
             </LikeBtn>
-            <CommentBtn onClick={onClickCommentBtn}>
+            <CommentBtn onClick={onClickComments}>
                 <CommentIco />
                 {comments}
             </CommentBtn>

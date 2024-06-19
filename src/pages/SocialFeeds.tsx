@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import palette from "../lib/styles/palette";
 import Feed from "../components/socialFeeds/Feed";
 import PageTemplatexxx from "../components/common/PageTemplatexxx";
 import { ReactComponent as EditIco } from "../assets/icon/pencil.svg";

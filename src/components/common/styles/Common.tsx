@@ -8,13 +8,14 @@ import {
 import media from "../../../lib/styles/media";
 import palette from "../../../lib/styles/palette";
 import { withOpacity } from "../../../lib/styles/utils";
+import ImageWithFallback from "../ImageWithFallback";
 
-export const Avatar = styled.img`
-    width: 44px;
-    height: 44px;
-    border-radius: 35%;
+export const Avatar = styled(ImageWithFallback)`
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     object-fit: cover;
-    border: 1px solid ${palette.black0}${withOpacity(0.2)};
+    border: 1px solid ${palette.gray4}${withOpacity(0.5)};
 `;
 
 export const HorizontalBar = styled.div`
