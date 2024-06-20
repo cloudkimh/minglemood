@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import palette from "../../../lib/styles/palette";
 import Header from "./Header";
 import Photos from "./Photos";
 import CourseTag from "./CourseTag";
 import TextSection from "./TextSection";
 import ButtonSection from "./ButtonSection";
-import CommentModal from "../CommentModal";
+import CommentModal from "./CommentModal";
 import useToggle from "../../../lib/hooks/useToggle";
+import DownloadPhotos from "./DownloadPhoto";
 
 export type FeedProps = {
     id: number;
@@ -37,10 +37,13 @@ function Feed(props: FeedProps) {
         comments,
     } = props;
     const [commentModalOpened, toggleCommentModalOpened] = useToggle(false);
+    const [downloadPhotoOpened, toggleDownloadPhotoOpened] = useToggle(false);
 
     const handleClickLike = () => {};
 
     const handleClickComments = () => toggleCommentModalOpened();
+
+    const handleClickPhotos = () => toggleDownloadPhotoOpened();
 
     return (
         <>
@@ -51,7 +54,7 @@ function Feed(props: FeedProps) {
                         avatar={avatar}
                         alias={alias}
                     />
-                    <Photos photos={photos} />
+                    <Photos photos={photos} onClickPhoto={handleClickPhotos} />
                     <CourseTag url={url} name={name} />
                     <TextSection text={text} />
                     <ButtonSection
@@ -68,6 +71,12 @@ function Feed(props: FeedProps) {
                 visible={commentModalOpened}
                 handleClose={toggleCommentModalOpened}
             />
+            {downloadPhotoOpened && (
+                <DownloadPhotos
+                    photos={photos}
+                    onClickClose={toggleDownloadPhotoOpened}
+                />
+            )}
         </>
     );
 }

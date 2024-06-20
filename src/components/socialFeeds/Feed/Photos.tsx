@@ -14,10 +14,11 @@ import { ReactComponent as NextPageIco } from "../../../assets/icon/chevron-righ
 
 export type PhotosProps = {
     photos: Array<string>;
+    onClickPhoto: () => void;
 };
 
 function Photos(props: PhotosProps) {
-    const { photos } = props;
+    const { photos, onClickPhoto } = props;
 
     return (
         <Block>
@@ -30,7 +31,11 @@ function Photos(props: PhotosProps) {
                 <PhotosSwiperTrack>
                     {photos.map((aPhoto) => (
                         <FeedPhotoSlide>
-                            <FeedPhoto path={aPhoto} alt="피드 사진" />
+                            <FeedPhoto
+                                path={aPhoto}
+                                alt="피드 사진"
+                                onClick={onClickPhoto}
+                            />
                         </FeedPhotoSlide>
                     ))}
                 </PhotosSwiperTrack>

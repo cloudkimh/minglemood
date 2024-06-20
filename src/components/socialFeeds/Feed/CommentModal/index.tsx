@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import ModalTemplate from "../../common/ModalTemplate";
-import { ModalBody } from "../../common/ModalTemplate/styles";
+import ModalTemplate from "../../../common/ModalTemplate";
+import { ModalBody } from "../../../common/ModalTemplate/styles";
 import CommentItem from "./CommentItem";
-import { getSampleImage, hideScrollBar } from "../../../lib/styles/utils";
+import { getSampleImage, hideScrollBar } from "../../../../lib/styles/utils";
 import CommentForm from "./CommentForm";
 
 export type CommentModalProps = {

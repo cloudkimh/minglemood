@@ -4,12 +4,16 @@ import PageTemplatexxx from "../components/common/PageTemplatexxx";
 import { ReactComponent as EditIco } from "../assets/icon/pencil.svg";
 import { getSampleImage } from "../lib/styles/utils";
 
-const photo = getSampleImage();
-const photos = Array(5).fill(photo);
+const photo1 = getSampleImage();
+const photo2 = getSampleImage();
+const photo3 = getSampleImage();
+const photo4 = getSampleImage();
+const photo5 = getSampleImage();
+const photos = [photo1, photo2, photo3, photo4, photo5];
 const feed = {
     id: 10,
     timestamp: "1시간 전",
-    avatar: photo,
+    avatar: photo1,
     alias: "초코뮤직",
     url: "/course/10",
     name: "코스이름 코스이름 코스이름 코스이름 코스이름 코스이름 ",
