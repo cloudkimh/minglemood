@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import MenuSection from "./MenuSection";
 import MenuItem from "./MenuItem";
-import { HorizontalBar } from "../../common/styles/Common";
+import { HorizontalBar } from "../../../common/styles/Common";
 
 export type UserMenuProps = {};
 

@@ -25,7 +25,7 @@ function App() {
                 <Route index element={<Home />} />
                 <Route path="course/:id" element={<CourseDetail />} />
                 <Route path="explore" element={<Explore />} />
-                <Route path="mypage" element={<MyPage />} />
+                <Route path="mypage/*" element={<MyPage />} />
                 <Route path="setting" element={<Setting />} />
                 <Route path="social-feeds" element={<SocialFeeds />} />
                 <Route path="likes/*" element={<Likes />} />

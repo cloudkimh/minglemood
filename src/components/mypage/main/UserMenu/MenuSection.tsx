@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import styled from "styled-components";
-import palette from "../../../lib/styles/palette";
+import palette from "../../../../lib/styles/palette";
 
 export type MenuSectionProps = {
     title: string;
