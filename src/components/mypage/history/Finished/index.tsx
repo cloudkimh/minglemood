@@ -3,6 +3,7 @@ import FinishedCard from "./FinishedCard";
 import { getSampleImage } from "../../../../lib/styles/utils";
 import useToggle from "../../../../lib/hooks/useToggle";
 import CardCount from "../CardCount";
+import EmptyMessage from "../EmptyMessage";
 
 const course = {
     timestamp: "2024.02.12",
@@ -21,7 +22,7 @@ function Finished() {
 
     const handleClickOrderBtn = () => toggleIsAscendingOrder();
 
-    return (
+    return courseCount > 0 ? (
         <>
             <CardCount
                 count={courseCount}
@@ -42,6 +43,11 @@ function Finished() {
                 ))}
             </CardContainer>
         </>
+    ) : (
+        <EmptyMessage
+            mainText="완료된 모임이 없어요."
+            subText="모임을 예약해보세요!"
+        />
     );
 }
 

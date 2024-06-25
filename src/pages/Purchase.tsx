@@ -1,16 +1,17 @@
 import Header from "../components/purchase/Header";
-import ProductInfo from "../components/purchase/ProductInfo";
 import { getSampleImage } from "../lib/styles/utils";
 import PaymentInfo from "../components/purchase/PaymentInfo";
 import PaymentMethod from "../components/purchase/PaymentMethod";
 import { SectionDivider } from "../components/common/styles/Common";
-import PageTemplate from "../components/common/PageTemplate";
 import { useState } from "react";
 import Coupon from "../components/purchase/Coupon";
 import Point from "../components/purchase/Point";
 import Summary from "../components/purchase/Summary";
 import PolicyAgreement from "../components/purchase/PolicyAgreement";
 import BottomActionBar from "../components/purchase/BottomActionBar";
+import ProductInfo from "../components/common/ProductInfo";
+import styled from "styled-components";
+import PageTemplatexxx from "../components/common/PageTemplatexxx";
 
 export type PurchaseProps = {};
 
@@ -36,20 +37,22 @@ function Purchase(props: PurchaseProps) {
     };
 
     return (
-        <PageTemplate>
+        <PageTemplatexxx>
             <Header />
-            <ProductInfo
-                thumbnail={samplePaymentInfo.thumbnail}
-                region={samplePaymentInfo.region}
-                title={samplePaymentInfo.title}
-                rate={samplePaymentInfo.rate}
-                reviewCnt={samplePaymentInfo.reviewCnt}
-            />
-            <PaymentInfo
-                date={samplePaymentInfo.date}
-                count={samplePaymentInfo.count}
-                price={samplePaymentInfo.price}
-            />
+            <InfoContainer>
+                <ProductInfo
+                    thumbnail={samplePaymentInfo.thumbnail}
+                    region={samplePaymentInfo.region}
+                    title={samplePaymentInfo.title}
+                    rate={samplePaymentInfo.rate}
+                    reviewCnt={samplePaymentInfo.reviewCnt}
+                />
+                <PaymentInfo
+                    date={samplePaymentInfo.date}
+                    count={samplePaymentInfo.count}
+                    price={samplePaymentInfo.price}
+                />
+            </InfoContainer>
             <SectionDivider />
             <PaymentMethod
                 currentValue={paymentMethod}
@@ -68,8 +71,15 @@ function Purchase(props: PurchaseProps) {
             <SectionDivider />
             <PolicyAgreement />
             <BottomActionBar totalPaymentAmount={totalPaymentAmount} />
-        </PageTemplate>
+        </PageTemplatexxx>
     );
 }
+
+const InfoContainer = styled.div`
+    display: grid;
+    row-gap: 20px;
+    padding: 20px 0 30px;
+    margin-top: 50px;
+`;
 
 export default Purchase;

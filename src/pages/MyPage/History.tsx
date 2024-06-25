@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import PageTemplatexxx from "../../components/common/PageTemplatexxx";
-import Header from "../../components/mypage/courses/Header";
-import TapNav from "../../components/mypage/courses/TapNav";
-import Scheduled from "../../components/mypage/courses/Scheduled";
-import Finished from "../../components/mypage/courses/Finished";
-import Canceled from "../../components/mypage/courses/Canceled";
+import Header from "../../components/mypage/history/Header";
+import TapNav from "../../components/mypage/history/TapNav";
+import Scheduled from "../../components/mypage/history/Scheduled";
+import Finished from "../../components/mypage/history/Finished";
+import Canceled from "../../components/mypage/history/Canceled";
 
 function History() {
     return (

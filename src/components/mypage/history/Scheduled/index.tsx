@@ -1,8 +1,9 @@
 import { CardContainer } from "../styles";
+import ScheduledCard from "./ScheduledCard";
 import { getSampleImage } from "../../../../lib/styles/utils";
-import CanceledCard from "./CanceledCard";
 import useToggle from "../../../../lib/hooks/useToggle";
 import CardCount from "../CardCount";
+import EmptyMessage from "../EmptyMessage";
 
 const course = {
     timestamp: "2024.02.12",
@@ -13,15 +14,15 @@ const course = {
     time: "2024년 2월 12일",
     count: 3,
 };
-const sampleCourses = Array(5).fill(course);
+const sampleCourses = Array(0).fill(course);
 
-function Canceled() {
+function Scheduled() {
     const [isAscendingOrder, toggleIsAscendingOrder] = useToggle(false);
     const courseCount = sampleCourses.length;
 
     const handleClickOrderBtn = () => toggleIsAscendingOrder();
 
-    return (
+    return courseCount > 0 ? (
         <>
             <CardCount
                 count={courseCount}
@@ -30,7 +31,7 @@ function Canceled() {
             />
             <CardContainer>
                 {sampleCourses.map((aCourse) => (
-                    <CanceledCard
+                    <ScheduledCard
                         timestamp={aCourse.timestamp}
                         id={aCourse.id}
                         thumbnail={aCourse.thumbnail}
@@ -42,7 +43,12 @@ function Canceled() {
                 ))}
             </CardContainer>
         </>
+    ) : (
+        <EmptyMessage
+            mainText="예정된 모임이 없어요."
+            subText="모임을 예약해보세요!"
+        />
     );
 }
 
-export default Canceled;
+export default Scheduled;

@@ -1,33 +1,29 @@
 import styled from "styled-components";
-import { ReactComponent as PrevPageIco } from "../../assets/icon/chevron-left.svg";
-import palette from "../../lib/styles/palette";
+import { ReactComponent as PrevPageIco } from "../../../assets/icon/chevron-left.svg";
 
-function Header() {
+export type HeaderProps = {};
+
+function Header(props: HeaderProps) {
     return (
         <Block>
             <PrevPageBtn>
                 <PrevPageIco />
             </PrevPageBtn>
-            <Title>결제</Title>
+            <Title>예약 상세</Title>
         </Block>
     );
 }
 
 const Block = styled.header`
-    position: fixed;
-    top: 0;
-    max-width: 768px;
-    width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
     height: 50px;
-    background-color: ${palette.white0};
-    border-bottom: 1px solid ${palette.gray5};
     padding: 0 20px;
 `;
 
 const PrevPageBtn = styled.button`
+    display: block;
     width: 24px;
     height: 24px;
 `;
