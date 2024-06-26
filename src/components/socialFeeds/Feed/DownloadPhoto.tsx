@@ -1,14 +1,14 @@
 import styled, { css } from "styled-components";
-import Swiper from "../../common/Swiper";
+import Swiper from "../../basics/Swiper";
 import {
     SwiperPageBtnContainer,
     SwiperPageNextBtn,
     SwiperPagePrevBtn,
     SwiperPagination,
-} from "../../common/Swiper/styles";
+} from "../../basics/Swiper/styles";
 import palette from "../../../lib/styles/palette";
 import { withOpacity } from "../../../lib/styles/utils";
-import ImageWithFallback from "../../common/ImageWithFallback";
+import ImageWithFallback from "../../basics/ImageWithFallback";
 import { ReactComponent as PrevPageIco } from "../../../assets/icon/chevron-left-sm.svg";
 import { ReactComponent as NextPageIco } from "../../../assets/icon/chevron-right-sm.svg";
 import { useState } from "react";

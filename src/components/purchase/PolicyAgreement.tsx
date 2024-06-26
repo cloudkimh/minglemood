@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { SectionContainer, SectionHeader } from "./styles";
 import { ReactComponent as LinkIco } from "../../assets/icon/chevron-right.svg";
-import CheckBox from "../common/CheckBox";
+import CheckBox from "../basics/CheckBox";
 import palette from "../../lib/styles/palette";
 import checkIco from "../../assets/icon/check.svg";
 

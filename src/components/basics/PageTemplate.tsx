@@ -2,9 +2,9 @@ import styled from "styled-components";
 import palette from "../../lib/styles/palette";
 import { ReactNode, useEffect, useState, useRef } from "react";
 import { hideScrollBar, withOpacity } from "../../lib/styles/utils";
-import Footer from "./Footer";
+import Footer from "../common/Footer";
 import throttle from "lodash/throttle";
-import Gnb from "./Gnb";
+import Gnb from "../common/Gnb";
 
 type PageTemplateProps = {
     children: ReactNode;

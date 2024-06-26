@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import palette from "../../../lib/styles/palette";
-import Dropdown from "../../common/Dropdown";
+import Dropdown from "../../basics/Dropdown";
 
 export type ProductOptionProps = {
     optionName: string;

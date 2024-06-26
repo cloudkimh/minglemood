@@ -11,9 +11,7 @@ import PolicyAgreement from "../components/purchase/PolicyAgreement";
 import BottomActionBar from "../components/purchase/BottomActionBar";
 import ProductInfo from "../components/common/ProductInfo";
 import styled from "styled-components";
-import PageTemplatexxx from "../components/common/PageTemplatexxx";
-
-export type PurchaseProps = {};
+import PageTemplatexxx from "../components/basics/PageTemplatexxx";
 
 const samplePaymentInfo = {
     thumbnail: getSampleImage(),
@@ -26,7 +24,7 @@ const samplePaymentInfo = {
     price: 20000,
 };
 
-function Purchase(props: PurchaseProps) {
+function Purchase() {
     const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
     const [discountByCoupon, setSetDiscountByCoupon] = useState<number>(0);
     const [discountByPoint, setSetDiscountByPoint] = useState<number>(0);

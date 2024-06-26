@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import Loader from "../Loader";
+import Loader from "../../basics/Loader";
 import {
     fadeIn,
     fadeInFromBottom,
@@ -8,7 +8,7 @@ import {
 import media from "../../../lib/styles/media";
 import palette from "../../../lib/styles/palette";
 import { withOpacity } from "../../../lib/styles/utils";
-import ImageWithFallback from "../ImageWithFallback";
+import ImageWithFallback from "../../basics/ImageWithFallback";
 
 export const Avatar = styled(ImageWithFallback)`
     width: 40px;

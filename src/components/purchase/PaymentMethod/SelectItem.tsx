@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import palette from "../../../lib/styles/palette";
-import CheckBox from "../../common/CheckBox";
+import CheckBox from "../../basics/CheckBox";
 
 export type SelectItemProps = {
     name: string;

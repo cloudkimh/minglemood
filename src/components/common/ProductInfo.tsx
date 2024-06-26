@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import ImageWithFallback from "../common/ImageWithFallback";
+import ImageWithFallback from "../basics/ImageWithFallback";
 import palette from "../../lib/styles/palette";
 import { ReactComponent as StarIco } from "../../assets/icon/star.svg";
 import { multiLineEllipsis } from "../../lib/styles/utils";

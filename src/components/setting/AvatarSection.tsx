@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import ImageInput from "../common/ImageInput";
+import ImageInput from "../basics/ImageInput";
 import palette from "../../lib/styles/palette";
 import { useState } from "react";
 import { getSampleUser } from "../../lib/data/sampleUserData";

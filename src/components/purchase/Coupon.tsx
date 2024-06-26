@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { SectionContainer, SectionHeader } from "./styles";
-import Dropdown from "../common/Dropdown";
+import Dropdown from "../basics/Dropdown";
 import {
     DropdownIcon,
     basicDropdownItemStyle,
     basicDropdownMenuStyle,
     basicDropdownTriggerStyle,
-} from "../common/Dropdown/styles";
+} from "../basics/Dropdown/styles";
 
 export type CouponProps = {};
 

@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import ModalTemplate from "../../common/ModalTemplate";
-import { ModalBody } from "../../common/ModalTemplate/styles";
+import ModalTemplate from "../../basics/ModalTemplate";
+import { ModalBody } from "../../basics/ModalTemplate/styles";
 import palette from "../../../lib/styles/palette";
 import DateOption from "./DateOption";
 import { useState } from "react";

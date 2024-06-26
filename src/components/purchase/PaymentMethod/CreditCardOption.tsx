@@ -1,11 +1,11 @@
 import styled, { css } from "styled-components";
-import Dropdown from "../../common/Dropdown";
+import Dropdown from "../../basics/Dropdown";
 import palette from "../../../lib/styles/palette";
 import { useState } from "react";
 import {
     basicDropdownItemStyle,
     basicDropdownMenuStyle,
-} from "../../common/Dropdown/styles";
+} from "../../basics/Dropdown/styles";
 import { ReactComponent as ChevonIco } from "../../../assets/icon/chevron-up.svg";
 
 export type CreditCardOptionProps = {

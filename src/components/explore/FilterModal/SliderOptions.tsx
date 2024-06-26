@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { SectionContainer, SectionLabel } from "./styles";
 import palette from "../../../lib/styles/palette";
-import RangeSlider from "../../common/RangeSlider";
+import RangeSlider from "../../basics/RangeSlider";
 import { Cost } from "../types";
 
 type SliderOptionsProps = {

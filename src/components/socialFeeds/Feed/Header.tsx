@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import palette from "../../../lib/styles/palette";
-import ImageWithFallback from "../../common/ImageWithFallback";
+import ImageWithFallback from "../../basics/ImageWithFallback";
 
 export type HeaderProps = {
     timestamp: string;

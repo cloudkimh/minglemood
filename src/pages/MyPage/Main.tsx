@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import PageTemplate from "../../components/common/PageTemplate";
+import PageTemplate from "../../components/basics/PageTemplate";
 import UserHeader from "../../components/mypage/main/UserHeader";
 import UserMenu from "../../components/mypage/main/UserMenu";
 

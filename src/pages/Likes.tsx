@@ -2,7 +2,7 @@ import TapNav from "../components/likes/TapNav";
 import { Route, Routes } from "react-router-dom";
 import LikedCourses from "../components/likes/LikedCourses";
 import LikedHosts from "../components/likes/LikedHosts";
-import PageTemplatexxx from "../components/common/PageTemplatexxx";
+import PageTemplatexxx from "../components/basics/PageTemplatexxx";
 
 function Likes() {
     return (

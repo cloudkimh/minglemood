@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import PageTemplate from "../components/common/PageTemplate";
+import PageTemplate from "../components/basics/PageTemplate";
 import AvatarSection from "../components/setting/AvatarSection";
 import palette from "../lib/styles/palette";
 import AliasSection from "../components/setting/AliasSection";

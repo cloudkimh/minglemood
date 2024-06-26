@@ -3,7 +3,7 @@ import DeactiveHeartIcon from "../../assets/icon/CourseDetail/HeadSection/HostIn
 import ActiveHeartIcon from "../../assets/icon/CourseDetail/HeadSection/HostInfo/like-heart-active.svg";
 import palette from "../../lib/styles/palette";
 import useToggle from "../../lib/hooks/useToggle";
-import ImageWithFallback from "./ImageWithFallback";
+import ImageWithFallback from "../basics/ImageWithFallback";
 
 export type HostInfoCardProps = {
     avatar: string;

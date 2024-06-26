@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { SectionContainer, SectionLabel } from "./styles";
-import CheckBox from "../../common/CheckBox";
-import { ChipCheckBox } from "../../common/CheckBox/style";
+import CheckBox from "../../basics/CheckBox";
+import { ChipCheckBox } from "../../basics/CheckBox/style";
 import { useRef } from "react";
 import { Option } from "../types";
 

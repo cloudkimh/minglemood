@@ -2,7 +2,7 @@ import styled from "styled-components";
 import palette from "../../../lib/styles/palette";
 import { withOpacity } from "../../../lib/styles/utils";
 import { getSampleUser } from "../../../lib/data/sampleUserData";
-import ImageWithFallback from "../../common/ImageWithFallback";
+import ImageWithFallback from "../../basics/ImageWithFallback";
 import { Link } from "react-router-dom";
 
 export type UserHeaderProps = {};

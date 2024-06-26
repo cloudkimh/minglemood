@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import CoursePost from "../common/CoursePost";
-import ModalTemplate from "../common/ModalTemplate";
-import { ModalBody } from "../common/ModalTemplate/styles";
+import ModalTemplate from "../basics/ModalTemplate";
+import { ModalBody } from "../basics/ModalTemplate/styles";
 import { hideScrollBar } from "../../lib/styles/utils";
 
 type SearchedPostsModalProps = {

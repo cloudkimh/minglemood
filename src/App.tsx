@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { defaultTheme } from "./lib/styles/theme";
-import PageHelmet from "./components/common/PageHelmet";
+import PageHelmet from "./components/basics/PageHelmet";
 import Core from "./components/core";
 import Home from "./pages/Home";
 import CourseDetail from "./pages/CourseDetail";

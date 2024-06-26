@@ -2,7 +2,7 @@ import styled from "styled-components";
 import palette from "../../lib/styles/palette";
 import { ReactNode } from "react";
 import { hideScrollBar, withOpacity } from "../../lib/styles/utils";
-import Footer from "./Footer";
+import Footer from "../common/Footer";
 
 type PageTemplatexxxProps = {
     children: ReactNode;

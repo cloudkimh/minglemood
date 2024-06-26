@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import heartDeactiveIcon from "../../../assets/icon/like-heart.svg";
 import heartActiveIcon from "../../../assets/icon/like-heart-active.svg";
-import ImageWithFallback from "../ImageWithFallback";
+import ImageWithFallback from "../../basics/ImageWithFallback";
 import useToggle from "../../../lib/hooks/useToggle";
 
 export type ThumbnailProps = {

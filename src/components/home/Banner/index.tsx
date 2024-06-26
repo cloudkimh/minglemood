@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import Swiper from "../../common/Swiper";
+import Swiper from "../../basics/Swiper";
 import palette from "../../../lib/styles/palette";
 import { withOpacity } from "../../../lib/styles/utils";
 import React, { useState } from "react";
-import ImageWithFallback from "../../common/ImageWithFallback";
+import ImageWithFallback from "../../basics/ImageWithFallback";
 
 export type BannerProps = {
     banners: Array<{

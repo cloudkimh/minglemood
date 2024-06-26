@@ -4,7 +4,7 @@ import HeadSection from "../components/courseDetail/HeadSection";
 import MapSection from "../components/courseDetail/MapSection";
 import ReviewSection from "../components/courseDetail/ReviewSection";
 import TagsSection from "../components/courseDetail/TagsSection";
-import PageTemplate from "../components/common/PageTemplate";
+import PageTemplate from "../components/basics/PageTemplate";
 import { getSampleImage } from "../lib/styles/utils";
 import OptionModal from "../components/courseDetail/OptionModal";
 import useToggle from "../lib/hooks/useToggle";

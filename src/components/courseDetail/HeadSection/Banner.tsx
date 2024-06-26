@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Swiper from "../../common/Swiper";
-import ImageWithFallback from "../../common/ImageWithFallback";
+import Swiper from "../../basics/Swiper";
+import ImageWithFallback from "../../basics/ImageWithFallback";
 import PrevIcon from "../../../assets/icon/left-arrow.png";
 import ShareIcon from "../../../assets/icon/share.png";
 import LeftArrowIcon from "../../../assets/icon/left-arrow-small.png";
@@ -11,7 +11,7 @@ import {
     SwiperPagePrevBtn,
     SwiperPagination,
     swiperCirclePageBtnStyle,
-} from "../../common/Swiper/styles";
+} from "../../basics/Swiper/styles";
 import { useNavigate } from "react-router-dom";
 
 export type BannerProps = {
