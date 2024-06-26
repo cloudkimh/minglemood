@@ -1,33 +1,50 @@
 import styled from "styled-components";
 import { ReactComponent as PrevPageIco } from "../../assets/icon/chevron-left.svg";
+import { useNavigate } from "react-router-dom";
 import palette from "../../lib/styles/palette";
 
-function Header() {
+export type PageHeaderProps = {
+    prevPageLink?: string;
+    title: string;
+};
+
+function PageHeader(props: PageHeaderProps) {
+    const { prevPageLink, title } = props;
+    const navigate = useNavigate();
+
+    const onClickPrevPageBtn = () => {
+        if (prevPageLink) {
+            navigate(prevPageLink);
+        } else {
+            navigate(-1);
+        }
+    };
+
     return (
         <Block>
-            <PrevPageBtn>
+            <PrevPageBtn onClick={onClickPrevPageBtn}>
                 <PrevPageIco />
             </PrevPageBtn>
-            <Title>결제</Title>
+            <Title>{title}</Title>
         </Block>
     );
 }
 
 const Block = styled.header`
-    position: fixed;
+    position: absolute;
     top: 0;
-    max-width: 768px;
-    width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
+    width: 100%;
+    max-width: 768px;
     height: 50px;
     background-color: ${palette.white0};
-    border-bottom: 1px solid ${palette.gray5};
     padding: 0 20px;
 `;
 
 const PrevPageBtn = styled.button`
+    display: block;
     width: 24px;
     height: 24px;
 `;
@@ -38,4 +55,4 @@ const Title = styled.h1`
     text-align: center;
 `;
 
-export default Header;
+export default PageHeader;

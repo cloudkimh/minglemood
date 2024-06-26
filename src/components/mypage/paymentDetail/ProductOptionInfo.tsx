@@ -1,14 +1,12 @@
-import styled from "styled-components";
-import palette from "../../lib/styles/palette";
-import OptionInfo from "../common/OptionInfo";
+import OptionInfo from "../../common/OptionInfo";
 
-export type PaymentInfoProps = {
+export type ProductOptionInfoProps = {
     date: string;
     count: number;
     price: number;
 };
 
-function PaymentInfo(props: PaymentInfoProps) {
+function ProductOptionInfo(props: ProductOptionInfoProps) {
     const { date, count, price } = props;
 
     return (
@@ -23,4 +21,4 @@ function PaymentInfo(props: PaymentInfoProps) {
     );
 }
 
-export default PaymentInfo;
+export default ProductOptionInfo;

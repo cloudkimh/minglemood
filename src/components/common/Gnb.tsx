@@ -1,12 +1,12 @@
 import styled, { css } from "styled-components";
-import searchWhiteIcon from "../../../assets/icon/search-white.png";
-import searchBlackIcon from "../../../assets/icon/search-black.svg";
-import notificationWhiteIcon from "../../../assets/icon/notification.png";
-import notificationBlackIcon from "../../../assets/icon/notification-black.png";
-import MinglemoodLogoImg from "../../../assets/img/minglemood-logo.png";
-import palette from "../../../lib/styles/palette";
+import searchWhiteIcon from "../../assets/icon/search-white.png";
+import searchBlackIcon from "../../assets/icon/search-black.svg";
+import notificationWhiteIcon from "../../assets/icon/notification.png";
+import notificationBlackIcon from "../../assets/icon/notification-black.png";
+import MinglemoodLogoImg from "../../assets/img/minglemood-logo.png";
+import palette from "../../lib/styles/palette";
 import { Link } from "react-router-dom";
-import { getSampleUser } from "../../../lib/data/sampleUserData";
+import { getSampleUser } from "../../lib/data/sampleUserData";
 
 export type GnbProps = { isScrolled: boolean };
 

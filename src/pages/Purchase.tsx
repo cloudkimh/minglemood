@@ -1,6 +1,5 @@
-import Header from "../components/purchase/Header";
 import { getSampleImage } from "../lib/styles/utils";
-import PaymentInfo from "../components/purchase/PaymentInfo";
+import ProductOptionInfo from "../components/purchase/ProductOptionInfo";
 import PaymentMethod from "../components/purchase/PaymentMethod";
 import { SectionDivider } from "../components/common/styles/Common";
 import { useState } from "react";
@@ -12,6 +11,7 @@ import BottomActionBar from "../components/purchase/BottomActionBar";
 import ProductInfo from "../components/common/ProductInfo";
 import styled from "styled-components";
 import PageTemplatexxx from "../components/basics/PageTemplatexxx";
+import PageHeader from "../components/common/PageHeader";
 
 const samplePaymentInfo = {
     thumbnail: getSampleImage(),
@@ -36,7 +36,7 @@ function Purchase() {
 
     return (
         <PageTemplatexxx>
-            <Header />
+            <PageHeader title="결제" />
             <InfoContainer>
                 <ProductInfo
                     thumbnail={samplePaymentInfo.thumbnail}
@@ -45,7 +45,7 @@ function Purchase() {
                     rate={samplePaymentInfo.rate}
                     reviewCnt={samplePaymentInfo.reviewCnt}
                 />
-                <PaymentInfo
+                <ProductOptionInfo
                     date={samplePaymentInfo.date}
                     count={samplePaymentInfo.count}
                     price={samplePaymentInfo.price}
