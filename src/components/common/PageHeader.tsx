@@ -36,6 +36,7 @@ function PageHeader(props: PageHeaderProps) {
 const Block = styled.header`
     position: fixed;
     top: 0;
+    z-index: 10;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;

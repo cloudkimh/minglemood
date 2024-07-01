@@ -52,6 +52,7 @@ function PhotoCarousel(props: PhotoCarouselProps) {
 const PhotoSwiper = styled(Swiper)`
     position: relative;
     width: 100%;
+    height: fit-content;
     border-radius: 5px;
     overflow: hidden;
 `;

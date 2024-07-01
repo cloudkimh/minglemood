@@ -3,9 +3,7 @@ import Main from "./Main";
 import History from "./History";
 import PaymentDetail from "./PaymentDetail";
 
-export type MyPageProps = {};
-
-function MyPage(props: MyPageProps) {
+function MyPageRoutes() {
     return (
         <Routes>
             <Route path="/" element={<Main />} />
@@ -15,4 +13,4 @@ function MyPage(props: MyPageProps) {
     );
 }
 
-export default MyPage;
+export default MyPageRoutes;

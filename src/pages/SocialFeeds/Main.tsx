@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import Feed from "../components/socialFeeds/Feed";
-import PageTemplatexxx from "../components/basics/PageTemplatexxx";
-import { ReactComponent as EditIco } from "../assets/icon/pencil.svg";
-import { getSampleImage } from "../lib/styles/utils";
+import Feed from "../../components/socialFeeds/Feed";
+import PageTemplatexxx from "../../components/basics/PageTemplatexxx";
+import { ReactComponent as EditIco } from "../../assets/icon/pencil.svg";
+import { getSampleImage } from "../../lib/styles/utils";
+import PageHeader from "../../components/common/PageHeader";
 
 const photo1 = getSampleImage();
 const photo2 = getSampleImage();
@@ -25,15 +26,17 @@ const feed = {
 };
 const samplefeeds = Array(5).fill(feed);
 
-function SocialFeeds() {
+function Main() {
     return (
         <PageTemplatexxx>
-            <Header>
-                <Title>모임 피드</Title>
-                <EditBtn>
-                    <EditIco />
-                </EditBtn>
-            </Header>
+            <PageHeader
+                title="모임 피드"
+                rightSlot={
+                    <EditBtn>
+                        <EditIco />
+                    </EditBtn>
+                }
+            />
             <FeedContainer>
                 {samplefeeds.map((aFeed) => (
                     <Feed
@@ -55,24 +58,7 @@ function SocialFeeds() {
     );
 }
 
-const Header = styled.header`
-    display: grid;
-    grid-template-areas: ". title edit";
-    grid-template-columns: repeat(3, 1fr);
-    align-items: center;
-    height: 50px;
-    padding: 0 20px;
-`;
-
-const Title = styled.h1`
-    grid-area: title;
-    font-size: 15px;
-    font-weight: 700;
-    text-align: center;
-`;
-
 const EditBtn = styled.button`
-    grid-area: edit;
     display: block;
     width: 24px;
     height: 24px;
@@ -83,6 +69,7 @@ const FeedContainer = styled.div`
     display: grid;
     row-gap: 35px;
     padding: 20px 0 35px;
+    margin-top: 70px;
 `;
 
-export default SocialFeeds;
+export default Main;
