@@ -52,7 +52,7 @@ const Block = styled.div`
     align-items: center;
     justify-content: center;
     column-gap: 10px;
-    margin-top: 20px;
+    margin-top: 70px;
 `;
 
 const TapItem = styled.div<{ active: boolean }>`

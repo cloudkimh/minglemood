@@ -2,14 +2,16 @@ import styled from "styled-components";
 import { ReactComponent as PrevPageIco } from "../../assets/icon/chevron-left.svg";
 import { useNavigate } from "react-router-dom";
 import palette from "../../lib/styles/palette";
+import { ReactNode } from "react";
 
 export type PageHeaderProps = {
     prevPageLink?: string;
     title: string;
+    rightSlot?: ReactNode;
 };
 
 function PageHeader(props: PageHeaderProps) {
-    const { prevPageLink, title } = props;
+    const { prevPageLink, title, rightSlot } = props;
     const navigate = useNavigate();
 
     const onClickPrevPageBtn = () => {
@@ -26,12 +28,13 @@ function PageHeader(props: PageHeaderProps) {
                 <PrevPageIco />
             </PrevPageBtn>
             <Title>{title}</Title>
+            {rightSlot}
         </Block>
     );
 }
 
 const Block = styled.header`
-    position: absolute;
+    position: fixed;
     top: 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);

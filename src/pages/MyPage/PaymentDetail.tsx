@@ -4,10 +4,10 @@ import ProductInfo from "../../components/common/ProductInfo";
 import { getSampleImage } from "../../lib/styles/utils";
 import PageHeader from "../../components/common/PageHeader";
 import { SectionDivider } from "../../components/common/styles/Common";
-import ProductOptionInfo from "../../components/mypage/paymentDetail/ProductOptionInfo";
 import PaymentInfoSection from "../../components/mypage/paymentDetail/PaymentInfoSection";
 import { DefaultButton } from "../../components/common/styles/Buttons";
 import palette from "../../lib/styles/palette";
+import OptionInfo from "../../components/common/OptionInfo";
 
 const samplePaymentInfo = {
     thumbnail: getSampleImage(),
@@ -34,10 +34,22 @@ function PaymentDetail() {
                     rate={samplePaymentInfo.rate}
                     reviewCnt={samplePaymentInfo.reviewCnt}
                 />
-                <ProductOptionInfo
-                    date={samplePaymentInfo.date}
-                    count={samplePaymentInfo.count}
-                    price={samplePaymentInfo.price}
+                <OptionInfo
+                    title="옵션정보"
+                    optionList={[
+                        {
+                            label: "일정",
+                            value: samplePaymentInfo.date,
+                        },
+                        {
+                            label: "인원",
+                            value: `${samplePaymentInfo.count}인`,
+                        },
+                        {
+                            label: "가격",
+                            value: `${samplePaymentInfo.price.toLocaleString()}원`,
+                        },
+                    ]}
                 />
             </ProductInfoSection>
             <SectionDivider />

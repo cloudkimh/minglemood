@@ -11,6 +11,7 @@ import Setting from "./pages/Setting";
 import SocialFeeds from "./pages/SocialFeeds";
 import Likes from "./pages/Likes";
 import Purchase from "./pages/Purchase";
+import PhotoGallery from "./pages/PhotoGallery";
 
 function App() {
     return (
@@ -30,6 +31,7 @@ function App() {
                 <Route path="social-feeds" element={<SocialFeeds />} />
                 <Route path="likes/*" element={<Likes />} />
                 <Route path="purchase/:id" element={<Purchase />} />
+                <Route path="photo-gallery/:id" element={<PhotoGallery />} />
                 {/* <Route path="*" element={<NotFoundPage />} /> */}
             </Routes>
             <Core />
