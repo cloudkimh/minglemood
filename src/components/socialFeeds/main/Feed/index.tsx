@@ -5,7 +5,7 @@ import CourseTag from "./CourseTag";
 import TextSection from "./TextSection";
 import ButtonSection from "./ButtonSection";
 import CommentModal from "./CommentModal";
-import useToggle from "../../../lib/hooks/useToggle";
+import useToggle from "../../../../lib/hooks/useToggle";
 import DownloadPhotos from "./DownloadPhoto";
 
 export type FeedProps = {

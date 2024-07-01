@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import palette from "../../../../lib/styles/palette";
-import { hideScrollBar, withOpacity } from "../../../../lib/styles/utils";
-import AutoResizeTextarea from "../../../basics/AutoResizeTextarea";
-import { ReactComponent as SubmitIco } from "../../../../assets/icon/arrow-up.svg";
+import palette from "../../../../../lib/styles/palette";
+import { hideScrollBar, withOpacity } from "../../../../../lib/styles/utils";
+import AutoResizeTextarea from "../../../../basics/AutoResizeTextarea";
+import { ReactComponent as SubmitIco } from "../../../../../assets/icon/arrow-up.svg";
 
 export type CommentFormProps = {};
 

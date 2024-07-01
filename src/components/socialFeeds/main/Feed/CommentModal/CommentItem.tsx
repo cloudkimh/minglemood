@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Avatar } from "../../../common/styles/Common";
-import palette from "../../../../lib/styles/palette";
+import { Avatar } from "../../../../common/styles/Common";
+import palette from "../../../../../lib/styles/palette";
 
 export type CommentItemProps = {
     avatar: string;

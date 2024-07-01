@@ -28,7 +28,7 @@ function App() {
                 <Route path="explore" element={<Explore />} />
                 <Route path="mypage/*" element={<MyPage />} />
                 <Route path="setting" element={<Setting />} />
-                <Route path="social-feeds" element={<SocialFeeds />} />
+                <Route path="social-feeds/*" element={<SocialFeeds />} />
                 <Route path="likes/*" element={<Likes />} />
                 <Route path="purchase/:id" element={<Purchase />} />
                 <Route path="photo-gallery/:id" element={<PhotoGallery />} />

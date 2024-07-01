@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { multiLineEllipsis } from "../../../lib/styles/utils";
-import useToggle from "../../../lib/hooks/useToggle";
-import palette from "../../../lib/styles/palette";
-import { ReactComponent as ExpandIco } from "../../../assets/icon/chevron-right-sm.svg";
+import { multiLineEllipsis } from "../../../../lib/styles/utils";
+import useToggle from "../../../../lib/hooks/useToggle";
+import palette from "../../../../lib/styles/palette";
+import { ReactComponent as ExpandIco } from "../../../../assets/icon/chevron-right-sm.svg";
 
 export type TextSectionProps = {
     text: string;

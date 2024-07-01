@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import PhotoCarousel from "../../common/PhotoCarousel";
+import PhotoCarousel from "../../../common/PhotoCarousel";
 
 export type PhotosProps = {
     photos: Array<string>;

@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import palette from "../../../lib/styles/palette";
-import { withOpacity } from "../../../lib/styles/utils";
+import palette from "../../../../lib/styles/palette";
+import { withOpacity } from "../../../../lib/styles/utils";
 import { useState } from "react";
-import PhotoCarousel from "../../common/PhotoCarousel";
+import PhotoCarousel from "../../../common/PhotoCarousel";
 
 export type DownloadPhotosProps = {
     photos: Array<string>;

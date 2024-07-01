@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import Feed from "../../components/socialFeeds/Feed";
+import Feed from "../../components/socialFeeds/main/Feed";
 import PageTemplatexxx from "../../components/basics/PageTemplatexxx";
 import { ReactComponent as EditIco } from "../../assets/icon/pencil.svg";
 import { getSampleImage } from "../../lib/styles/utils";
 import PageHeader from "../../components/common/PageHeader";
+import { Link } from "react-router-dom";
 
 const photo1 = getSampleImage();
 const photo2 = getSampleImage();
@@ -32,9 +33,11 @@ function Main() {
             <PageHeader
                 title="모임 피드"
                 rightSlot={
-                    <EditBtn>
-                        <EditIco />
-                    </EditBtn>
+                    <Link to="/social-feeds/write">
+                        <EditBtn>
+                            <EditIco />
+                        </EditBtn>
+                    </Link>
                 }
             />
             <FeedContainer>

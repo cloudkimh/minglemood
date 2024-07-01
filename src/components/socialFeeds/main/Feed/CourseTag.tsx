@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import palette from "../../../lib/styles/palette";
-import { ellipsis } from "../../../lib/styles/utils";
+import palette from "../../../../lib/styles/palette";
+import { ellipsis } from "../../../../lib/styles/utils";
 import { Link } from "react-router-dom";
 
 export type CourseTagProps = {

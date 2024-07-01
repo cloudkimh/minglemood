@@ -1,8 +1,7 @@
 import styled, { css } from "styled-components";
-import { useNavigate } from "react-router-dom";
-import useToggle from "../../../lib/hooks/useToggle";
-import { ReactComponent as LikeIco } from "../../../assets/icon/like-heart-active.svg";
-import { ReactComponent as CommentIco } from "../../../assets/icon/speech-bubble.svg";
+import useToggle from "../../../../lib/hooks/useToggle";
+import { ReactComponent as LikeIco } from "../../../../assets/icon/like-heart-active.svg";
+import { ReactComponent as CommentIco } from "../../../../assets/icon/speech-bubble.svg";
 
 export type ButtonSectionProps = {
     handleClickLike: () => void;
