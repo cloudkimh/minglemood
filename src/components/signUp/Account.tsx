@@ -10,11 +10,11 @@ import { useNavigate } from "react-router-dom";
 
 export type AccountProps = {
     visible: boolean;
-    handleNextPhase: () => void;
+    handleToNextPhase: (id: string, password: string) => void;
 };
 
 function Account(props: AccountProps) {
-    const { visible, handleNextPhase } = props;
+    const { visible, handleToNextPhase } = props;
     const idInputRef = useRef<HTMLInputElement>(null);
     const passwordInputRef = useRef<HTMLInputElement>(null);
     const vertifyPasswordInputRef = useRef<HTMLInputElement>(null);
@@ -71,7 +71,12 @@ function Account(props: AccountProps) {
             toast.warning("패스워드 형식이 올바르지 않습니다.");
             return;
         }
-        handleNextPhase();
+
+        if (idInputRef.current && passwordInputRef.current) {
+            const id = idInputRef.current.value;
+            const password = passwordInputRef.current.value;
+            handleToNextPhase(id, password);
+        }
     };
 
     if (!visible) return null;

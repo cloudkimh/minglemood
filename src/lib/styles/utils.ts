@@ -45,3 +45,15 @@ export const hideScrollBar = css`
         display: none;
     }
 `;
+
+export const hideSpinBtn = css`
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    &[type="number"] {
+        -moz-appearance: textfield;
+    }
+`;

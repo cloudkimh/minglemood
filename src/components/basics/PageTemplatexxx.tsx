@@ -32,6 +32,7 @@ const Block = styled.div`
 
 const PageContents = styled.div`
     min-height: 100%;
+    height: 100%;
 `;
 
 export default PageTemplatexxx;

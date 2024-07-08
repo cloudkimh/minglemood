@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import palette from "../../../lib/styles/palette";
+import { hideSpinBtn } from "../../../lib/styles/utils";
 
 export const TextInput = styled.input`
+    ${hideSpinBtn}
     font-size: 12px;
     border: 1px solid ${palette.gray4};
     border-radius: 5px;

@@ -3,23 +3,24 @@ import { animation, fadeInFromLeft } from "../../lib/styles/animations";
 import { TextInput } from "../common/styles/Inputs";
 import palette from "../../lib/styles/palette";
 import { DefaultButton } from "../common/styles/Buttons";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { BottomBtn } from "./styles";
-import { useNavigate } from "react-router-dom";
 import PageHeader from "../common/PageHeader";
+import { hideSpinBtn } from "../../lib/styles/utils";
 
 export type PhoneVertifyProps = {
     visible: boolean;
-    handleClickPrevPageBtn: () => void;
-    handleConfirm: () => void;
+    handleToPrevPhase: () => void;
+    handleConfirm: (name: string, phone: string) => void;
 };
 
 function PhoneVertify(props: PhoneVertifyProps) {
-    const { visible, handleConfirm, handleClickPrevPageBtn } = props;
+    const { visible, handleConfirm, handleToPrevPhase } = props;
     const [expirationTime, setExpirationTime] = useState(180);
     const [timerStarted, setTimerstarted] = useState(false);
     const [vertified, setVertified] = useState(false);
-    const navigate = useNavigate();
+    const [phone, setPhone] = useState("");
+    const nameInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         let timer: NodeJS.Timeout | undefined;
@@ -44,13 +45,34 @@ function PhoneVertify(props: PhoneVertifyProps) {
         return `${min}:${sec}`;
     };
 
+    const formatPhoneNumber = (value: string) => {
+        const cleaned = value.replace(/\D/g, "");
+        const match = cleaned.match(/^(\d{0,3})(\d{0,4})(\d{0,4})$/);
+
+        if (match) {
+            return `${match[1]}${match[2] ? "-" : ""}${match[2]}${
+                match[3] ? "-" : ""
+            }${match[3]}`;
+        }
+
+        return value;
+    };
+
+    const onChangePhone = (e: ChangeEvent<HTMLInputElement>) => {
+        const { value } = e.target;
+        const formattedPhone = formatPhoneNumber(value);
+        setPhone(formattedPhone);
+    };
+
     const onClickVertifyBtn = () => {
         setVertified(true);
     };
 
     const onClickConfirmBtn = () => {
-        // do async
-        handleConfirm();
+        if (nameInputRef.current) {
+            const name = nameInputRef.current.value;
+            handleConfirm(name, phone);
+        }
     };
 
     if (!visible) return null;
@@ -59,16 +81,24 @@ function PhoneVertify(props: PhoneVertifyProps) {
         <>
             <PageHeader
                 title="회원가입"
-                handleClickPrevPageBtn={handleClickPrevPageBtn}
+                handleClickPrevPageBtn={handleToPrevPhase}
             />
             <Block>
                 <div>
-                    <NameInput name="name" type="text" placeholder="이름" />
+                    <NameInput
+                        name="name"
+                        type="text"
+                        placeholder="이름"
+                        ref={nameInputRef}
+                    />
                     <PhoneNumBlock>
                         <PhoneNumInput
-                            name="phone-num"
-                            type="number"
+                            name="phone"
+                            type="text"
+                            maxLength={13}
                             placeholder="휴대폰 번호 (-제외 입력)"
+                            value={phone}
+                            onChange={onChangePhone}
                         />
                         <SendBtn
                             pressed={timerStarted}

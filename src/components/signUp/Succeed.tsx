@@ -18,8 +18,10 @@ function Succeed(props: SucceedProps) {
         navigate("/");
     };
 
+    if (!visible) return null;
+
     return (
-        <Block visible={visible}>
+        <Block>
             <TextContainer>
                 <Logo />
                 <MainText>환영합니다. {name}님!</MainText>
@@ -30,9 +32,9 @@ function Succeed(props: SucceedProps) {
     );
 }
 
-const Block = styled.div<{ visible: boolean }>`
+const Block = styled.div`
     ${animation(fadeInFromLeft, 0.3)}
-    display: ${(props) => (props.visible ? "grid" : "none")};
+    display: grid;
     grid-template-rows: 1fr 40px;
     place-items: center;
     height: 100%;

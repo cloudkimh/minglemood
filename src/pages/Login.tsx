@@ -6,12 +6,13 @@ import { VerticalBar } from "../components/common/styles/Common";
 import naverBtnImg from "../assets/img/kakao.svg";
 import kakaoBtnImg from "../assets/img/naver.svg";
 import { useNavigate } from "react-router-dom";
+import PageTemplatexxx from "../components/basics/PageTemplatexxx";
 
 function Login() {
     const navigate = useNavigate();
 
     return (
-        <Block>
+        <PageTemplatexxx>
             <LogoBlock>
                 <Logo />
             </LogoBlock>
@@ -43,13 +44,9 @@ function Login() {
                     <SnsBtn img={naverBtnImg} />
                 </SnsLoginBtnBlock>
             </MainContainer>
-        </Block>
+        </PageTemplatexxx>
     );
 }
-
-const Block = styled.div`
-    height: 100%;
-`;
 
 const LogoBlock = styled.div`
     padding: 30px 20px 0;
