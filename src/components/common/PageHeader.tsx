@@ -5,18 +5,18 @@ import palette from "../../lib/styles/palette";
 import { ReactNode } from "react";
 
 export type PageHeaderProps = {
-    prevPageLink?: string;
+    handleClickPrevPageBtn?: Function;
     title: string;
     rightSlot?: ReactNode;
 };
 
 function PageHeader(props: PageHeaderProps) {
-    const { prevPageLink, title, rightSlot } = props;
+    const { handleClickPrevPageBtn, title, rightSlot } = props;
     const navigate = useNavigate();
 
     const onClickPrevPageBtn = () => {
-        if (prevPageLink) {
-            navigate(prevPageLink);
+        if (handleClickPrevPageBtn) {
+            handleClickPrevPageBtn();
         } else {
             navigate(-1);
         }

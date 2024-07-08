@@ -12,6 +12,8 @@ import SocialFeeds from "./pages/SocialFeeds";
 import Likes from "./pages/Likes";
 import Purchase from "./pages/Purchase";
 import PhotoGallery from "./pages/PhotoGallery";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
 function App() {
     return (
@@ -32,6 +34,8 @@ function App() {
                 <Route path="likes/*" element={<Likes />} />
                 <Route path="purchase/:id" element={<Purchase />} />
                 <Route path="photo-gallery/:id" element={<PhotoGallery />} />
+                <Route path="login" element={<Login />} />
+                <Route path="sign-up" element={<SignUp />} />
                 {/* <Route path="*" element={<NotFoundPage />} /> */}
             </Routes>
             <Core />
