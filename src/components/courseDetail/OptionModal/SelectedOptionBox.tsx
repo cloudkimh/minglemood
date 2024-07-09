@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import palette from "../../../lib/styles/palette";
+import Icon from "../../basics/Icon";
 
 export type SelectedOptionBoxProps = {
     option: {
@@ -26,18 +27,19 @@ function SelectedOptionBox(props: SelectedOptionBoxProps) {
                         handleClose(option);
                     }}
                 >
-                    <CloseIco />
+                    <CloseIco name="cross" />
                 </CloseBtn>
             </OptionNameBlock>
             <PriceBlock>
                 <CountBlock>
                     <CountBtn
                         role="minus"
+                        disabled={option.count === 1}
                         onClick={() => {
                             handleCountDown(option);
                         }}
                     >
-                        <MinusIco />
+                        <Icon name="minus" />
                     </CountBtn>
                     <Count>{option.count}</Count>
                     <CountBtn
@@ -46,7 +48,7 @@ function SelectedOptionBox(props: SelectedOptionBoxProps) {
                             handleCountUp(option);
                         }}
                     >
-                        <AddIco />
+                        <Icon name="plus" />
                     </CountBtn>
                 </CountBlock>
                 <Price>{totalPrice.toLocaleString()}원</Price>
@@ -58,9 +60,9 @@ function SelectedOptionBox(props: SelectedOptionBoxProps) {
 const Block = styled.div`
     background-color: ${palette.white1};
     border: 1px solid ${palette.gray4};
-    border-radius: 10px;
-    padding: 17px 17px 19px;
-    margin-top: 16px;
+    border-radius: 5px;
+    padding: 11px 10px;
+    margin-top: 10px;
 `;
 
 const OptionNameBlock = styled.div`
@@ -80,17 +82,20 @@ const CloseBtn = styled.button`
     height: 20px;
 `;
 
-const CloseIco = styled.div`
+const CloseIco = styled(Icon)`
     width: 20px;
     height: 20px;
-    background-color: ${palette.red2};
+
+    path {
+        stroke: ${palette.black0};
+    }
 `;
 
 const PriceBlock = styled.div`
     display: flex;
-    align-items: end;
+    align-items: center;
     justify-content: space-between;
-    margin-top: 26px;
+    margin-top: 20px;
 `;
 
 const CountBlock = styled.div`
@@ -101,9 +106,9 @@ const CountBlock = styled.div`
 const CountBtn = styled.button<{ role: "add" | "minus" }>`
     display: grid;
     place-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 5px;
+    width: 30px;
+    height: 28px;
+    border-radius: 3px;
 
     ${(props) =>
         props.disabled
@@ -130,31 +135,21 @@ const CountBtn = styled.button<{ role: "add" | "minus" }>`
               `}
 `;
 
-const AddIco = styled.div`
-    width: 12px;
-    height: 12px;
-    background-color: ${palette.red2};
-`;
-
-const MinusIco = styled.div`
-    width: 12px;
-    height: 12px;
-    background-color: ${palette.red2};
-`;
-
 const Count = styled.div`
-    width: 36px;
-    height: 32px;
+    width: 35px;
+    height: 28px;
     text-align: center;
-    font-size: 12px;
+    font-size: 11px;
+    color: ${palette.gray2};
     background-color: ${palette.white0};
     border: 1px solid ${palette.gray4};
-    padding: 10px 0 9px;
+    padding: 9px 0 8px;
 `;
 
 const Price = styled.p`
-    font-size: 16px;
-    font-weight: 800;
+    font-size: 13px;
+    font-weight: 700;
+    color: ${palette.black0};
 `;
 
 export default SelectedOptionBox;

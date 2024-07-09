@@ -20,27 +20,28 @@ function DateOption(props: DateOptionProps) {
 const Block = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: 50px;
-    background-color: ${palette.white1};
-    border: 1px solid ${palette.gray5};
-    border-radius: 5px;
-    padding: 0 7px 0 17px;
+    column-gap: 3px;
 `;
 
 const SelectedDate = styled.p`
-    font-size: 15px;
-    font-weight: 800;
+    width: 100%;
+    font-size: 12px;
+    font-weight: 700;
+    background-color: ${palette.white0};
+    border: 1px solid ${palette.gray4};
+    border-radius: 5px;
+    padding: 11px;
 `;
 
 const ChangeDateBtn = styled.button`
+    width: 70px;
+    flex-shrink: 0;
     font-size: 12px;
     font-weight: 700;
     color: ${palette.white0};
     border-radius: 5px;
-    background-color: ${palette.black1};
-    padding: 10px 12px 11px;
+    background-color: ${palette.red500};
+    padding: 11px 0;
 `;
 
 export default DateOption;

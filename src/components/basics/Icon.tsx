@@ -37,54 +37,56 @@ import { ReactComponent as StarHalfIco } from "../../assets/icon/star-half.svg";
 import { ReactComponent as StarIco } from "../../assets/icon/star.svg";
 import { ReactComponent as TosspayIco } from "../../assets/icon/tosspay.svg";
 import { ReactComponent as CameraIco } from "../../assets/icon/camera.svg";
+import { ReactComponent as PlusIco } from "../../assets/icon/plus.svg";
+import { ReactComponent as MinusIco } from "../../assets/icon/minus.svg";
 
 export type IconProps = {
-    name: IconNames;
+    name:
+        | "arrow-left"
+        | "arrow-up"
+        | "avatar"
+        | "bulleted-list"
+        | "camera"
+        | "camera-add"
+        | "card"
+        | "check"
+        | "chevron-left-sm"
+        | "chevron-left"
+        | "chevron-right-sm"
+        | "chevron-right"
+        | "chevron-up"
+        | "coin"
+        | "credit-card"
+        | "cross"
+        | "exit"
+        | "filter"
+        | "headphone"
+        | "heart"
+        | "host"
+        | "kakaopay"
+        | "like-heart-active"
+        | "like-heart"
+        | "magnifier"
+        | "naverpay"
+        | "pencil"
+        | "phone"
+        | "photo"
+        | "refresh"
+        | "search-black"
+        | "speaker"
+        | "speech-bubble"
+        | "star-empty"
+        | "star-full"
+        | "star-half"
+        | "star"
+        | "tosspay"
+        | "plus"
+        | "minus";
     className?: string;
 };
 
-type IconNames =
-    | "arrow-left"
-    | "arrow-up"
-    | "avatar"
-    | "bulleted-list"
-    | "camera"
-    | "camera-add"
-    | "card"
-    | "check"
-    | "chevron-left-sm"
-    | "chevron-left"
-    | "chevron-right-sm"
-    | "chevron-right"
-    | "chevron-up"
-    | "coin"
-    | "credit-card"
-    | "cross"
-    | "exit"
-    | "filter"
-    | "headphone"
-    | "heart"
-    | "host"
-    | "kakaopay"
-    | "like-heart-active"
-    | "like-heart"
-    | "magnifier"
-    | "naverpay"
-    | "pencil"
-    | "phone"
-    | "photo"
-    | "refresh"
-    | "search-black"
-    | "speaker"
-    | "speech-bubble"
-    | "star-empty"
-    | "star-full"
-    | "star-half"
-    | "star"
-    | "tosspay";
-
 const iconMaps: {
-    [key in IconNames]: ReactElement;
+    [key in IconProps["name"]]: ReactElement;
 } = {
     "arrow-left": <ArrowLeftIco />,
     "arrow-up": <ArrowUpIco />,
@@ -124,6 +126,8 @@ const iconMaps: {
     "star-half": <StarHalfIco />,
     star: <StarIco />,
     tosspay: <TosspayIco />,
+    plus: <PlusIco />,
+    minus: <MinusIco />,
 };
 
 function Icon(props: IconProps) {

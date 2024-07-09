@@ -1,11 +1,9 @@
 import styled from "styled-components";
 import ModalTemplate from "../../basics/ModalTemplate";
 import { ModalBody } from "../../basics/ModalTemplate/styles";
-import palette from "../../../lib/styles/palette";
 import DateOption from "./DateOption";
 import { useState } from "react";
 import useToggle from "../../../lib/hooks/useToggle";
-import { HorizontalBar } from "../../common/styles/Common";
 import ProductOption from "./ProductOption";
 import SelectedOptionBox from "./SelectedOptionBox";
 import SummaryBar from "./SummaryBar";
@@ -31,21 +29,25 @@ const sampleOptions = [
         id: 1,
         name: "[부산] 남 (정가)",
         price: 49000,
+        count: 12,
     },
     {
         id: 2,
         name: "[부산] 여 (정가)",
         price: 49000,
+        count: 12,
     },
     {
         id: 3,
         name: "[부산] 남 (리뷰 이벤트)",
         price: 49000,
+        count: 12,
     },
     {
         id: 4,
         name: "[부산] 여 (리뷰 이벤트)",
         price: 49000,
+        count: 12,
     },
 ];
 
@@ -145,15 +147,11 @@ function OptionModal(props: OptionModalProps) {
     return (
         <ModalTemplate visible={visible} handleClickLayer={onClose}>
             <StyledModalBody>
-                <ToggleBtn onClick={onClose}>
-                    <ChevronDownIco />
-                </ToggleBtn>
                 <Wrapper>
                     <DateOption
                         selectedDate={selectedDate}
                         onChangeBtnClick={onChangeBtnClick}
                     />
-                    <StyledHorizontalBar />
                     <ProductOption
                         optionName={sampleName}
                         optionList={sampleOptions}
@@ -185,27 +183,7 @@ function OptionModal(props: OptionModalProps) {
 const StyledModalBody = styled(ModalBody)`
     position: relative;
     height: 50vh;
-    padding: 24px 20px 0;
-`;
-
-const ToggleBtn = styled.button`
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    max-width: 66px;
-    width: 66px;
-    height: 21px;
-    background-color: ${palette.white0};
-    border: 1px solid ${palette.gray5};
-    border-bottom: none;
-    border-top-left-radius: 35px 40px;
-    border-top-right-radius: 35px 40px;
-    cursor: pointer;
+    padding: 33px 20px 0;
 `;
 
 const Wrapper = styled.div`
@@ -214,16 +192,6 @@ const Wrapper = styled.div`
     overscroll-behavior: contain;
     scrollbar-width: none;
     padding-bottom: 140px;
-`;
-
-const ChevronDownIco = styled.span`
-    width: 16px;
-    height: 10px;
-    background-color: ${palette.red2};
-`;
-
-const StyledHorizontalBar = styled(HorizontalBar)`
-    margin: 18px 0 18px;
 `;
 
 export default OptionModal;
