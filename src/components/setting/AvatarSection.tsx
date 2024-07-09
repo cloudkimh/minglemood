@@ -2,27 +2,28 @@ import styled from "styled-components";
 import ImageInput from "../basics/ImageInput";
 import palette from "../../lib/styles/palette";
 import { useState } from "react";
-import { getSampleUser } from "../../lib/data/sampleUserData";
 import ImageWithFallback from "../basics/ImageWithFallback";
 import Icon from "../basics/Icon";
 
-export type AvatarSectionProp = {};
+export type AvatarSectionProp = {
+    avatar: string;
+    onChangeAvatar: (avatar: string) => void;
+};
 
 function AvatarSection(props: AvatarSectionProp) {
-    const user = getSampleUser();
-    const [image, setImage] = useState(user.avatar);
+    const { onChangeAvatar, avatar } = props;
 
     return (
         <Block>
             <ImageInput
                 onChange={(nextImage) => {
-                    setImage(nextImage);
+                    onChangeAvatar(nextImage);
                 }}
-                defaultImage={user.avatar}
+                defaultImage={avatar}
                 render={({ openFinder }) => (
                     <AvatarWrapper>
                         <Avatar
-                            path={image}
+                            path={avatar}
                             onClick={() => {
                                 openFinder();
                             }}

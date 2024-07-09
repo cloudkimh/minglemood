@@ -4,15 +4,21 @@ import { ChangeEvent, useState } from "react";
 import palette from "../../lib/styles/palette";
 import { TextArea } from "../common/styles/Inputs";
 
-export type BioSectionProps = {};
+export type BioSectionProps = {
+    bio: string;
+    onChangeBio: (value: string) => void;
+};
 
 const MAX_LETTER = 300;
 
 function BioSection(props: BioSectionProps) {
+    const { bio, onChangeBio } = props;
     const [letterCount, setLetterCount] = useState(0);
 
     const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        setLetterCount(e.currentTarget.value.length);
+        const { value } = e.currentTarget;
+        setLetterCount(value.length);
+        onChangeBio(value);
     };
 
     return (
@@ -20,6 +26,7 @@ function BioSection(props: BioSectionProps) {
             <InputLabel>자기소개</InputLabel>
             <BioInput
                 onChange={onChange}
+                value={bio}
                 maxLength={300}
                 placeholder="자기 소개를 입력해주세요."
             />

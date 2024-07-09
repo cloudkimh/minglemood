@@ -1,24 +1,27 @@
 import styled from "styled-components";
 import { InputLabel } from "./styles";
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent } from "react";
 import { TextInput } from "../common/styles/Inputs";
 
-export type AliasSectionProps = {};
+export type AliasSectionProps = {
+    alias: string;
+    onChangeAlias: (alias: string) => void;
+};
 
 function AliasSection(props: AliasSectionProps) {
-    const [value, setValue] = useState("");
-    const inputRef = useRef<HTMLInputElement>(null);
+    const { alias, onChangeAlias } = props;
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setValue(e.currentTarget.value);
+        const { value } = e.currentTarget;
+        onChangeAlias(value);
     };
 
     return (
         <Block>
             <InputLabel>닉네임</InputLabel>
             <AliasInput
-                ref={inputRef}
                 type="text"
+                value={alias}
                 placeholder="2~10자 이내여야 합니다."
                 maxLength={10}
                 minLength={2}
