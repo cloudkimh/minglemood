@@ -36,6 +36,7 @@ import { ReactComponent as StarFullIco } from "../../assets/icon/star-full.svg";
 import { ReactComponent as StarHalfIco } from "../../assets/icon/star-half.svg";
 import { ReactComponent as StarIco } from "../../assets/icon/star.svg";
 import { ReactComponent as TosspayIco } from "../../assets/icon/tosspay.svg";
+import { ReactComponent as CameraIco } from "../../assets/icon/camera.svg";
 
 export type IconProps = {
     name: IconNames;
@@ -47,6 +48,7 @@ type IconNames =
     | "arrow-up"
     | "avatar"
     | "bulleted-list"
+    | "camera"
     | "camera-add"
     | "card"
     | "check"
@@ -88,6 +90,7 @@ const iconMaps: {
     "arrow-up": <ArrowUpIco />,
     avatar: <AvatarIco />,
     "bulleted-list": <BulletedListIco />,
+    camera: <CameraIco />,
     "camera-add": <CameraAddIco />,
     card: <CardIco />,
     check: <CheckIco />,

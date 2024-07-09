@@ -1,48 +1,31 @@
 import styled from "styled-components";
-import PageTemplate from "../components/basics/PageTemplate";
 import AvatarSection from "../components/setting/AvatarSection";
 import palette from "../lib/styles/palette";
 import AliasSection from "../components/setting/AliasSection";
 import BioSection from "../components/setting/BioSection";
+import PageTemplatexxx from "../components/basics/PageTemplatexxx";
+import PageHeader from "../components/common/PageHeader";
 
-export type SettingProps = {};
-
-function Setting(props: SettingProps) {
+function Setting() {
     return (
-        <PageTemplate>
-            <Block>
-                <Header>
-                    <Title>내 정보</Title>
-                    <SaveButton>저장</SaveButton>
-                </Header>
-                <AvatarSection />
-                <AliasSection />
-                <BioSection />
-            </Block>
-        </PageTemplate>
+        <PageTemplatexxx>
+            <PageHeader
+                title="프로필 수정"
+                rightSlot={<SaveButton>저장</SaveButton>}
+            />
+            <AvatarSection />
+            <AliasSection />
+            <BioSection />
+        </PageTemplatexxx>
     );
 }
 
-const Block = styled.div`
-    margin-top: 100px;
-`;
-
-const Header = styled.header`
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid ${palette.gray5};
-    padding: 40px 20px;
-`;
-
-const Title = styled.h1`
-    font-size: 24px;
-    font-weight: 800;
-`;
-
 const SaveButton = styled.button`
+    display: block;
     font-size: 14px;
     font-weight: 700;
     color: ${palette.red500};
+    margin-left: auto;
 `;
 
 export default Setting;

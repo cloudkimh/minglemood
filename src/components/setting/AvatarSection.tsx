@@ -3,6 +3,8 @@ import ImageInput from "../basics/ImageInput";
 import palette from "../../lib/styles/palette";
 import { useState } from "react";
 import { getSampleUser } from "../../lib/data/sampleUserData";
+import ImageWithFallback from "../basics/ImageWithFallback";
+import Icon from "../basics/Icon";
 
 export type AvatarSectionProp = {};
 
@@ -20,12 +22,18 @@ function AvatarSection(props: AvatarSectionProp) {
                 render={({ openFinder }) => (
                     <AvatarWrapper>
                         <Avatar
-                            src={image}
+                            path={image}
                             onClick={() => {
                                 openFinder();
                             }}
                         />
-                        <Chip />
+                        <Chip
+                            onClick={() => {
+                                openFinder();
+                            }}
+                        >
+                            <Icon name="camera" />
+                        </Chip>
                     </AvatarWrapper>
                 )}
             />
@@ -36,17 +44,16 @@ function AvatarSection(props: AvatarSectionProp) {
 const Block = styled.section`
     display: flex;
     justify-content: center;
-    padding: 0 20px;
-    margin-top: 30px;
+    margin-top: 80px;
 `;
 
 const AvatarWrapper = styled.div`
     position: relative;
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
 `;
 
-const Avatar = styled.img`
+const Avatar = styled(ImageWithFallback)`
     width: 100%;
     height: 100%;
     border-radius: 50%;
@@ -55,12 +62,15 @@ const Avatar = styled.img`
 
 const Chip = styled.span`
     position: absolute;
-    right: -5px;
-    bottom: -3px;
-    width: 24px;
-    height: 24px;
+    right: -2px;
+    bottom: -1px;
+    display: grid;
+    place-content: center;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
-    background-color: ${palette.black0};
+    border: 1px solid ${palette.white0};
+    background-color: ${palette.red500};
 `;
 
 export default AvatarSection;
