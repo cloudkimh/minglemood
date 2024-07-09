@@ -3,16 +3,19 @@ import palette from "../../lib/styles/palette";
 import { ReactNode } from "react";
 import { hideScrollBar, withOpacity } from "../../lib/styles/utils";
 import Footer from "../common/Footer";
+import Gnb from "../common/Gnb";
 
 type PageTemplatexxxProps = {
+    gnbVisible?: boolean;
     children: ReactNode;
 };
 
 function PageTemplatexxx(props: PageTemplatexxxProps) {
-    const { children } = props;
+    const { children, gnbVisible } = props;
 
     return (
         <Block>
+            {gnbVisible && <Gnb isScrolled={true} />}
             <PageContents>{children}</PageContents>
             <Footer />
         </Block>

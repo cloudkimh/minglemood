@@ -1,55 +1,70 @@
 import styled from "styled-components";
 import palette from "../../../lib/styles/palette";
 import { withOpacity } from "../../../lib/styles/utils";
-import { getSampleUser } from "../../../lib/data/sampleUserData";
 import ImageWithFallback from "../../basics/ImageWithFallback";
+import { ReactComponent as AvatarIco } from "../../../assets/icon/avatar.svg";
 import { Link } from "react-router-dom";
 
-export type UserHeaderProps = {};
+export type UserHeaderProps = {
+    alias: string;
+    avatar: string;
+};
 
 function UserHeader(props: UserHeaderProps) {
-    const user = getSampleUser();
+    const { alias, avatar } = props;
 
     return (
-        <Link to={"/setting"}>
-            <Block>
-                <Avatar alt="유저 아바타" path={user.avatar} />
-                <AliasBlock>
-                    <Alias>{user.alias}</Alias>
-                    <SnsType>카카오톡 계정</SnsType>
-                </AliasBlock>
-            </Block>
-        </Link>
+        <Block>
+            <AvatarBlock>
+                <Avatar alt="유저 아바타" path={avatar} />
+                <Alias>{alias}</Alias>
+            </AvatarBlock>
+            <Link to="/setting">
+                <ProfileBtn>
+                    프로필
+                    <AvatarIco />
+                </ProfileBtn>
+            </Link>
+        </Block>
     );
 }
 
 const Block = styled.div`
     display: flex;
     align-items: center;
-    border-bottom: 1px solid ${palette.gray5};
-    padding: 24px 20px 36px;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin: 80px 0 20px;
+`;
+
+const AvatarBlock = styled.div`
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
 `;
 
 const Avatar = styled(ImageWithFallback)`
-    width: 64px;
-    height: 64px;
-    border-radius: 32px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
     border: 1px solid ${palette.black2}${withOpacity(0.1)};
-    margin-right: 16px;
 `;
-
-const AliasBlock = styled.div``;
 
 const Alias = styled.p`
-    color: ${palette.black0};
-    font-size: 18px;
-    font-weight: 800;
-    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 700;
 `;
 
-const SnsType = styled.p`
+const ProfileBtn = styled.button`
+    display: flex;
+    align-items: center;
+    column-gap: 3px;
     font-size: 12px;
+    font-weight: 700;
     color: ${palette.gray2};
+    border: 1px solid ${palette.gray5};
+    border-radius: 15px;
+    padding: 7px 10px;
 `;
 
 export default UserHeader;
