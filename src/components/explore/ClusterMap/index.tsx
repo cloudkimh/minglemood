@@ -2,12 +2,9 @@ import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { MarkerClustering } from "../../../lib/static/MarkerClustering.js";
 import { sampleMarkerData } from "../../../lib/data/sampleMarkerData";
-import clusterMarker1 from "../../../assets/img/cluster-marker-1.png";
-import clusterMarker2 from "../../../assets/img/cluster-marker-2.png";
-import clusterMarker3 from "../../../assets/img/cluster-marker-3.png";
-import clusterMarker4 from "../../../assets/img/cluster-marker-4.png";
-import clusterMarker5 from "../../../assets/img/cluster-marker-5.png";
 import { FILTERS_BAR_HEIGHT, SEARCH_BAR_HEIGHT } from "../variables";
+import palette from "../../../lib/styles/palette";
+import { withOpacity } from "../../../lib/styles/utils";
 
 export type ClusterMapProps = {
     centerLocation: {
@@ -46,28 +43,28 @@ function ClusterMap(props: ClusterMapProps) {
             }
 
             const htmlMarker1 = {
-                    content: `<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(${clusterMarker1});background-size:contain;"></div>`,
-                    size: new naver.maps.Size(40, 40),
+                    content: `<div style="${clusterStyle}"></div>`,
+                    size: new naver.maps.Size(36, 36),
                     anchor: new naver.maps.Point(20, 20),
                 },
                 htmlMarker2 = {
-                    content: `<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(${clusterMarker2});background-size:contain;"></div>`,
-                    size: new naver.maps.Size(40, 40),
+                    content: `<div style="${clusterStyle}"></div>`,
+                    size: new naver.maps.Size(36, 36),
                     anchor: new naver.maps.Point(20, 20),
                 },
                 htmlMarker3 = {
-                    content: `<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(${clusterMarker3});background-size:contain;"></div>`,
-                    size: new naver.maps.Size(40, 40),
+                    content: `<div style="${clusterStyle}"></div>`,
+                    size: new naver.maps.Size(36, 36),
                     anchor: new naver.maps.Point(20, 20),
                 },
                 htmlMarker4 = {
-                    content: `<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(${clusterMarker4});background-size:contain;"></div>`,
-                    size: new naver.maps.Size(40, 40),
+                    content: `<div style="${clusterStyle}"></div>`,
+                    size: new naver.maps.Size(36, 36),
                     anchor: new naver.maps.Point(20, 20),
                 },
                 htmlMarker5 = {
-                    content: `<div style="cursor:pointer;width:40px;height:40px;line-height:42px;font-size:10px;color:white;text-align:center;font-weight:bold;background:url(${clusterMarker5});background-size:contain;"></div>`,
-                    size: new naver.maps.Size(40, 40),
+                    content: `<div style="${clusterStyle}"></div>`,
+                    size: new naver.maps.Size(36, 36),
                     anchor: new naver.maps.Point(20, 20),
                 };
 
@@ -114,6 +111,19 @@ function ClusterMap(props: ClusterMapProps) {
 const MapCanvas = styled.div`
     width: 100%;
     height: calc(100vh - ${FILTERS_BAR_HEIGHT} - ${SEARCH_BAR_HEIGHT});
+`;
+
+const clusterStyle = `
+    width: 36px;
+    height: 36px;
+    line-height: 38px;
+    font-size: 15px;
+    font-weight: 700;
+    color: ${palette.white0};
+    text-align: center;
+    cursor: pointer;
+    background-color: ${palette.red500}${withOpacity(0.64)};
+    border-radius: 50%;
 `;
 
 export default ClusterMap;
