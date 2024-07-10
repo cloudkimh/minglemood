@@ -114,7 +114,7 @@ function Account(props: AccountProps) {
                         placeholder="비밀번호 확인"
                     />
                 </InputsContainer>
-                <NextPhaseBtn onClick={onClickNextPhaseBtn}>다음</NextPhaseBtn>
+                <BottomBtn onClick={onClickNextPhaseBtn}>다음</BottomBtn>
             </Block>
         </>
     );
@@ -150,7 +150,5 @@ const VertifyPasswordInput = styled(TextInput)`
     width: 100%;
     margin-top: 15px;
 `;
-
-const NextPhaseBtn = styled(BottomBtn)``;
 
 export default Account;
