@@ -14,7 +14,7 @@ const course = {
     time: "2024년 2월 12일",
     count: 3,
 };
-const sampleCourses = Array(0).fill(course);
+const sampleCourses = Array(3).fill(course);
 
 function Scheduled() {
     const [isAscendingOrder, toggleIsAscendingOrder] = useToggle(false);

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Feed from "./Feed";
 import SectionHeader from "../SectionHeader";
 import palette from "../../../lib/styles/palette";
+import { Link } from "react-router-dom";
 
 export type PhotoFeedsProps = {
     photos: Array<string>;
@@ -13,7 +14,11 @@ function PhotoFeeds(props: PhotoFeedsProps) {
         <Block>
             <SectionHeader
                 title="후기 피드"
-                button={<HeaderBtn>더보기</HeaderBtn>}
+                button={
+                    <HeaderBtn as={Link} to="/social-feeds">
+                        더보기
+                    </HeaderBtn>
+                }
             />
             <Body>
                 {photos.map((aPhoto, index) => (

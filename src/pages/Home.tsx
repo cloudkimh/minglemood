@@ -10,7 +10,6 @@ import PhotoFeeds from "../components/home/PhotoFeeds";
 import palette from "../lib/styles/palette";
 
 const photo = getSampleImage();
-
 const photos = Array(9).fill(photo);
 const banners = Array(4).fill({
     image: photo,
