@@ -1,4 +1,3 @@
-import { getSampleImage } from "../lib/styles/utils";
 import PaymentMethod from "../components/purchase/PaymentMethod";
 import { SectionDivider } from "../components/common/styles/Common";
 import { useEffect, useState } from "react";
@@ -16,16 +15,26 @@ import { toast } from "react-toastify";
 import PhotoCarousel from "../components/common/PhotoCarousel";
 import OptionInfo from "../components/common/OptionInfo";
 import { getDayString } from "../lib/utils";
+import { ProductOptionInfo } from "../components/courseDetail/types";
 
-const samplePaymentInfo = {
-    thumbnail: getSampleImage(),
-    region: "부산",
-    title: "하루만에 끝내는 스마트폰 사진 촬영과 보정법 (필터 공유)",
-    rating: 4.9,
-    reviewCnt: 128,
-    date: "2024년 5월 7일 17시 0분",
-    count: 2,
-    price: 20000,
+type PhotoTypeProductInfo = {
+    photos: Array<string>;
+    photographer: string;
+    fileType: string;
+    size: string;
+    license: string;
+};
+
+type CourseTypeProductInfo = {
+    options: Array<ProductOptionInfo>;
+    date: Date;
+    count: number;
+    id: number;
+    thumbnail: string;
+    region: string;
+    title: string;
+    rating: number;
+    reviewCnt: number;
 };
 
 function Purchase() {
@@ -33,11 +42,13 @@ function Purchase() {
     const navigate = useNavigate();
     const location = useLocation();
     const data = location.state as {
-        productType: string;
-        productInfo?: {
-            [key: string]: any;
+        paymentInfo: {
+            price: number;
         };
+        photoInfo?: PhotoTypeProductInfo;
+        courseInfo?: CourseTypeProductInfo;
     };
+    console.log(data);
 
     useEffect(() => {
         if (!data) {
@@ -66,15 +77,13 @@ function Purchase() {
         <PageTemplatexxx>
             <PageHeader title="결제" />
             <InfoContainer>
-                {data.productType === "photo" ? (
+                {data.photoInfo && (
                     <>
                         <PhotoCarouselWrapper>
                             <PhotoCarousel>
-                                {data.productInfo?.photos.map(
-                                    (aPhoto: string) => (
-                                        <PhotoCarousel.Slide path={aPhoto} />
-                                    )
-                                )}
+                                {data.photoInfo.photos.map((aPhoto: string) => (
+                                    <PhotoCarousel.Slide path={aPhoto} />
+                                ))}
                             </PhotoCarousel>
                         </PhotoCarouselWrapper>
                         <OptionInfo
@@ -82,48 +91,47 @@ function Purchase() {
                             optionList={[
                                 {
                                     label: "작가명",
-                                    value: data.productInfo?.photographer,
+                                    value: data.photoInfo.photographer,
                                 },
                                 {
                                     label: "파일 종류",
-                                    value: data.productInfo?.fileType,
+                                    value: data.photoInfo.fileType,
                                 },
                                 {
                                     label: "파일 크기",
-                                    value: data.productInfo?.size,
+                                    value: data.photoInfo.size,
                                 },
                                 {
                                     label: "라이선스",
-                                    value: data.productInfo?.license,
+                                    value: data.photoInfo.license,
                                 },
                             ]}
                         />
                     </>
-                ) : (
+                )}
+                {data.courseInfo && (
                     <>
                         <ProductInfo
-                            thumbnail={data.productInfo?.thumbnail}
-                            region={data.productInfo?.region}
-                            title={data.productInfo?.title}
-                            rating={data.productInfo?.rating}
-                            reviewCnt={data.productInfo?.reviewCnt}
+                            thumbnail={data.courseInfo.thumbnail}
+                            region={data.courseInfo.region}
+                            title={data.courseInfo.title}
+                            rating={data.courseInfo.rating}
+                            reviewCnt={data.courseInfo.reviewCnt}
                         />
                         <OptionInfo
                             title="결제정보"
                             optionList={[
                                 {
                                     label: "일정",
-                                    value: formatDateText(
-                                        data.productInfo?.date
-                                    ),
+                                    value: formatDateText(data.courseInfo.date),
                                 },
                                 {
                                     label: "인원",
-                                    value: `${data.productInfo?.count}인`,
+                                    value: `${data.courseInfo.count}인`,
                                 },
                                 {
                                     label: "가격",
-                                    value: `${data.productInfo?.price.toLocaleString()}원`,
+                                    value: `${data.paymentInfo.price.toLocaleString()}원`,
                                 },
                             ]}
                         />
@@ -140,10 +148,10 @@ function Purchase() {
             <SectionDivider />
             <Point />
             <SectionDivider />
-            <Summary paymentAmount={data.productInfo?.price} />
+            <Summary paymentAmount={data.paymentInfo.price} />
             <SectionDivider />
             <PolicyAgreement />
-            <BottomActionBar totalPaymentAmount={data.productInfo?.price} />
+            <BottomActionBar totalPaymentAmount={data.paymentInfo.price} />
         </PageTemplatexxx>
     );
 }

@@ -9,6 +9,7 @@ import SelectedOptionBox from "./SelectedOptionBox";
 import SummaryBar from "./SummaryBar";
 import Calendar from "./Calendar";
 import { useNavigate } from "react-router-dom";
+import { ProductOptionInfo } from "../types";
 
 export type OptionModalProps = {
     submitData: {
@@ -20,22 +21,17 @@ export type OptionModalProps = {
         reviewCnt: number;
     };
     optionName: string;
-    optionData: Array<Option>;
+    optionData: Array<ProductOptionInfo>;
     visible: boolean;
     handleClose: () => void;
-};
-
-type Option = {
-    id: number;
-    name: string;
-    price: number;
-    count: number;
 };
 
 function OptionModal(props: OptionModalProps) {
     const { submitData, optionName, optionData, visible, handleClose } = props;
     const [selectedDate, setSelectedDate] = useState(new Date());
-    const [selectedOptions, setSelectedOptions] = useState<Array<Option>>([]);
+    const [selectedOptions, setSelectedOptions] = useState<
+        Array<ProductOptionInfo>
+    >([]);
     const [calendarOpened, toggleCalendarOpened, setCalendarOpened] =
         useToggle(false);
     const navigate = useNavigate();
@@ -45,20 +41,20 @@ function OptionModal(props: OptionModalProps) {
         toggleCalendarOpened();
     };
 
-    const appendOption = (option: Option) => {
+    const appendOption = (option: ProductOptionInfo) => {
         const next = [...selectedOptions, { ...option, count: 1 }];
         setSelectedOptions(next);
     };
 
-    const removeOption = (option: Option) => {
+    const removeOption = (option: ProductOptionInfo) => {
         const next = selectedOptions.filter(
             (selectedOption) => selectedOption.id !== option.id
         );
         setSelectedOptions(next);
     };
 
-    const countUpOption = (option: Option) => {
-        const next: Array<Option> = [];
+    const countUpOption = (option: ProductOptionInfo) => {
+        const next: Array<ProductOptionInfo> = [];
         selectedOptions.forEach((selectedOption) => {
             if (selectedOption.id === option.id) {
                 next.push({
@@ -72,8 +68,8 @@ function OptionModal(props: OptionModalProps) {
         setSelectedOptions(next);
     };
 
-    const countDownOption = (option: Option) => {
-        const next: Array<Option> = [];
+    const countDownOption = (option: ProductOptionInfo) => {
+        const next: Array<ProductOptionInfo> = [];
         selectedOptions.forEach((selectedOption) => {
             if (selectedOption.id === option.id) {
                 if (selectedOption.count > 1) {
@@ -89,7 +85,7 @@ function OptionModal(props: OptionModalProps) {
         setSelectedOptions(next);
     };
 
-    const handleSelectOption = (option: Option) => {
+    const handleSelectOption = (option: ProductOptionInfo) => {
         const optionAlreadySelected = selectedOptions.find(
             (selectedOption) => selectedOption.id === option.id
         );
@@ -131,13 +127,14 @@ function OptionModal(props: OptionModalProps) {
 
     const onSubmit = () => {
         const data = {
-            productType: "course",
-            productInfo: {
+            paymentInfo: {
+                price: getTotalPrice(),
+            },
+            courseInfo: {
                 ...submitData,
                 options: selectedOptions,
                 date: selectedDate,
                 count: getTotalCount(),
-                price: getTotalPrice(),
             },
         };
         navigate(`/purchase/${submitData.id}`, { state: data });

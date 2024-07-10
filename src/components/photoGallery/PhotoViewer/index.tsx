@@ -45,10 +45,12 @@ function PhotoViewer(props: PhotoViewerProps) {
 const Block = styled.div`
     position: fixed;
     top: 0;
+    z-index: 10;
     display: flex;
     flex-direction: column;
     row-gap: 20px;
     width: 100%;
+    max-width: 768px;
     height: 100%;
     background-color: ${palette.black0}${withOpacity(0.85)};
     padding: 20px;
