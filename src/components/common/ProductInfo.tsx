@@ -8,12 +8,12 @@ export type ProductInfoProps = {
     thumbnail: string;
     region: string;
     title: string;
-    rate: number;
+    rating: number;
     reviewCnt: number;
 };
 
 function ProductInfo(props: ProductInfoProps) {
-    const { thumbnail, region, title, rate, reviewCnt } = props;
+    const { thumbnail, region, title, rating, reviewCnt } = props;
 
     return (
         <Block>
@@ -21,10 +21,10 @@ function ProductInfo(props: ProductInfoProps) {
             <InfoBlock>
                 <Region>{region}</Region>
                 <Title>{title}</Title>
-                <RateBlock>
+                <RatingBlock>
                     <StarIco />
-                    <Rate>{`${rate} (${reviewCnt})`}</Rate>
-                </RateBlock>
+                    <Rating>{`${rating} (${reviewCnt})`}</Rating>
+                </RatingBlock>
             </InfoBlock>
         </Block>
     );
@@ -61,13 +61,13 @@ const Title = styled.div`
     margin-top: 6px;
 `;
 
-const RateBlock = styled.div`
+const RatingBlock = styled.div`
     display: flex;
     align-items: center;
     margin-top: 16px;
 `;
 
-const Rate = styled.p`
+const Rating = styled.p`
     font-size: 12px;
     color: ${palette.gray6};
     margin-left: 3px;

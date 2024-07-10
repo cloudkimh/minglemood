@@ -11,8 +11,9 @@ import useToggle from "../lib/hooks/useToggle";
 import PolicySection from "../components/courseDetail/PolicySection";
 
 const photo = getSampleImage();
-
 const course = {
+    id: 10,
+    thumbnail: photo,
     banners: Array(4).fill(photo),
     title: "오감으로 맛보고 느끼는 힐링, 월하보이 차와 함께 계절 다회",
     region: "부산",
@@ -61,31 +62,68 @@ const course = {
         lat: 37.3595704,
         lng: 127.105399,
     },
+    option: {
+        name: "성별",
+        data: [
+            {
+                id: 1,
+                name: "[부산] 남 (정가)",
+                price: 49000,
+                count: 12,
+            },
+            {
+                id: 2,
+                name: "[부산] 여 (정가)",
+                price: 49000,
+                count: 12,
+            },
+            {
+                id: 3,
+                name: "[부산] 남 (리뷰 이벤트)",
+                price: 49000,
+                count: 12,
+            },
+            {
+                id: 4,
+                name: "[부산] 여 (리뷰 이벤트)",
+                price: 49000,
+                count: 12,
+            },
+        ],
+    },
 };
 
 function CourseDetail() {
+    const [optionModalOpened, toggleOptionModalOpened] = useToggle(false);
+
     const {
+        id,
+        thumbnail,
         banners,
         title,
         region,
         discountRate,
         price,
         isLiked,
-        likes,
         hostInfo,
         rating,
         reviewCnt,
         reviews,
         place,
+        option,
     } = course;
-    const [optionModalOpened, toggleOptionModalOpened] = useToggle(false);
 
-    const onSubmit = () => {
-        toggleOptionModalOpened();
+    const submitData = {
+        id,
+        thumbnail,
+        region,
+        title,
+        rating,
+        reviewCnt,
     };
 
-    const handleToggleLike = () => {
-        // like async
+    const onClickApply = () => {
+        toggleOptionModalOpened();
     };
 
     return (
@@ -113,17 +151,13 @@ function CourseDetail() {
             />
             <PolicySection />
             <OptionModal
+                submitData={submitData}
+                optionName={option.name}
+                optionData={option.data}
                 visible={optionModalOpened}
                 handleClose={toggleOptionModalOpened}
-                isLiked={isLiked}
-                likes={likes}
-                handleToggleLike={handleToggleLike}
             />
-            <BottomActionBar
-                isLiked={isLiked}
-                likes={likes}
-                onSubmit={onSubmit}
-            />
+            <BottomActionBar isLiked={isLiked} onClickApply={onClickApply} />
         </PageTemplate>
     );
 }

@@ -15,12 +15,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import PhotoCarousel from "../components/common/PhotoCarousel";
 import OptionInfo from "../components/common/OptionInfo";
+import { getDayString } from "../lib/utils";
 
 const samplePaymentInfo = {
     thumbnail: getSampleImage(),
     region: "부산",
     title: "하루만에 끝내는 스마트폰 사진 촬영과 보정법 (필터 공유)",
-    rate: 4.9,
+    rating: 4.9,
     reviewCnt: 128,
     date: "2024년 5월 7일 17시 0분",
     count: 2,
@@ -46,6 +47,14 @@ function Purchase() {
 
     const handleSelectPaymentMethod = (value: string) => {
         setPaymentMethod(value);
+    };
+
+    const formatDateText = (dateData: Date) => {
+        const year = dateData.getFullYear();
+        const month = dateData.getMonth() + 1;
+        const date = dateData.getDate();
+        const day = getDayString(dateData.getDay());
+        return `${year}년 ${month}월 ${date}일 (${day})`;
     };
 
     if (!data) {
@@ -93,26 +102,28 @@ function Purchase() {
                 ) : (
                     <>
                         <ProductInfo
-                            thumbnail={samplePaymentInfo.thumbnail}
-                            region={samplePaymentInfo.region}
-                            title={samplePaymentInfo.title}
-                            rate={samplePaymentInfo.rate}
-                            reviewCnt={samplePaymentInfo.reviewCnt}
+                            thumbnail={data.productInfo?.thumbnail}
+                            region={data.productInfo?.region}
+                            title={data.productInfo?.title}
+                            rating={data.productInfo?.rating}
+                            reviewCnt={data.productInfo?.reviewCnt}
                         />
                         <OptionInfo
                             title="결제정보"
                             optionList={[
                                 {
                                     label: "일정",
-                                    value: samplePaymentInfo.date,
+                                    value: formatDateText(
+                                        data.productInfo?.date
+                                    ),
                                 },
                                 {
                                     label: "인원",
-                                    value: `${samplePaymentInfo.count}인`,
+                                    value: `${data.productInfo?.count}인`,
                                 },
                                 {
                                     label: "가격",
-                                    value: `${samplePaymentInfo.price.toLocaleString()}원`,
+                                    value: `${data.productInfo?.price.toLocaleString()}원`,
                                 },
                             ]}
                         />
@@ -129,10 +140,10 @@ function Purchase() {
             <SectionDivider />
             <Point />
             <SectionDivider />
-            <Summary paymentAmount={samplePaymentInfo.price} />
+            <Summary paymentAmount={data.productInfo?.price} />
             <SectionDivider />
             <PolicyAgreement />
-            <BottomActionBar totalPaymentAmount={samplePaymentInfo.price} />
+            <BottomActionBar totalPaymentAmount={data.productInfo?.price} />
         </PageTemplatexxx>
     );
 }

@@ -7,12 +7,11 @@ import { FixedBarContainer } from "../common/styles/Containers";
 
 export type BottomActionBarProps = {
     isLiked: boolean;
-    likes: number;
-    onSubmit: () => void;
+    onClickApply: () => void;
 };
 
 function BottomActionBar(props: BottomActionBarProps) {
-    const { isLiked, likes, onSubmit } = props;
+    const { isLiked, onClickApply } = props;
     const [isLikedInner, setIsLikedInner] = useState<boolean>(isLiked);
     const onLikeBtnClick = () => setIsLikedInner(!isLikedInner);
 
@@ -21,12 +20,12 @@ function BottomActionBar(props: BottomActionBarProps) {
             <Block>
                 <LikeBtn onClick={onLikeBtnClick}>
                     <LikeIco
-                        alt="icon for like feature"
+                        alt="좋아요"
                         src={isLikedInner ? LikeHeartActive : LikeHeartDeactive}
                     />
                 </LikeBtn>
                 <ShareBtn>공유하기</ShareBtn>
-                <SubmitBtn onClick={onSubmit}>참여하기</SubmitBtn>
+                <SubmitBtn onClick={onClickApply}>참여하기</SubmitBtn>
             </Block>
         </FixedBarContainer>
     );
@@ -62,7 +61,7 @@ const ShareBtn = styled.button`
     width: 100%;
     height: 40px;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 700;
     border-radius: 5px;
     border: solid 1px ${palette.purple0};
     color: ${palette.purple0};
@@ -74,7 +73,7 @@ const SubmitBtn = styled.button`
     width: 100%;
     height: 40px;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 700;
     color: ${palette.white0};
     border-radius: 5px;
     background-color: ${palette.purple0};

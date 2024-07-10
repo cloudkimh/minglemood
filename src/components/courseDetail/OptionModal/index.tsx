@@ -7,12 +7,21 @@ import useToggle from "../../../lib/hooks/useToggle";
 import ProductOption from "./ProductOption";
 import SelectedOptionBox from "./SelectedOptionBox";
 import SummaryBar from "./SummaryBar";
+import Calendar from "./Calendar";
+import { useNavigate } from "react-router-dom";
 
 export type OptionModalProps = {
+    submitData: {
+        id: number;
+        thumbnail: string;
+        region: string;
+        title: string;
+        rating: number;
+        reviewCnt: number;
+    };
+    optionName: string;
+    optionData: Array<Option>;
     visible: boolean;
-    isLiked: boolean;
-    likes: number;
-    handleToggleLike: () => void;
     handleClose: () => void;
 };
 
@@ -23,44 +32,16 @@ type Option = {
     count: number;
 };
 
-const sampleName = "성별";
-const sampleOptions = [
-    {
-        id: 1,
-        name: "[부산] 남 (정가)",
-        price: 49000,
-        count: 12,
-    },
-    {
-        id: 2,
-        name: "[부산] 여 (정가)",
-        price: 49000,
-        count: 12,
-    },
-    {
-        id: 3,
-        name: "[부산] 남 (리뷰 이벤트)",
-        price: 49000,
-        count: 12,
-    },
-    {
-        id: 4,
-        name: "[부산] 여 (리뷰 이벤트)",
-        price: 49000,
-        count: 12,
-    },
-];
-
 function OptionModal(props: OptionModalProps) {
-    const { visible, isLiked, likes, handleToggleLike, handleClose } = props;
-    const [selectedDate, setSelectedDate] = useState(
-        "5월 17일 (금) 08:00 ~ 10:00"
-    );
-    const [calendarOpened, toggleCalendarOpened] = useToggle(false);
+    const { submitData, optionName, optionData, visible, handleClose } = props;
+    const [selectedDate, setSelectedDate] = useState(new Date());
     const [selectedOptions, setSelectedOptions] = useState<Array<Option>>([]);
+    const [calendarOpened, toggleCalendarOpened, setCalendarOpened] =
+        useToggle(false);
+    const navigate = useNavigate();
     const isOptionSelected = selectedOptions.length > 0;
 
-    const onChangeBtnClick = () => {
+    const onClickChangeDate = () => {
         toggleCalendarOpened();
     };
 
@@ -108,7 +89,7 @@ function OptionModal(props: OptionModalProps) {
         setSelectedOptions(next);
     };
 
-    const handleOptionClick = (option: Option) => {
+    const handleSelectOption = (option: Option) => {
         const optionAlreadySelected = selectedOptions.find(
             (selectedOption) => selectedOption.id === option.id
         );
@@ -139,10 +120,28 @@ function OptionModal(props: OptionModalProps) {
 
     const onClose = () => {
         setSelectedOptions([]);
+        setCalendarOpened(false);
         handleClose();
     };
 
-    const handleSubmit = () => {};
+    const onSelectDate = (date: Date) => {
+        setSelectedDate(date);
+        toggleCalendarOpened();
+    };
+
+    const onSubmit = () => {
+        const data = {
+            productType: "course",
+            productInfo: {
+                ...submitData,
+                options: selectedOptions,
+                date: selectedDate,
+                count: getTotalCount(),
+                price: getTotalPrice(),
+            },
+        };
+        navigate(`/purchase/${submitData.id}`, { state: data });
+    };
 
     return (
         <ModalTemplate visible={visible} handleClickLayer={onClose}>
@@ -150,12 +149,12 @@ function OptionModal(props: OptionModalProps) {
                 <Wrapper>
                     <DateOption
                         selectedDate={selectedDate}
-                        onChangeBtnClick={onChangeBtnClick}
+                        onClickChangeDate={onClickChangeDate}
                     />
                     <ProductOption
-                        optionName={sampleName}
-                        optionList={sampleOptions}
-                        handleOptionClick={handleOptionClick}
+                        name={optionName}
+                        data={optionData}
+                        handleSelectOption={handleSelectOption}
                     />
                     {selectedOptions.map((aOption) => (
                         <SelectedOptionBox
@@ -170,10 +169,12 @@ function OptionModal(props: OptionModalProps) {
                     visible={isOptionSelected}
                     totalPrice={getTotalPrice()}
                     totalCount={getTotalCount()}
-                    isLiked={isLiked}
-                    likes={likes}
-                    handleToggleLike={handleToggleLike}
-                    handleSubmit={handleSubmit}
+                    onSubmit={onSubmit}
+                />
+                <Calendar
+                    visible={calendarOpened}
+                    selectedDate={selectedDate}
+                    onSelectDate={onSelectDate}
                 />
             </StyledModalBody>
         </ModalTemplate>

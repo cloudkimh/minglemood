@@ -4,18 +4,18 @@ import Dropdown from "../../basics/Dropdown";
 import Icon from "../../basics/Icon";
 
 export type ProductOptionProps = {
-    optionName: string;
-    optionList: Array<{
+    name: string;
+    data: Array<{
         id: number;
         name: string;
         price: number;
         count: number;
     }>;
-    handleOptionClick: (option: any) => void;
+    handleSelectOption: (option: any) => void;
 };
 
 function ProductOption(props: ProductOptionProps) {
-    const { optionName, optionList, handleOptionClick } = props;
+    const { name, data, handleSelectOption } = props;
 
     return (
         <Block>
@@ -32,14 +32,14 @@ function ProductOption(props: ProductOptionProps) {
                                 }
                             }}
                         >
-                            {optionName}
+                            {name}
                             <ChevronIco name="chevron-up" active={isOpened} />
                         </OptionSelect>
                         <OptionMenu visible={isOpened}>
-                            {optionList.map((aOption) => (
+                            {data.map((aOption) => (
                                 <OptionItem
                                     onClick={() => {
-                                        handleOptionClick(aOption);
+                                        handleSelectOption(aOption);
                                         closeMenu();
                                     }}
                                 >
@@ -151,7 +151,7 @@ const OptionPrice = styled.p`
 const OptionStock = styled.span`
     font-size: 10px;
     color: ${palette.gray3};
-    margin-left: 3px;
+    margin-left: ;
 `;
 
 export default ProductOption;

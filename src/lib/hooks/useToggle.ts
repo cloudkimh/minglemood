@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
 export default function useToggle(
-    initVal: boolean
+    initValue: boolean
 ): [boolean, () => void, React.Dispatch<boolean>] {
-    const [val, setVal] = useState(initVal);
+    const [value, setValue] = useState(initValue);
 
-    const toggle = (): void => {
-        setVal((prev) => !prev);
+    const toggleValue = (): void => {
+        setValue((prev) => !prev);
     };
 
-    return [val, toggle, setVal];
+    return [value, toggleValue, setValue];
 }

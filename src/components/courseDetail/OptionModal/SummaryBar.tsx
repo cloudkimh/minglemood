@@ -6,22 +6,11 @@ export type SummaryBarProps = {
     visible: boolean;
     totalPrice: number;
     totalCount: number;
-    isLiked: boolean;
-    likes: number;
-    handleToggleLike: Function;
-    handleSubmit: Function;
+    onSubmit: () => void;
 };
 
 function SummaryBar(props: SummaryBarProps) {
-    const {
-        visible,
-        totalPrice,
-        totalCount,
-        isLiked,
-        likes,
-        handleToggleLike,
-        handleSubmit,
-    } = props;
+    const { visible, totalPrice, totalCount, onSubmit } = props;
 
     return (
         <Block visible={visible}>
@@ -30,13 +19,7 @@ function SummaryBar(props: SummaryBarProps) {
                 <TotalCount>총 {totalCount}개</TotalCount>
                 <TotalPrice>{totalPrice.toLocaleString()}원</TotalPrice>
             </PriceBlock>
-            <SubmitBtn
-                onClick={() => {
-                    handleSubmit();
-                }}
-            >
-                참여하기
-            </SubmitBtn>
+            <SubmitBtn onClick={onSubmit}>참여하기</SubmitBtn>
         </Block>
     );
 }
@@ -51,7 +34,7 @@ const Block = styled.div<{ visible: boolean }>`
     visibility: ${(props) => (props.visible ? "visible" : "hidden")};
     background-color: ${palette.white0};
     transform: translateX(-50%);
-    padding: 0 20px;
+    padding: 20px 20px;
 `;
 
 const PriceBlock = styled.div`
