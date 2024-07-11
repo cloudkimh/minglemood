@@ -15,11 +15,13 @@ function CourseInfo(props: CourseInfoProps) {
         <Block>
             <Title>{title}</Title>
             <Region>{region}</Region>
-            <Price>
+            <PriceBlock>
                 {discountRate && <Discount>{discountRate}%</Discount>}
-                {price.toLocaleString()}
-                <span>원</span>
-            </Price>
+                <Price>
+                    {price.toLocaleString()}
+                    <span>원</span>
+                </Price>
+            </PriceBlock>
         </Block>
     );
 }
@@ -30,32 +32,38 @@ const Block = styled.div`
 
 const Title = styled.h1`
     font-size: 18px;
-    font-weight: 800;
-    line-height: 28px;
+    font-weight: 700;
+    line-height: 24px;
     word-break: keep-all;
 `;
 
 const Region = styled.p`
     font-size: 14px;
+    font-weight: 700;
     color: ${palette.gray6};
     margin-top: 10px;
 `;
 
-const Price = styled.p`
-    font-size: 24px;
-    font-weight: 800;
+const PriceBlock = styled.div`
+    display: flex;
+    align-items: center;
     margin-top: 10px;
+`;
 
-    span:not(:first-child) {
+const Price = styled.p`
+    font-size: 20px;
+    font-weight: 800;
+
+    span {
         font-size: 14px;
-        font-weight: 800;
     }
 `;
 
-const Discount = styled.span`
-    color: ${palette.purple0};
+const Discount = styled.p`
+    color: ${palette.red500};
+    font-size: 20px;
+    font-weight: 800;
     margin-right: 10px;
-    transform: translateX(-1px);
 `;
 
 export default CourseInfo;

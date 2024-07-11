@@ -3,14 +3,16 @@ import palette from "../../lib/styles/palette";
 import { useState } from "react";
 import { FixedBarContainer } from "../common/styles/Containers";
 import Icon from "../basics/Icon";
+import { withOpacity } from "../../lib/styles/utils";
 
 export type BottomActionBarProps = {
     isLiked: boolean;
     onClickApply: () => void;
+    onClickShare: () => void;
 };
 
 function BottomActionBar(props: BottomActionBarProps) {
-    const { isLiked: initialIsLiked, onClickApply } = props;
+    const { isLiked: initialIsLiked, onClickApply, onClickShare } = props;
     const [isLiked, setIsLiked] = useState<boolean>(initialIsLiked);
     const onLikeBtnClick = () => setIsLiked(!isLiked);
 
@@ -19,12 +21,12 @@ function BottomActionBar(props: BottomActionBarProps) {
             <Block>
                 <LikeBtn onClick={onLikeBtnClick}>
                     {isLiked ? (
-                        <Icon name="heart-filled" />
+                        <LikeIco name="heart-filled" />
                     ) : (
-                        <Icon name="heart-outlined" />
+                        <LikeIco name="heart-outlined" />
                     )}
                 </LikeBtn>
-                <ShareBtn>공유하기</ShareBtn>
+                <ShareBtn onClick={onClickShare}>공유하기</ShareBtn>
                 <SubmitBtn onClick={onClickApply}>참여하기</SubmitBtn>
             </Block>
         </FixedBarContainer>
@@ -37,7 +39,7 @@ const Block = styled.div`
     grid-template-columns: 40px 1fr 1fr;
     column-gap: 5px;
     background-color: ${palette.white0};
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 20px 0px;
+    box-shadow: 0px 0px 20px 0px ${palette.black2}${withOpacity(0.15)};
     padding: 5px 20px 20px;
 `;
 
@@ -51,10 +53,9 @@ const LikeBtn = styled.button`
     background-color: ${palette.white0};
 `;
 
-const LikeIco = styled.img`
+const LikeIco = styled(Icon)`
     width: 24px;
     height: 24px;
-    vertical-align: middle;
 `;
 
 const ShareBtn = styled.button`

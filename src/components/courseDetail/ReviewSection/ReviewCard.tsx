@@ -1,23 +1,19 @@
 import styled from "styled-components";
+import ImageWithFallback from "../../basics/ImageWithFallback";
 
 export type ReviewCardProps = {
-    reviewInfo: {
-        photo: string;
-        alias: string;
-        avatar: string;
-        review: string;
-    };
+    photo: string;
 };
 
 function ReviewCard(props: ReviewCardProps) {
-    const { reviewInfo } = props;
+    const { photo } = props;
 
     return (
-        <>
-            <Block>
-                <Photo src={reviewInfo.photo} alt="리뷰 사진" />
-            </Block>
-        </>
+        <Block>
+            <Inner>
+                <Photo path={photo} alt="리뷰 사진" />
+            </Inner>
+        </Block>
     );
 }
 
@@ -30,9 +26,18 @@ const Block = styled.div`
     }
 `;
 
-const Photo = styled.img`
+const Inner = styled.div`
+    position: relative;
+    padding-bottom: 100%;
+`;
+
+const Photo = styled(ImageWithFallback)`
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
     width: 100%;
-    aspect-ratio: 1 / 1;
+    height: 100%;
 `;
 
 export default ReviewCard;

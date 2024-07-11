@@ -32,16 +32,16 @@ function HostInfoCard(props: HostInfoCardProps) {
             </InfoBlock>
             <LikeBtn onClick={onLikeBtnClick}>
                 {isLiked ? (
-                    <Icon name="heart-filled" />
+                    <LikeIco name="heart-filled" />
                 ) : (
-                    <Icon name="heart-outlined" />
+                    <LikeIco name="heart-outlined" />
                 )}
             </LikeBtn>
         </Block>
     );
 }
 
-const AVATAR_SIZE = "50px";
+const AVATAR_SIZE = "40px";
 const LIKE_BTN_SIZE = "24px";
 
 const Block = styled.div`
@@ -49,9 +49,9 @@ const Block = styled.div`
     border-radius: 5px;
     display: grid;
     grid-template-columns: ${AVATAR_SIZE} 1fr ${LIKE_BTN_SIZE};
-    column-gap: 20px;
+    column-gap: 15px;
     align-items: center;
-    padding: 10px;
+    padding: 15px 10px;
 `;
 
 const Avatar = styled(ImageWithFallback)`
@@ -63,15 +63,15 @@ const Avatar = styled(ImageWithFallback)`
 const InfoBlock = styled.div``;
 
 const Alias = styled.p`
-    font-size: 16px;
-    font-weight: 800;
+    font-size: 14px;
+    font-weight: 700;
 `;
 
 const Infos = styled.div`
     display: flex;
     align-items: center;
-    font-size: 14px;
-    color: #c1c1c1;
+    font-size: 12px;
+    color: ${palette.gray3};
     margin-top: 6px;
 
     span {
@@ -82,11 +82,11 @@ const Infos = styled.div`
 const LikeBtn = styled.button`
     width: ${LIKE_BTN_SIZE};
     height: ${LIKE_BTN_SIZE};
+`;
 
-    img {
-        width: 100%;
-        vertical-align: center;
-    }
+const LikeIco = styled(Icon)`
+    width: 24px;
+    height: 24px;
 `;
 
 export default HostInfoCard;

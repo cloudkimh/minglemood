@@ -5,7 +5,6 @@ import { hideScrollBar } from "../../../lib/styles/utils";
 import { SectionDivider } from "../../common/styles/Common";
 
 export type ReviewSectionProps = {
-    rating: number;
     reviewCnt: number;
     reviews: Array<{
         photo: string;
@@ -16,25 +15,25 @@ export type ReviewSectionProps = {
 };
 
 function ReviewSection(props: ReviewSectionProps) {
-    const { rating, reviewCnt, reviews } = props;
+    const { reviewCnt, reviews } = props;
 
     return (
         <>
             <Block>
-                <Summary>
-                    <ReviewPhotos>
+                <Header>
+                    <Title>
                         참여 후기 사진 <span>{reviewCnt}</span>
-                    </ReviewPhotos>
+                    </Title>
                     <MoreBtn>더보기</MoreBtn>
-                </Summary>
-                <Reviews>
+                </Header>
+                <ReviewCardContainer>
                     {reviews.map((aReview, i) => (
                         <ReviewCard
                             key={`review-card-${i}`}
-                            reviewInfo={aReview}
+                            photo={aReview.photo}
                         />
                     ))}
-                </Reviews>
+                </ReviewCardContainer>
             </Block>
             <SectionDivider />
         </>
@@ -45,32 +44,31 @@ const Block = styled.section`
     padding: 30px 20px;
 `;
 
-const Summary = styled.div`
+const Header = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 15px;
 `;
 
-const ReviewPhotos = styled.div`
+const Title = styled.h3`
     display: flex;
     font-size: 18px;
     font-weight: 700;
-    line-height: normal;
 
     span {
+        font-weight: 700;
         color: ${palette.purple0};
+        margin-left: 4px;
     }
 `;
 
 const MoreBtn = styled.button`
     color: ${palette.gray6};
     font-size: 13px;
-    font-weight: 500;
-    line-height: normal;
 `;
 
-const Reviews = styled.div`
+const ReviewCardContainer = styled.div`
     ${hideScrollBar}
     display: flex;
     width: 100%;

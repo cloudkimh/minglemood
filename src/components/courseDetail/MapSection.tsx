@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { SectionContainer, SectionHeader, SectionTitle } from "./styles";
+import { SectionContainer, SectionTitle } from "./styles";
 import { useEffect, useRef } from "react";
 import palette from "../../lib/styles/palette";
 import { copyToClipboard } from "../../lib/utils";
@@ -38,9 +38,9 @@ function MapSection(props: MapSectionProps) {
     return (
         <>
             <SectionContainer>
-                <StyledSectionHeader>
+                <Header>
                     <SectionTitle>장소</SectionTitle>
-                </StyledSectionHeader>
+                </Header>
                 <MapCanvas ref={mapRef} />
                 <PlaceInfo>
                     <CopyBtn onClick={onClickCopyBtn}>
@@ -55,8 +55,9 @@ function MapSection(props: MapSectionProps) {
     );
 }
 
-const StyledSectionHeader = styled(SectionHeader)`
-    margin-bottom: 11px;
+const Header = styled.header`
+    padding: 0 20px;
+    margin-bottom: 10px;
 `;
 
 const MapCanvas = styled.div`

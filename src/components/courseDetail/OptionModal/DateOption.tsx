@@ -9,7 +9,6 @@ export type DateOptionProps = {
 
 function DateOption(props: DateOptionProps) {
     const { selectedDate, onClickChangeDate } = props;
-
     const month = String(selectedDate.getMonth() + 1).padStart(2, "0");
     const date = String(selectedDate.getDate()).padStart(2, "0");
     const day = getDayString(selectedDate.getDay());
@@ -49,7 +48,7 @@ const ChangeDateBtn = styled.button`
     color: ${palette.white0};
     border-radius: 5px;
     background-color: ${palette.red500};
-    padding: 11px 0;
+    padding: 10px 0;
 `;
 
 export default DateOption;

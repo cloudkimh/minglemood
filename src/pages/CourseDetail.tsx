@@ -1,14 +1,16 @@
 import BottomActionBar from "../components/courseDetail/BottomActionBar";
 import DescriptionSection from "../components/courseDetail/DescriptionSection";
-import HeadSection from "../components/courseDetail/HeadSection";
 import MapSection from "../components/courseDetail/MapSection";
 import ReviewSection from "../components/courseDetail/ReviewSection";
-import TagsSection from "../components/courseDetail/TagsSection";
+import TagsSection from "../components/courseDetail/TagSection";
 import PageTemplate from "../components/basics/PageTemplate";
 import { getSampleImage } from "../lib/styles/utils";
 import OptionModal from "../components/courseDetail/OptionModal";
 import useToggle from "../lib/hooks/useToggle";
 import PolicySection from "../components/courseDetail/PolicySection";
+import { copyToClipboard } from "../lib/utils";
+import Banner from "../components/courseDetail/Banner";
+import HeaderSection from "../components/courseDetail/HeaderSection";
 
 const photo = getSampleImage();
 const course = {
@@ -126,21 +128,22 @@ function CourseDetail() {
         toggleOptionModalOpened();
     };
 
+    const handleShare = () => {
+        const url = document.location.href;
+        copyToClipboard(url);
+    };
+
     return (
         <PageTemplate>
-            <HeadSection
-                banners={banners}
+            <Banner onClickShare={handleShare} banners={banners} />
+            <HeaderSection
                 title={title}
                 region={region}
                 discountRate={discountRate}
                 price={price}
                 hostInfo={hostInfo}
             />
-            <ReviewSection
-                rating={rating}
-                reviewCnt={reviewCnt}
-                reviews={reviews}
-            />
+            <ReviewSection reviewCnt={reviewCnt} reviews={reviews} />
             <DescriptionSection />
             <TagsSection tags={[]} />
             <MapSection
@@ -157,7 +160,11 @@ function CourseDetail() {
                 visible={optionModalOpened}
                 handleClose={toggleOptionModalOpened}
             />
-            <BottomActionBar isLiked={isLiked} onClickApply={onClickApply} />
+            <BottomActionBar
+                isLiked={isLiked}
+                onClickApply={onClickApply}
+                onClickShare={handleShare}
+            />
         </PageTemplate>
     );
 }

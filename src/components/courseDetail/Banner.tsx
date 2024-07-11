@@ -1,26 +1,28 @@
 import styled, { css } from "styled-components";
-import Swiper from "../../basics/Swiper";
-import ImageWithFallback from "../../basics/ImageWithFallback";
+import Swiper from "../basics/Swiper";
+import ImageWithFallback from "../basics/ImageWithFallback";
 import {
     SwiperPageBtnContainer,
     SwiperPageNextBtn,
     SwiperPagePrevBtn,
     SwiperPagination,
     swiperCirclePageBtnStyle,
-} from "../../basics/Swiper/styles";
+} from "../basics/Swiper/styles";
 import { useNavigate } from "react-router-dom";
-import Icon from "../../basics/Icon";
-import palette from "../../../lib/styles/palette";
-import { withOpacity } from "../../../lib/styles/utils";
+import Icon from "../basics/Icon";
+import palette from "../../lib/styles/palette";
+import { withOpacity } from "../../lib/styles/utils";
 
 export type BannerProps = {
     banners: Array<string>;
+    onClickShare: () => void;
 };
 
 function Banner(props: BannerProps) {
-    const { banners } = props;
+    const { banners, onClickShare } = props;
     const navigate = useNavigate();
-    const onPrevBtnClick = () => {
+
+    const onClickPrevPage = () => {
         navigate(-1);
     };
 
@@ -28,18 +30,17 @@ function Banner(props: BannerProps) {
         <Block>
             <Inner>
                 <Header>
-                    <HeaderBtn onClick={onPrevBtnClick}>
+                    <PrevPageBtn onClick={onClickPrevPage}>
                         <ChevronLeft name="chevron-left" />
-                    </HeaderBtn>
-                    <HeaderBtn>
+                    </PrevPageBtn>
+                    <ShareBtn onClick={onClickShare}>
                         <Icon name="graph" />
-                    </HeaderBtn>
+                    </ShareBtn>
                 </Header>
                 <BannerSwiper
                     hasBtns
                     hasTrack={false}
                     options={{ type: "loop" }}
-                    onMove={(_, i) => {}}
                 >
                     <BannerSwiperTrack>
                         {banners.map((aBanner, i) => (
@@ -88,7 +89,12 @@ const Header = styled.nav`
     padding: 0 20px;
 `;
 
-const HeaderBtn = styled.button`
+const PrevPageBtn = styled.button`
+    width: 24px;
+    height: 24px;
+`;
+
+const ShareBtn = styled.button`
     width: 24px;
     height: 24px;
 `;

@@ -1,11 +1,9 @@
 import styled from "styled-components";
 import CourseInfo from "./CourseInfo";
 import HostInfoCard from "../../common/HostInfoCard";
-import Banner from "./Banner";
 import { SectionDivider } from "../../common/styles/Common";
 
-export type HeadSectionProps = {
-    banners: Array<string>;
+export type HeaderSectionProps = {
     title: string;
     region: string;
     discountRate?: number;
@@ -19,13 +17,12 @@ export type HeadSectionProps = {
     };
 };
 
-function HeadSection(props: HeadSectionProps) {
-    const { banners, title, region, discountRate, price, hostInfo } = props;
+function HeaderSection(props: HeaderSectionProps) {
+    const { title, region, discountRate, price, hostInfo } = props;
 
     return (
         <>
-            <Banner banners={banners} />
-            <HeaderContainer>
+            <Block>
                 <CourseInfo
                     title={title}
                     region={region}
@@ -39,14 +36,14 @@ function HeadSection(props: HeadSectionProps) {
                     reviewCnt={hostInfo.reviewCnt}
                     likes={hostInfo.likes}
                 />
-            </HeaderContainer>
+            </Block>
             <SectionDivider />
         </>
     );
 }
 
-const HeaderContainer = styled.header`
-    padding: 24px;
+const Block = styled.header`
+    padding: 15px 20px 20px;
 `;
 
-export default HeadSection;
+export default HeaderSection;

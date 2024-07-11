@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { SectionContainer, SectionHeader, SectionTitle } from "./styles";
+import { SectionContainer, SectionTitle } from "./styles";
 import palette from "../../lib/styles/palette";
 import useToggle from "../../lib/hooks/useToggle";
 import { SectionDivider } from "../common/styles/Common";
@@ -15,26 +15,35 @@ function DescriptionSection(props: DescriptionSectionProps) {
     return (
         <>
             <SectionContainer>
-                <SectionHeader>
+                <Header>
                     <SectionTitle>소개</SectionTitle>
-                </SectionHeader>
-                <DescriptionContents contentVisible={showContentsAll}>
+                </Header>
+                <Contents contentVisible={showContentsAll}>
                     <TestContent />
                     <TestContent />
                     <TestContent />
                     <TestContent />
-                </DescriptionContents>
-                <ShowContentsBtn onClick={onClickShowContentsBtn}>
-                    {showContentsAll ? "간략히" : "상세정보 더보기"}
-                    <ChevronIco name="chevron-down" rotated={showContentsAll} />
-                </ShowContentsBtn>
+                </Contents>
+                <BtnWrapper>
+                    <ShowContentsBtn onClick={onClickShowContentsBtn}>
+                        {showContentsAll ? "간략히" : "상세정보 더보기"}
+                        <ChevronIco
+                            name="chevron-down"
+                            rotated={showContentsAll}
+                        />
+                    </ShowContentsBtn>
+                </BtnWrapper>
             </SectionContainer>
             <SectionDivider />
         </>
     );
 }
 
-const DescriptionContents = styled.div<{ contentVisible: boolean }>`
+const Header = styled.header`
+    padding: 0 20px;
+`;
+
+const Contents = styled.div<{ contentVisible: boolean }>`
     overflow: hidden;
     padding: 20px 20px 30px;
 
@@ -58,22 +67,25 @@ const TestContent = styled.div`
     }
 `;
 
+const BtnWrapper = styled.div`
+    padding: 0 20px;
+    margin-top: 20px;
+`;
+
 const ShowContentsBtn = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: calc(100% - 40px);
+    column-gap: 5px;
+    width: 100%;
+    font-weight: 700;
     border: 1px solid ${palette.black0};
-    padding: 21px 0 19px;
-    margin: 80px auto 0;
-    font-size: 12px;
-    font-weight: 600;
+    padding: 20px 0 19px;
 `;
 
 const ChevronIco = styled(Icon)<{ rotated: boolean }>`
     width: 14px;
     height: 14px;
-    margin-left: 5px;
 
     ${(props) =>
         props.rotated &&
