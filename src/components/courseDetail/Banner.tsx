@@ -39,6 +39,7 @@ function Banner(props: BannerProps) {
                 </Header>
                 <BannerSwiper
                     hasBtns
+                    hasPagination
                     hasTrack={false}
                     options={{ type: "loop" }}
                 >

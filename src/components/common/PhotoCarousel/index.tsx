@@ -30,7 +30,8 @@ function PhotoCarousel(props: PhotoCarouselProps) {
 
     return (
         <PhotoSwiper
-            hasBtns={true}
+            hasBtns
+            hasPagination
             hasTrack={false}
             options={{ type: "loop", start: startIndex }}
             onMove={onMove}
