@@ -28,7 +28,6 @@ import { ReactComponent as PencilIco } from "../../assets/icon/pencil.svg";
 import { ReactComponent as PhoneIco } from "../../assets/icon/phone.svg";
 import { ReactComponent as PhotoIco } from "../../assets/icon/photo.svg";
 import { ReactComponent as RefreshIco } from "../../assets/icon/refresh.svg";
-import { ReactComponent as SearchBlackIco } from "../../assets/icon/search-black.svg";
 import { ReactComponent as SpeakerIco } from "../../assets/icon/speaker.svg";
 import { ReactComponent as SpeechBubbleIco } from "../../assets/icon/speech-bubble.svg";
 import { ReactComponent as StarEmptyIco } from "../../assets/icon/star-empty.svg";
@@ -39,6 +38,7 @@ import { ReactComponent as TosspayIco } from "../../assets/icon/tosspay.svg";
 import { ReactComponent as CameraIco } from "../../assets/icon/camera.svg";
 import { ReactComponent as PlusIco } from "../../assets/icon/plus.svg";
 import { ReactComponent as MinusIco } from "../../assets/icon/minus.svg";
+import { ReactComponent as BellIco } from "../../assets/icon/bell.svg";
 
 export type IconProps = {
     name:
@@ -72,7 +72,6 @@ export type IconProps = {
         | "phone"
         | "photo"
         | "refresh"
-        | "search-black"
         | "speaker"
         | "speech-bubble"
         | "star-empty"
@@ -81,7 +80,8 @@ export type IconProps = {
         | "star"
         | "tosspay"
         | "plus"
-        | "minus";
+        | "minus"
+        | "bell";
     className?: string;
 };
 
@@ -118,7 +118,6 @@ const iconMaps: {
     phone: <PhoneIco />,
     photo: <PhotoIco />,
     refresh: <RefreshIco />,
-    "search-black": <SearchBlackIco />,
     speaker: <SpeakerIco />,
     "speech-bubble": <SpeechBubbleIco />,
     "star-empty": <StarEmptyIco />,
@@ -128,6 +127,7 @@ const iconMaps: {
     tosspay: <TosspayIco />,
     plus: <PlusIco />,
     minus: <MinusIco />,
+    bell: <BellIco />,
 };
 
 function Icon(props: IconProps) {

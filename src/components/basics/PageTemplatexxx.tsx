@@ -15,7 +15,7 @@ function PageTemplatexxx(props: PageTemplatexxxProps) {
 
     return (
         <Block>
-            {gnbVisible && <Gnb isScrolled={true} />}
+            {gnbVisible && <Gnb isTransparent={false} />}
             <PageContents>{children}</PageContents>
             <Footer />
         </Block>

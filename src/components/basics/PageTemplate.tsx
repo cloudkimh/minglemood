@@ -38,7 +38,7 @@ function PageTemplate(props: PageTemplateProps) {
     return (
         <Block>
             <PageContainer ref={pageContainerRef}>
-                <Gnb isScrolled={isScrolled} />
+                <Gnb isTransparent={!isScrolled} />
                 <PageContents>{children}</PageContents>
                 <Footer />
             </PageContainer>

@@ -1,45 +1,32 @@
 import styled, { css } from "styled-components";
-import searchWhiteIcon from "../../assets/icon/search-white.png";
-import searchBlackIcon from "../../assets/icon/search-black.svg";
-import notificationWhiteIcon from "../../assets/icon/notification.png";
-import notificationBlackIcon from "../../assets/icon/notification-black.png";
-import MinglemoodLogoImg from "../../assets/img/minglemood-logo.svg";
+import { ReactComponent as Logo } from "../../assets/img/minglemood-logo.svg";
 import palette from "../../lib/styles/palette";
 import { Link } from "react-router-dom";
 import { getSampleUser } from "../../lib/data/sampleUserData";
+import Icon from "../basics/Icon";
 
-export type GnbProps = { isScrolled: boolean };
+export type GnbProps = { isTransparent: boolean };
 
 function Gnb(props: GnbProps) {
-    const { isScrolled } = props;
+    const { isTransparent } = props;
     const user = getSampleUser();
 
     return (
-        <Block isScrolled={isScrolled}>
+        <Block isTransparent={isTransparent}>
             <Link to="/">
-                <Logo>
-                    <LogoImg src={MinglemoodLogoImg} alt="minglemood logo" />
-                </Logo>
+                <Logo />
             </Link>
             <Container>
                 <SearchBtn>
-                    <img
-                        alt="search icon"
-                        src={
-                            isScrolled
-                                ? `${searchBlackIcon}`
-                                : `${searchWhiteIcon}`
-                        }
+                    <SearchIco
+                        name="magnifier"
+                        color={isTransparent ? "white" : "black"}
                     />
                 </SearchBtn>
                 <NotificationBtn>
-                    <img
-                        alt="notification icon"
-                        src={
-                            isScrolled
-                                ? `${notificationBlackIcon}`
-                                : `${notificationWhiteIcon}`
-                        }
+                    <NotificationIco
+                        name="bell"
+                        color={isTransparent ? "white" : "black"}
                     />
                 </NotificationBtn>
                 <AvatarLink to={"/mypage"}>
@@ -50,7 +37,7 @@ function Gnb(props: GnbProps) {
     );
 }
 
-const Block = styled.nav<{ isScrolled: boolean }>`
+const Block = styled.nav<{ isTransparent: boolean }>`
     position: fixed;
     top: 0;
     z-index: 100;
@@ -64,24 +51,15 @@ const Block = styled.nav<{ isScrolled: boolean }>`
     transition: background-color 0.2s;
 
     ${(props) =>
-        props.isScrolled
+        props.isTransparent
             ? css`
-                  background-color: ${palette.white0};
-                  border-bottom: 1px solid ${palette.gray5};
-              `
-            : css`
                   background-color: transparent;
                   border-bottom: none;
+              `
+            : css`
+                  background-color: ${palette.white0};
+                  border-bottom: 1px solid ${palette.gray5};
               `};
-`;
-
-const Logo = styled.div`
-    width: 151px;
-`;
-
-const LogoImg = styled.img`
-    width: 100%;
-    vertical-align: middle;
 `;
 
 const Container = styled.div`
@@ -90,13 +68,19 @@ const Container = styled.div`
 `;
 
 const SearchBtn = styled.button`
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
     margin-right: 7px;
+`;
 
-    & img {
-        width: 100%;
-        vertical-align: milddle;
+const SearchIco = styled(Icon)<{ color: "black" | "white" }>`
+    width: 22px;
+    height: 22px;
+
+    path {
+        stroke: ${(props) =>
+            props.color === "black" ? palette.black2 : palette.white0};
+        stroke-width: 1.5;
     }
 `;
 
@@ -104,12 +88,15 @@ const NotificationBtn = styled.button`
     width: 22px;
     height: 22px;
     margin-right: 7px;
-    background-position: center;
-    background-size: cover;
+`;
 
-    & img {
-        width: 100%;
-        vertical-align: milddle;
+const NotificationIco = styled(Icon)<{ color: "black" | "white" }>`
+    width: 22px;
+    height: 22px;
+
+    path {
+        fill: ${(props) =>
+            props.color === "black" ? palette.black2 : palette.white0};
     }
 `;
 
