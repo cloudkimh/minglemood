@@ -34,6 +34,7 @@ const Block = styled.div`
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: 10;
     display: flex;
     column-gap: 4px;
     width: 100%;

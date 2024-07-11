@@ -91,6 +91,7 @@ const Block = styled.div`
     position: fixed;
     top: 0;
     width: 100%;
+    max-width: 768px;
     height: 100%;
     background-color: ${palette.white0};
 `;
