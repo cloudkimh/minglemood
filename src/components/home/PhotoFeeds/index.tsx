@@ -20,14 +20,19 @@ function PhotoFeeds(props: PhotoFeedsProps) {
                     </HeaderBtn>
                 }
             />
-            <Body>
+            <FeedGrid>
                 {photos.map((aPhoto, index) => (
                     <Feed photo={aPhoto} key={index} />
                 ))}
-            </Body>
+            </FeedGrid>
         </Block>
     );
 }
+
+const Block = styled.div`
+    padding: 0 20px;
+    margin-top: 35px;
+`;
 
 const HeaderBtn = styled.button`
     font-size: 13px;
@@ -35,15 +40,11 @@ const HeaderBtn = styled.button`
     color: ${palette.gray6};
 `;
 
-const Block = styled.div`
-    padding: 0 20px;
-`;
-
-const Body = styled.div`
+const FeedGrid = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 5px;
-    margin-top: 30px;
+    margin-top: 15px;
 `;
 
 export default PhotoFeeds;

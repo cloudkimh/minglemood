@@ -57,10 +57,11 @@ function PostSection(props: PostSectionProps) {
 
 const Block = styled.section`
     padding: 0 20px;
+    margin-top: 35px;
 `;
 
 const Body = styled.div`
-    margin-top: 30px;
+    margin-top: 15px;
 `;
 
 const PostGrid = styled.div`

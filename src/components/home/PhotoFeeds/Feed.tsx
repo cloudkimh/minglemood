@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import ImageWithFallback from "../../basics/ImageWithFallback";
 
 export type FeedProps = {
     photo: string;
@@ -9,18 +10,29 @@ function Feed(props: FeedProps) {
 
     return (
         <Block>
-            <Photo src={photo} alt="인스타 피드" />
+            <Inner>
+                <Photo path={photo} alt="인스타 피드" />
+            </Inner>
         </Block>
     );
 }
 
 const Block = styled.div`
+    position: relative;
     width: 100%;
-    aspect-ratio: 1 / 1;
     overflow: hidden;
+    padding-bottom: 100%;
 `;
 
-const Photo = styled.img`
+const Inner = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+`;
+
+const Photo = styled(ImageWithFallback)`
     width: 100%;
     height: 100%;
 `;

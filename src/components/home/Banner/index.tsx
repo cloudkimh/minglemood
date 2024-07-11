@@ -2,13 +2,14 @@ import styled from "styled-components";
 import Swiper from "../../basics/Swiper";
 import palette from "../../../lib/styles/palette";
 import { withOpacity } from "../../../lib/styles/utils";
-import React, { useState } from "react";
-import ImageWithFallback from "../../basics/ImageWithFallback";
+import { useState } from "react";
+import Silde from "./Silde";
+import LineBreakText from "../../basics/LineBreakText";
 
 export type BannerProps = {
     banners: Array<{
         image: string;
-        title: Array<string>;
+        title: string;
     }>;
 };
 
@@ -18,74 +19,52 @@ function Banner(props: BannerProps) {
     const bannerCnt = banners.length;
 
     return (
-        <BannerSwiper
-            hasTrack={false}
-            options={{ type: "loop" }}
-            onMove={(_, i) => {
-                setCurrentBannerPage(i + 1);
-            }}
-        >
-            <Swiper.Track>
-                {banners.map((aBanner, index) => (
-                    <BannerSlide key={index}>
-                        <BannerImg path={aBanner.image} alt="배너 이미지" />
-                        <BannerTitle>
-                            {aBanner.title.map((line, index) => (
-                                <React.Fragment key={index}>
-                                    {line}
-                                    {index < bannerCnt - 1 && <br />}
-                                </React.Fragment>
-                            ))}
-                        </BannerTitle>
-                    </BannerSlide>
-                ))}
-            </Swiper.Track>
+        <Block>
+            <BannerSwiper
+                hasTrack={false}
+                options={{ type: "loop" }}
+                onMove={(_, i) => {
+                    setCurrentBannerPage(i + 1);
+                }}
+            >
+                <Swiper.Track>
+                    {banners.map((aBanner, index) => (
+                        <Silde
+                            image={aBanner.image}
+                            titleElem={<LineBreakText text={aBanner.title} />}
+                        />
+                    ))}
+                </Swiper.Track>
+            </BannerSwiper>
             <PageBlock>
                 <Page>
-                    <span>{currentBannerPage}</span> / {bannerCnt}
+                    <span>{String(currentBannerPage).padStart(2, "0")}</span> /{" "}
+                    {String(bannerCnt).padStart(2, "0")}
                 </Page>
             </PageBlock>
-        </BannerSwiper>
+        </Block>
     );
 }
 
-const BannerSwiper = styled(Swiper)`
+const Block = styled.div`
     position: relative;
-    width: 100%;
 `;
 
-const BannerSlide = styled(Swiper.Slide)`
-    display: flex;
+const BannerSwiper = styled(Swiper)`
     width: 100%;
-    aspect-ratio: 1 / 0.97;
-`;
-
-const BannerImg = styled(ImageWithFallback)`
-    width: 100%;
-    height: 100%;
-`;
-
-const BannerTitle = styled.p`
-    position: absolute;
-    left: 20px;
-    bottom: 20px;
-    color: ${palette.white0};
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 25px;
 `;
 
 const PageBlock = styled.div`
     position: absolute;
-    right: 12px;
-    bottom: 28px;
-    padding: 6px 10px;
+    right: 20px;
+    bottom: 20px;
+    padding: 5px 8px;
     border-radius: 14px;
-    background-color: ${palette.black0}${withOpacity(0.4)};
+    background-color: ${palette.black2}${withOpacity(0.3)};
 `;
 
 const Page = styled.p`
-    font-size: 12px;
+    font-size: 10px;
     color: ${palette.gray3};
 
     span {
