@@ -86,19 +86,15 @@ const Star = styled.div<{ state: "empty" | "half" | "full" }>`
 `;
 
 const HiddenSlider = styled.input`
+    -webkit-appearance: none;
     position: absolute;
     left: 0;
     top: 0;
-    -webkit-appearance: none;
     width: 260px;
     height: 45px;
     outline: none;
     opacity: 0;
     transition: opacity 0.2s;
-
-    &:hover {
-        opacity: 1;
-    }
 
     &::-webkit-slider-thumb {
         -webkit-appearance: none;
@@ -112,6 +108,13 @@ const HiddenSlider = styled.input`
         width: 50px;
         height: 50px;
         cursor: pointer;
+    }
+
+    &:hover {
+        &::-webkit-slider-thumb,
+        &::-moz-range-thumb {
+            box-shadow: none;
+        }
     }
 `;
 
