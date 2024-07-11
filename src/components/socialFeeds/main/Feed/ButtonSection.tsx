@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 import useToggle from "../../../../lib/hooks/useToggle";
-import { ReactComponent as LikeIco } from "../../../../assets/icon/like-heart-active.svg";
-import { ReactComponent as CommentIco } from "../../../../assets/icon/speech-bubble.svg";
+import Icon from "../../../basics/Icon";
 
 export type ButtonSectionProps = {
     handleClickLike: () => void;
@@ -18,28 +17,32 @@ function ButtonSection(props: ButtonSectionProps) {
         handleClickComments,
         id,
         likes,
-        isLiked,
         comments,
+        isLiked: initialIsLiked,
     } = props;
-    const [currentIsLiked, toggleCurrentIsLiked] = useToggle(isLiked);
+    const [isLiked, toggleIsLiked] = useToggle(initialIsLiked);
 
     const onClickComments = () => {
         handleClickComments();
     };
 
     const onClickLike = () => {
-        toggleCurrentIsLiked();
         handleClickLike();
+        toggleIsLiked();
     };
 
     return (
         <Block>
             <LikeBtn onClick={onClickLike}>
-                <LikeIco />
+                {isLiked ? (
+                    <Icon name="heart-filled" />
+                ) : (
+                    <Icon name="heart-outlined" />
+                )}
                 {likes}
             </LikeBtn>
             <CommentBtn onClick={onClickComments}>
-                <CommentIco />
+                <Icon name="speech-bubble" />
                 {comments}
             </CommentBtn>
         </Block>

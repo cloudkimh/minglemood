@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import DeactiveHeartIcon from "../../assets/icon/CourseDetail/HeadSection/HostInfo/host-heart.png";
-import ActiveHeartIcon from "../../assets/icon/CourseDetail/HeadSection/HostInfo/like-heart-active.svg";
 import palette from "../../lib/styles/palette";
 import useToggle from "../../lib/hooks/useToggle";
 import ImageWithFallback from "../basics/ImageWithFallback";
+import Icon from "../basics/Icon";
 
 export type HostInfoCardProps = {
     avatar: string;
@@ -32,10 +31,11 @@ function HostInfoCard(props: HostInfoCardProps) {
                 </Infos>
             </InfoBlock>
             <LikeBtn onClick={onLikeBtnClick}>
-                <img
-                    alt="호스트 좋아요 버튼"
-                    src={isLiked ? ActiveHeartIcon : DeactiveHeartIcon}
-                />
+                {isLiked ? (
+                    <Icon name="heart-filled" />
+                ) : (
+                    <Icon name="heart-outlined" />
+                )}
             </LikeBtn>
         </Block>
     );

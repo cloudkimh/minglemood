@@ -2,8 +2,7 @@ import styled from "styled-components";
 import palette from "../../../lib/styles/palette";
 import { multiLineEllipsis } from "../../../lib/styles/utils";
 import { Link } from "react-router-dom";
-import starIcon from "../../../assets/icon/star.svg";
-import heartIcon from "../../../assets/icon/heart.png";
+import Icon from "../../basics/Icon";
 
 export type HeaderProps = {
     id: number;
@@ -34,18 +33,12 @@ function Header(props: HeaderProps) {
             <Title>{title}</Title>
             <RatingBlock>
                 <StarBlock>
-                    <RatingIcon>
-                        <img src={starIcon} alt="별점" />
-                    </RatingIcon>
-                    <div>
-                        {starScore}({starCnt})
-                    </div>
+                    <Icon name="star" />
+                    {starScore}({starCnt})
                 </StarBlock>
                 <HeartBlock>
-                    <RatingIcon>
-                        <img src={heartIcon} alt="좋아요" />
-                    </RatingIcon>
-                    <div>{heartCnt <= 999 ? heartCnt : "999+"}</div>
+                    <HeartIco name="heart-filled" />
+                    {heartCnt <= 999 ? heartCnt : "999+"}
                 </HeartBlock>
             </RatingBlock>
             <Price>
@@ -94,26 +87,21 @@ const RatingBlock = styled.div`
 
 const StarBlock = styled.div`
     display: flex;
-    flex-wrap: wrap;
-    overflow: hidden;
+    align-items: center;
+    column-gap: 3px;
     margin-right: 15px;
-`;
-
-const RatingIcon = styled.div`
-    width: 14px;
-    height: 14px;
-    margin-right: 3px;
-
-    & img {
-        width: 100%;
-        vertical-align: middle;
-    }
 `;
 
 const HeartBlock = styled.div`
     display: flex;
+    align-items: center;
+    column-gap: 3px;
     flex-wrap: wrap;
-    overflow: hidden;
+`;
+
+const HeartIco = styled(Icon)`
+    width: 14px;
+    height: 14px;
 `;
 
 const DiscountRate = styled.span`

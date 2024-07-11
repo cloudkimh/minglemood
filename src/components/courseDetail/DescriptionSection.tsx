@@ -2,17 +2,15 @@ import styled, { css } from "styled-components";
 import { SectionContainer, SectionHeader, SectionTitle } from "./styles";
 import palette from "../../lib/styles/palette";
 import useToggle from "../../lib/hooks/useToggle";
-import BottomArrowIcon from "../../assets/icon/CourseDetail/bottom-arrow.svg";
 import { SectionDivider } from "../common/styles/Common";
+import Icon from "../basics/Icon";
 
 export type DescriptionSectionProps = {};
 
 function DescriptionSection(props: DescriptionSectionProps) {
     const [showContentsAll, toggleShowContentsAll] = useToggle(false);
 
-    const onShowContentsBtnClick = () => {
-        toggleShowContentsAll();
-    };
+    const onClickShowContentsBtn = () => toggleShowContentsAll();
 
     return (
         <>
@@ -20,17 +18,15 @@ function DescriptionSection(props: DescriptionSectionProps) {
                 <SectionHeader>
                     <SectionTitle>소개</SectionTitle>
                 </SectionHeader>
-                <DescriptionContents showAll={showContentsAll}>
+                <DescriptionContents contentVisible={showContentsAll}>
                     <TestContent />
                     <TestContent />
                     <TestContent />
                     <TestContent />
                 </DescriptionContents>
-                <ShowContentsBtn onClick={onShowContentsBtnClick}>
+                <ShowContentsBtn onClick={onClickShowContentsBtn}>
                     {showContentsAll ? "간략히" : "상세정보 더보기"}
-                    <MoreBtn showAll={showContentsAll}>
-                        <img alt="more button icon" src={BottomArrowIcon} />
-                    </MoreBtn>
+                    <ChevronIco name="chevron-down" rotated={showContentsAll} />
                 </ShowContentsBtn>
             </SectionContainer>
             <SectionDivider />
@@ -38,12 +34,12 @@ function DescriptionSection(props: DescriptionSectionProps) {
     );
 }
 
-const DescriptionContents = styled.div<{ showAll: boolean }>`
+const DescriptionContents = styled.div<{ contentVisible: boolean }>`
     overflow: hidden;
     padding: 20px 20px 30px;
 
     ${(props) =>
-        props.showAll
+        props.contentVisible
             ? css`
                   height: auto;
               `
@@ -74,21 +70,16 @@ const ShowContentsBtn = styled.button`
     font-weight: 600;
 `;
 
-const MoreBtn = styled.div<{ showAll: boolean }>`
+const ChevronIco = styled(Icon)<{ rotated: boolean }>`
     width: 14px;
     height: 14px;
     margin-left: 5px;
 
     ${(props) =>
-        props.showAll &&
+        props.rotated &&
         css`
             transform: rotate(180deg);
         `}
-
-    img {
-        widght: 100%;
-        vertical-align: middle;
-    }
 `;
 
 export default DescriptionSection;

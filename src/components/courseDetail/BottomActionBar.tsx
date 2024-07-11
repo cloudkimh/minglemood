@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import palette from "../../lib/styles/palette";
-import LikeHeartDeactive from "../../assets/icon/CourseDetail/like-heart-deactive.svg";
-import LikeHeartActive from "../../assets/icon/like-heart-active.svg";
 import { useState } from "react";
 import { FixedBarContainer } from "../common/styles/Containers";
+import Icon from "../basics/Icon";
 
 export type BottomActionBarProps = {
     isLiked: boolean;
@@ -11,18 +10,19 @@ export type BottomActionBarProps = {
 };
 
 function BottomActionBar(props: BottomActionBarProps) {
-    const { isLiked, onClickApply } = props;
-    const [isLikedInner, setIsLikedInner] = useState<boolean>(isLiked);
-    const onLikeBtnClick = () => setIsLikedInner(!isLikedInner);
+    const { isLiked: initialIsLiked, onClickApply } = props;
+    const [isLiked, setIsLiked] = useState<boolean>(initialIsLiked);
+    const onLikeBtnClick = () => setIsLiked(!isLiked);
 
     return (
         <FixedBarContainer locate="bottom">
             <Block>
                 <LikeBtn onClick={onLikeBtnClick}>
-                    <LikeIco
-                        alt="좋아요"
-                        src={isLikedInner ? LikeHeartActive : LikeHeartDeactive}
-                    />
+                    {isLiked ? (
+                        <Icon name="heart-filled" />
+                    ) : (
+                        <Icon name="heart-outlined" />
+                    )}
                 </LikeBtn>
                 <ShareBtn>공유하기</ShareBtn>
                 <SubmitBtn onClick={onClickApply}>참여하기</SubmitBtn>

@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import heartDeactiveIcon from "../../../assets/icon/like-heart.svg";
-import heartActiveIcon from "../../../assets/icon/like-heart-active.svg";
 import ImageWithFallback from "../../basics/ImageWithFallback";
 import useToggle from "../../../lib/hooks/useToggle";
+import Icon from "../../basics/Icon";
 
 export type ThumbnailProps = {
     id: number;
@@ -12,11 +11,11 @@ export type ThumbnailProps = {
 };
 
 function Thumbnail(props: ThumbnailProps) {
-    const { id, thumbnail, isLiked } = props;
-    const [liked, toggleLiked] = useToggle(isLiked);
+    const { id, thumbnail, isLiked: initialIsLiked } = props;
+    const [isLiked, toggleIsLiked] = useToggle(initialIsLiked);
 
-    const onButtonClick = () => {
-        toggleLiked();
+    const onClickLikeBtn = () => {
+        toggleIsLiked();
     };
 
     return (
@@ -24,11 +23,12 @@ function Thumbnail(props: ThumbnailProps) {
             <Link to={`/course/${id}`}>
                 <ThumbnailImage path={thumbnail} alt="코스 썸네일" />
             </Link>
-            <Button onClick={onButtonClick}>
-                <img
-                    alt="좋아요 버튼"
-                    src={liked ? heartActiveIcon : heartDeactiveIcon}
-                />
+            <Button onClick={onClickLikeBtn}>
+                {isLiked ? (
+                    <Icon name="heart-filled" />
+                ) : (
+                    <Icon name="heart-outlined" />
+                )}
             </Button>
         </Block>
     );

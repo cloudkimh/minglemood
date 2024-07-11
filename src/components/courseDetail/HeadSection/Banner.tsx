@@ -1,10 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Swiper from "../../basics/Swiper";
 import ImageWithFallback from "../../basics/ImageWithFallback";
-import PrevIcon from "../../../assets/icon/left-arrow.png";
-import ShareIcon from "../../../assets/icon/share.png";
-import LeftArrowIcon from "../../../assets/icon/left-arrow-small.png";
-import RightArrowIcon from "../../../assets/icon/right-arrow-small.png";
 import {
     SwiperPageBtnContainer,
     SwiperPageNextBtn,
@@ -13,6 +9,9 @@ import {
     swiperCirclePageBtnStyle,
 } from "../../basics/Swiper/styles";
 import { useNavigate } from "react-router-dom";
+import Icon from "../../basics/Icon";
+import palette from "../../../lib/styles/palette";
+import { withOpacity } from "../../../lib/styles/utils";
 
 export type BannerProps = {
     banners: Array<string>;
@@ -30,10 +29,10 @@ function Banner(props: BannerProps) {
             <Inner>
                 <Header>
                     <HeaderBtn onClick={onPrevBtnClick}>
-                        <img alt="prev button" src={PrevIcon} />
+                        <ChevronLeft name="chevron-left" />
                     </HeaderBtn>
                     <HeaderBtn>
-                        <img alt="share button" src={ShareIcon} />
+                        <Icon name="graph" />
                     </HeaderBtn>
                 </Header>
                 <BannerSwiper
@@ -51,10 +50,10 @@ function Banner(props: BannerProps) {
                     </BannerSwiperTrack>
                     <BannerPageContainer>
                         <BannerPrevBtn>
-                            <img alt="prev banner btn" src={LeftArrowIcon} />
+                            <Icon name="chevron-left-sm" />
                         </BannerPrevBtn>
                         <BannerNextBtn>
-                            <img alt="next banner btn" src={RightArrowIcon} />
+                            <Icon name="chevron-right-sm" />
                         </BannerNextBtn>
                     </BannerPageContainer>
                     <BannerPagination />
@@ -85,18 +84,18 @@ const Header = styled.nav`
     position: absolute;
     left: 0;
     top: 61px;
-    z-index: 100;
+    z-index: 1;
     padding: 0 20px;
 `;
 
 const HeaderBtn = styled.button`
     width: 24px;
     height: 24px;
-    background-color: transprent;
+`;
 
-    & img {
-        width: 100%;
-        vertical-align: middle;
+const ChevronLeft = styled(Icon)`
+    path {
+        stroke: ${palette.white0};
     }
 `;
 
@@ -130,36 +129,23 @@ const BannerPageContainer = styled(SwiperPageBtnContainer)`
     justify-content: space-between;
 `;
 
-const BannerPrevBtn = styled(SwiperPagePrevBtn)`
-    background-color: rgba(51, 51, 51, 0.4);
-    border-radius: 50%;
+const bannerPageBtnStyle = css`
+    display: flex;
+    align-items: center;
     width: 24px;
     height: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: ${palette.black0}${withOpacity(0.4)};
+    border-radius: 50%;
+`;
 
-    & > img {
-        width: 12px;
-        height: 12px;
-        opacity: 1;
-    }
+const BannerPrevBtn = styled(SwiperPagePrevBtn)`
+    ${bannerPageBtnStyle}
+    padding-left: 4px;
 `;
 
 const BannerNextBtn = styled(SwiperPageNextBtn)`
-    background-color: rgba(51, 51, 51, 0.4);
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    & > img {
-        width: 12px;
-        height: 12px;
-        opacity: 1;
-    }
+    ${bannerPageBtnStyle}
+    padding-left: 6px;
 `;
 
 const BannerPagination = styled(SwiperPagination)`

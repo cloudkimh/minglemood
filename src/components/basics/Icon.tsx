@@ -20,8 +20,6 @@ import { ReactComponent as HeadphoneIco } from "../../assets/icon/headphone.svg"
 import { ReactComponent as HeartIco } from "../../assets/icon/heart.svg";
 import { ReactComponent as HostIco } from "../../assets/icon/host.svg";
 import { ReactComponent as KakaoPayIco } from "../../assets/icon/kakaopay.svg";
-import { ReactComponent as LikeHeartActiveIco } from "../../assets/icon/like-heart-active.svg";
-import { ReactComponent as LikeHeartIco } from "../../assets/icon/like-heart.svg";
 import { ReactComponent as MagnifierIco } from "../../assets/icon/magnifier.svg";
 import { ReactComponent as NaverPayIco } from "../../assets/icon/naverpay.svg";
 import { ReactComponent as PencilIco } from "../../assets/icon/pencil.svg";
@@ -39,6 +37,11 @@ import { ReactComponent as CameraIco } from "../../assets/icon/camera.svg";
 import { ReactComponent as PlusIco } from "../../assets/icon/plus.svg";
 import { ReactComponent as MinusIco } from "../../assets/icon/minus.svg";
 import { ReactComponent as BellIco } from "../../assets/icon/bell.svg";
+import { ReactComponent as HeartFilledIco } from "../../assets/icon/heart-filled.svg";
+import { ReactComponent as HeartOutlinedIco } from "../../assets/icon/heart-outlined.svg";
+import { ReactComponent as ChevronDownIco } from "../../assets/icon/chevron-down.svg";
+import { ReactComponent as CopyIco } from "../../assets/icon/copy.svg";
+import { ReactComponent as GraphIco } from "../../assets/icon/graph.svg";
 
 export type IconProps = {
     name:
@@ -64,8 +67,6 @@ export type IconProps = {
         | "heart"
         | "host"
         | "kakaopay"
-        | "like-heart-active"
-        | "like-heart"
         | "magnifier"
         | "naverpay"
         | "pencil"
@@ -81,7 +82,12 @@ export type IconProps = {
         | "tosspay"
         | "plus"
         | "minus"
-        | "bell";
+        | "bell"
+        | "heart-filled"
+        | "heart-outlined"
+        | "chevron-down"
+        | "copy"
+        | "graph";
     className?: string;
 };
 
@@ -110,8 +116,6 @@ const iconMaps: {
     heart: <HeartIco />,
     host: <HostIco />,
     kakaopay: <KakaoPayIco />,
-    "like-heart-active": <LikeHeartActiveIco />,
-    "like-heart": <LikeHeartIco />,
     magnifier: <MagnifierIco />,
     naverpay: <NaverPayIco />,
     pencil: <PencilIco />,
@@ -128,6 +132,11 @@ const iconMaps: {
     plus: <PlusIco />,
     minus: <MinusIco />,
     bell: <BellIco />,
+    "heart-filled": <HeartFilledIco />,
+    "heart-outlined": <HeartOutlinedIco />,
+    "chevron-down": <ChevronDownIco />,
+    copy: <CopyIco />,
+    graph: <GraphIco />,
 };
 
 function Icon(props: IconProps) {
