@@ -4,10 +4,16 @@ import { ReactComponent as LinkIco } from "../../assets/icon/chevron-right.svg";
 import CheckBox from "../basics/CheckBox";
 import palette from "../../lib/styles/palette";
 import checkIco from "../../assets/icon/check.svg";
+import { ChangeEvent } from "react";
 
-export type PolicyAgreementProps = {};
+export type PolicyAgreementProps = {
+    checked: boolean;
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+};
 
 function PolicyAgreement(props: PolicyAgreementProps) {
+    const { checked, onChange } = props;
+
     return (
         <SectionContainer>
             <SectionHeader>주문 내용 확인 및 결제 동의</SectionHeader>
@@ -26,7 +32,9 @@ function PolicyAgreement(props: PolicyAgreementProps) {
                     type="checkbox"
                     name="policy"
                     value="policy"
+                    checked={checked}
                     id="policy"
+                    onChange={onChange}
                 />
                 <CheckBoxMessage htmlFor="policy">
                     위 내용을 모두 확인하였으며, 결제에 동의합니다.

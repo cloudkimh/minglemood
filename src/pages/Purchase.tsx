@@ -1,6 +1,6 @@
 import PaymentMethod from "../components/purchase/PaymentMethod";
 import { SectionDivider } from "../components/common/styles/Common";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import Coupon from "../components/purchase/Coupon";
 import Point from "../components/purchase/Point";
 import Summary from "../components/purchase/Summary";
@@ -39,6 +39,8 @@ type CourseTypeProductInfo = {
 
 function Purchase() {
     const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
+    const [creditCard, setCreditCard] = useState<string | null>(null);
+    const [policyChecked, setPolicyChecked] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
     const data = location.state as {
@@ -48,16 +50,26 @@ function Purchase() {
         photoInfo?: PhotoTypeProductInfo;
         courseInfo?: CourseTypeProductInfo;
     };
-    console.log(data);
 
     useEffect(() => {
         if (!data) {
             navigate("/");
+            toast.error("잘못된 경로로 접근했습니다. 다시 시도 해주세요");
         }
     }, []);
 
     const handleSelectPaymentMethod = (value: string) => {
         setPaymentMethod(value);
+        setCreditCard(null);
+    };
+
+    const handleSelectCreditCard = (value: string) => {
+        setCreditCard(value);
+    };
+
+    const onChangePolicy = (e: ChangeEvent<HTMLInputElement>) => {
+        const { checked } = e.target;
+        setPolicyChecked(checked);
     };
 
     const formatDateText = (dateData: Date) => {
@@ -68,8 +80,14 @@ function Purchase() {
         return `${year}년 ${month}월 ${date}일 (${day})`;
     };
 
+    const isSubmitBtnAvailable = () => {
+        if (!paymentMethod) return false;
+        if (paymentMethod === "creditcard" && !creditCard) return false;
+        if (!policyChecked) return false;
+        return true;
+    };
+
     if (!data) {
-        toast.error("잘못된 경로로 접근했습니다. 다시 시도 해주세요");
         return null;
     }
 
@@ -140,8 +158,10 @@ function Purchase() {
             </InfoContainer>
             <SectionDivider />
             <PaymentMethod
-                currentValue={paymentMethod}
-                handleChange={handleSelectPaymentMethod}
+                currentMethod={paymentMethod}
+                currentCard={creditCard}
+                handleSelectMethod={handleSelectPaymentMethod}
+                handleSelectCreditCard={handleSelectCreditCard}
             />
             <SectionDivider />
             <Coupon />
@@ -150,8 +170,14 @@ function Purchase() {
             <SectionDivider />
             <Summary paymentAmount={data.paymentInfo.price} />
             <SectionDivider />
-            <PolicyAgreement />
-            <BottomActionBar totalPaymentAmount={data.paymentInfo.price} />
+            <PolicyAgreement
+                checked={policyChecked}
+                onChange={onChangePolicy}
+            />
+            <BottomActionBar
+                buttonAvailable={isSubmitBtnAvailable()}
+                totalPaymentAmount={data.paymentInfo.price}
+            />
         </PageTemplatexxx>
     );
 }

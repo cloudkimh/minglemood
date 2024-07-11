@@ -3,16 +3,17 @@ import { FixedBarContainer } from "../common/styles/Containers";
 import palette from "../../lib/styles/palette";
 
 export type BottomActionBarProps = {
+    buttonAvailable: boolean;
     totalPaymentAmount: number;
 };
 
 function BottomActionBar(props: BottomActionBarProps) {
-    const { totalPaymentAmount } = props;
+    const { buttonAvailable, totalPaymentAmount } = props;
 
     return (
         <FixedBarContainer locate="bottom">
             <Block>
-                <SubmitBtn>
+                <SubmitBtn disabled={!buttonAvailable}>
                     {totalPaymentAmount.toLocaleString()}원 결제하기
                 </SubmitBtn>
             </Block>
