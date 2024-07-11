@@ -6,19 +6,19 @@ import { TextArea } from "../common/styles/Inputs";
 
 export type BioSectionProps = {
     bio: string;
-    onChangeBio: (value: string) => void;
+    handleChange: (value: string) => void;
 };
 
 const MAX_LETTER = 300;
 
 function BioSection(props: BioSectionProps) {
-    const { bio, onChangeBio } = props;
-    const [letterCount, setLetterCount] = useState(0);
+    const { bio, handleChange } = props;
+    const [letterCount, setLetterCount] = useState(bio.length);
 
     const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const { value } = e.currentTarget;
         setLetterCount(value.length);
-        onChangeBio(value);
+        handleChange(value);
     };
 
     return (

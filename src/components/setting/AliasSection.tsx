@@ -5,16 +5,11 @@ import { TextInput } from "../common/styles/Inputs";
 
 export type AliasSectionProps = {
     alias: string;
-    onChangeAlias: (alias: string) => void;
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
 function AliasSection(props: AliasSectionProps) {
-    const { alias, onChangeAlias } = props;
-
-    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const { value } = e.currentTarget;
-        onChangeAlias(value);
-    };
+    const { alias, onChange } = props;
 
     return (
         <Block>

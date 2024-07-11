@@ -6,7 +6,7 @@ import BioSection from "../components/setting/BioSection";
 import PageTemplatexxx from "../components/basics/PageTemplatexxx";
 import PageHeader from "../components/common/PageHeader";
 import { getSampleUser } from "../lib/data/sampleUserData";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -17,9 +17,12 @@ function Setting() {
     const [bio, setBio] = useState<string>(user.bio);
     const navigate = useNavigate();
 
-    const handleChangeAvatar = (value: string) => setAvatar(value);
+    const onChangeAvatar = (value: string) => setAvatar(value);
 
-    const handleChangeAlias = (value: string) => setAlias(value);
+    const onChangeAlias = (e: ChangeEvent<HTMLInputElement>) => {
+        const { value } = e.target;
+        setAlias(value);
+    };
 
     const handleChangeBio = (value: string) => setBio(value);
 
@@ -42,12 +45,9 @@ function Setting() {
                     <SaveButton onClick={onClickSaveBtn}>저장</SaveButton>
                 }
             />
-            <AvatarSection
-                avatar={avatar}
-                onChangeAvatar={handleChangeAvatar}
-            />
-            <AliasSection alias={alias} onChangeAlias={handleChangeAlias} />
-            <BioSection bio={bio} onChangeBio={handleChangeBio} />
+            <AvatarSection avatar={avatar} onChange={onChangeAvatar} />
+            <AliasSection alias={alias} onChange={onChangeAlias} />
+            <BioSection bio={bio} handleChange={handleChangeBio} />
         </PageTemplatexxx>
     );
 }
