@@ -4,6 +4,7 @@ import palette from "../../lib/styles/palette";
 import { Link } from "react-router-dom";
 import { getSampleUser } from "../../lib/data/sampleUserData";
 import Icon from "../basics/Icon";
+import ImageWithFallback from "../basics/ImageWithFallback";
 
 export type GnbProps = { isTransparent: boolean };
 
@@ -30,7 +31,7 @@ function Gnb(props: GnbProps) {
                     />
                 </NotificationBtn>
                 <AvatarLink to={"/mypage"}>
-                    <Avatar src={user.avatar} alt="유저 아바타" />
+                    <Avatar path={user.avatar} alt="유저 아바타" />
                 </AvatarLink>
             </Container>
         </Block>
@@ -105,7 +106,7 @@ const AvatarLink = styled(Link)`
     height: 24px;
 `;
 
-const Avatar = styled.img`
+const Avatar = styled(ImageWithFallback)`
     width: 24px;
     height: 24px;
     border-radius: 50%;
