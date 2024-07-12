@@ -3,6 +3,7 @@ import { getSampleImage } from "../../lib/styles/utils";
 import SectionHeader from "./SectionHeader";
 import palette from "../../lib/styles/palette";
 import CategoryTab from "./CategoryTab";
+import { SectionTitle } from "./styles";
 
 export type LocalTabsProps = {};
 
@@ -11,7 +12,7 @@ const photo = getSampleImage();
 function LocalTabs(props: LocalTabsProps) {
     return (
         <Block>
-            <SectionHeader title="로컬 찾기" />
+            <SectionHeader title={<SectionTitle>로컬 찾기</SectionTitle>} />
             <TabContainer>
                 <CategoryTab image={photo}>
                     <TabName>전국</TabName>

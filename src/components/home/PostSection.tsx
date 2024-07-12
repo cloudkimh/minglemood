@@ -5,8 +5,7 @@ import CoursePost from "../common/CoursePost";
 
 export type PostSectionProps = {
     className?: string;
-    title: string;
-    highlight?: string;
+    title: ReactElement;
     headerButton?: ReactElement;
     posts: Array<{
         id: number;
@@ -23,34 +22,28 @@ export type PostSectionProps = {
 };
 
 function PostSection(props: PostSectionProps) {
-    const { className, title, headerButton, posts, highlight } = props;
+    const { className, title, headerButton, posts } = props;
 
     return (
         <Block className={className}>
-            <SectionHeader
-                title={title}
-                button={headerButton}
-                highlight={highlight}
-            />
-            <Body>
-                <PostGrid>
-                    {posts.map((aPost, i) => (
-                        <CoursePost
-                            key={i}
-                            id={aPost.id}
-                            thumbnail={aPost.thumbnail}
-                            region={aPost.region}
-                            title={aPost.title}
-                            starScore={aPost.starScore}
-                            starCnt={aPost.starCnt}
-                            heartCnt={aPost.heartCnt}
-                            price={aPost.price}
-                            isLiked={aPost.isLiked}
-                            discountRate={aPost.discountRate}
-                        />
-                    ))}
-                </PostGrid>
-            </Body>
+            <SectionHeader title={title} button={headerButton} />
+            <PostGrid>
+                {posts.map((aPost, i) => (
+                    <CoursePost
+                        key={i}
+                        id={aPost.id}
+                        thumbnail={aPost.thumbnail}
+                        region={aPost.region}
+                        title={aPost.title}
+                        starScore={aPost.starScore}
+                        starCnt={aPost.starCnt}
+                        heartCnt={aPost.heartCnt}
+                        price={aPost.price}
+                        isLiked={aPost.isLiked}
+                        discountRate={aPost.discountRate}
+                    />
+                ))}
+            </PostGrid>
         </Block>
     );
 }
@@ -60,15 +53,12 @@ const Block = styled.section`
     margin-top: 35px;
 `;
 
-const Body = styled.div`
-    margin-top: 15px;
-`;
-
 const PostGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 15px;
     row-gap: 45px;
+    margin-top: 15px;
 `;
 
 export default PostSection;

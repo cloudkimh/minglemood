@@ -3,6 +3,7 @@ import Feed from "./Feed";
 import SectionHeader from "../SectionHeader";
 import palette from "../../../lib/styles/palette";
 import { Link } from "react-router-dom";
+import { SectionButton, SectionTitle } from "../styles";
 
 export type PhotoFeedsProps = {
     photos: Array<string>;
@@ -13,11 +14,11 @@ function PhotoFeeds(props: PhotoFeedsProps) {
     return (
         <Block>
             <SectionHeader
-                title="후기 피드"
+                title={<SectionTitle>후기피드</SectionTitle>}
                 button={
-                    <HeaderBtn as={Link} to="/social-feeds">
+                    <SectionButton as={Link} to="/social-feeds">
                         더보기
-                    </HeaderBtn>
+                    </SectionButton>
                 }
             />
             <FeedGrid>
@@ -32,12 +33,6 @@ function PhotoFeeds(props: PhotoFeedsProps) {
 const Block = styled.div`
     padding: 0 20px;
     margin-top: 35px;
-`;
-
-const HeaderBtn = styled.button`
-    font-size: 13px;
-    font-weight: 600;
-    color: ${palette.gray6};
 `;
 
 const FeedGrid = styled.div`

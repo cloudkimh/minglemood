@@ -4,10 +4,10 @@ import Banner from "../components/home/Banner";
 import { getSampleImage } from "../lib/styles/utils";
 import PostSection from "../components/home/PostSection";
 import PhotoFeeds from "../components/home/PhotoFeeds";
-import palette from "../lib/styles/palette";
 import LocalTabs from "../components/home/LocalTabs";
 import ThemeTabs from "../components/home/ThemeTabs";
 import { SectionDivider } from "../components/common/styles/Common";
+import { SectionButton, SectionTitle } from "../components/home/styles";
 
 const photo = getSampleImage();
 const photos = Array(9).fill(photo);
@@ -52,23 +52,26 @@ function Home() {
                 <LocalTabs />
                 <StyledSectionDivider />
                 <PostSection
-                    title="주간 인기 Best"
-                    highlight="Best"
+                    title={
+                        <SectionTitle>
+                            주간 인기 <strong>Best</strong>
+                        </SectionTitle>
+                    }
                     headerButton={<SectionButton>더보기</SectionButton>}
                     posts={bestPosts}
                 />
                 <PostSection
-                    title="최근 본 모임"
+                    title={<SectionTitle>최근 본 모임</SectionTitle>}
                     headerButton={<SectionButton>더보기</SectionButton>}
                     posts={bestPosts}
                 />
                 <PostSection
-                    title="함께 참여 가능 모임"
+                    title={<SectionTitle>함께 참여 가능 모임</SectionTitle>}
                     headerButton={<SectionButton>더보기</SectionButton>}
                     posts={bestPosts}
                 />
                 <PostSection
-                    title="혼자 참여 가능 모임"
+                    title={<SectionTitle>혼자 참여 가능 모임</SectionTitle>}
                     headerButton={<SectionButton>더보기</SectionButton>}
                     posts={bestPosts}
                 />
@@ -81,12 +84,6 @@ function Home() {
 
 const MainContainer = styled.main`
     padding: 24px 0;
-`;
-
-const SectionButton = styled.button`
-    font-size: 13px;
-    font-weight: 700;
-    color: ${palette.gray6};
 `;
 
 const StyledSectionDivider = styled(SectionDivider)`
