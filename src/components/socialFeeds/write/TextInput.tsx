@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { SectionHeader } from "./styles";
 import palette from "../../../lib/styles/palette";
 import { ChangeEvent } from "react";
+import { TextArea } from "../../common/styles/Inputs";
 
 export type TextInputProps = {
     text: string;
@@ -31,19 +32,12 @@ const Wrapper = styled.div`
     position: relative;
 `;
 
-const Textarea = styled.textarea`
-    width: 100%;
+const Textarea = styled(TextArea)`
     height: 170px;
-    font-size: 12px;
-    border-radius: 5px;
     border: 1px solid ${palette.gray5};
     outline: none;
     padding: 10px 10px 25px;
     margin-top: 10px;
-
-    &:focus {
-        border: 1px solid ${palette.red500};
-    }
 `;
 
 const GuideText = styled.p`
