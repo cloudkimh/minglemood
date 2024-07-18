@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import PageTemplate from "../components/basics/PageTemplate";
 import Banner from "../components/home/Banner";
 import { getSampleImage } from "../lib/styles/utils";
 import PostSection from "../components/home/PostSection";
@@ -8,6 +7,7 @@ import LocalTabs from "../components/home/LocalTabs";
 import ThemeTabs from "../components/home/ThemeTabs";
 import { SectionDivider } from "../components/common/styles/Common";
 import { SectionButton, SectionTitle } from "../components/home/styles";
+import PageTemplate from "../components/basics/PageTemplate";
 
 const photo = getSampleImage();
 const photos = Array(9).fill(photo);
@@ -45,7 +45,7 @@ const bestPosts = [
 
 function Home() {
     return (
-        <PageTemplate>
+        <PageTemplate gnbVisible scrollGnbTransition>
             <Banner banners={banners} />
             <MainContainer>
                 <ThemeTabs />

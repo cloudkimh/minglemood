@@ -3,7 +3,6 @@ import DescriptionSection from "../components/courseDetail/DescriptionSection";
 import MapSection from "../components/courseDetail/MapSection";
 import ReviewSection from "../components/courseDetail/ReviewSection";
 import TagsSection from "../components/courseDetail/TagSection";
-import PageTemplate from "../components/basics/PageTemplate";
 import { getSampleImage } from "../lib/styles/utils";
 import OptionModal from "../components/courseDetail/OptionModal";
 import useToggle from "../lib/hooks/useToggle";
@@ -11,6 +10,7 @@ import PolicySection from "../components/courseDetail/PolicySection";
 import { copyToClipboard } from "../lib/utils";
 import Banner from "../components/courseDetail/Banner";
 import HeaderSection from "../components/courseDetail/HeaderSection";
+import PageTemplate from "../components/basics/PageTemplate";
 
 const photo = getSampleImage();
 const course = {
@@ -134,7 +134,7 @@ function CourseDetail() {
     };
 
     return (
-        <PageTemplate>
+        <PageTemplate gnbVisible>
             <Banner onClickShare={handleShare} banners={banners} />
             <HeaderSection
                 title={title}

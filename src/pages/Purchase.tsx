@@ -8,7 +8,7 @@ import PolicyAgreement from "../components/purchase/PolicyAgreement";
 import BottomActionBar from "../components/purchase/BottomActionBar";
 import ProductInfo from "../components/common/ProductInfo";
 import styled from "styled-components";
-import PageTemplatexxx from "../components/basics/PageTemplatexxx";
+import PageTemplate from "../components/basics/PageTemplate";
 import PageHeader from "../components/common/PageHeader";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -92,7 +92,7 @@ function Purchase() {
     }
 
     return (
-        <PageTemplatexxx>
+        <PageTemplate>
             <PageHeader title="결제" />
             <InfoContainer>
                 {data.photoInfo && (
@@ -178,7 +178,7 @@ function Purchase() {
                 buttonAvailable={isSubmitBtnAvailable()}
                 totalPaymentAmount={data.paymentInfo.price}
             />
-        </PageTemplatexxx>
+        </PageTemplate>
     );
 }
 

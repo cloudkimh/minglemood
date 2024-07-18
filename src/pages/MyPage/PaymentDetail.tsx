@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import PageTemplatexxx from "../../components/basics/PageTemplatexxx";
+import PageTemplate from "../../components/basics/PageTemplate";
 import ProductInfo from "../../components/common/ProductInfo";
 import { getSampleImage } from "../../lib/styles/utils";
 import PageHeader from "../../components/common/PageHeader";
@@ -24,7 +24,7 @@ const samplePaymentInfo = {
 
 function PaymentDetail() {
     return (
-        <PageTemplatexxx>
+        <PageTemplate>
             <PageHeader title="예약 상세" />
             <ProductInfoSection>
                 <ProductInfo
@@ -62,7 +62,7 @@ function PaymentDetail() {
                     예약 취소
                 </CancelBtn>
             </BtnWrapper>
-        </PageTemplatexxx>
+        </PageTemplate>
     );
 }
 

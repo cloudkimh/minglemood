@@ -3,7 +3,7 @@ import AvatarSection from "../components/setting/AvatarSection";
 import palette from "../lib/styles/palette";
 import AliasSection from "../components/setting/AliasSection";
 import BioSection from "../components/setting/BioSection";
-import PageTemplatexxx from "../components/basics/PageTemplatexxx";
+import PageTemplate from "../components/basics/PageTemplate";
 import PageHeader from "../components/common/PageHeader";
 import { getSampleUser } from "../lib/data/sampleUserData";
 import { ChangeEvent, useState } from "react";
@@ -38,7 +38,7 @@ function Setting() {
     };
 
     return (
-        <PageTemplatexxx>
+        <PageTemplate>
             <PageHeader
                 title="프로필 수정"
                 rightSlot={
@@ -48,7 +48,7 @@ function Setting() {
             <AvatarSection avatar={avatar} onChange={onChangeAvatar} />
             <AliasSection alias={alias} onChange={onChangeAlias} />
             <BioSection bio={bio} handleChange={handleChangeBio} />
-        </PageTemplatexxx>
+        </PageTemplate>
     );
 }
 

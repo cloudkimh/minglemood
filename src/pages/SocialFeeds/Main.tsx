@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Feed from "../../components/socialFeeds/main/Feed";
-import PageTemplatexxx from "../../components/basics/PageTemplatexxx";
+import PageTemplate from "../../components/basics/PageTemplate";
 import { ReactComponent as EditIco } from "../../assets/icon/pencil.svg";
 import { getSampleImage } from "../../lib/styles/utils";
 import PageHeader from "../../components/common/PageHeader";
@@ -29,7 +29,7 @@ const samplefeeds = Array(5).fill(feed);
 
 function Main() {
     return (
-        <PageTemplatexxx>
+        <PageTemplate>
             <PageHeader
                 title="모임 피드"
                 rightSlot={
@@ -57,7 +57,7 @@ function Main() {
                     />
                 ))}
             </FeedContainer>
-        </PageTemplatexxx>
+        </PageTemplate>
     );
 }
 

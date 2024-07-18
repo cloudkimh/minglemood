@@ -1,5 +1,5 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
-import PageTemplatexxx from "../../components/basics/PageTemplatexxx";
+import PageTemplate from "../../components/basics/PageTemplate";
 import TapNav from "../../components/mypage/history/TapNav";
 import Scheduled from "../../components/mypage/history/Scheduled";
 import Finished from "../../components/mypage/history/Finished";
@@ -10,7 +10,7 @@ function History() {
     const navigate = useNavigate();
 
     return (
-        <PageTemplatexxx>
+        <PageTemplate>
             <PageHeader
                 title="모임내역"
                 handleClickPrevPageBtn={() => navigate("/mypage")}
@@ -21,7 +21,7 @@ function History() {
                 <Route path="finished" element={<Finished />} />
                 <Route path="canceled" element={<Canceled />} />
             </Routes>
-        </PageTemplatexxx>
+        </PageTemplate>
     );
 }
 

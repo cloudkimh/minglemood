@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PageTemplatexxx from "../../components/basics/PageTemplatexxx";
+import PageTemplate from "../../components/basics/PageTemplate";
 import PageHeader from "../../components/common/PageHeader";
 import UploadPhoto from "../../components/socialFeeds/write/UploadPhoto";
 import Rating from "../../components/socialFeeds/write/Rating";
@@ -10,6 +10,7 @@ import { SectionDivider } from "../../components/common/styles/Common";
 import TextInput from "../../components/socialFeeds/write/TextInput";
 import { DefaultButton } from "../../components/common/styles/Buttons";
 import palette from "../../lib/styles/palette";
+import { FixedBarContainer } from "../../components/common/styles/Containers";
 
 export type PostPhoto = {
     url: string;
@@ -60,7 +61,7 @@ function Write() {
     };
 
     return (
-        <PageTemplatexxx>
+        <PageTemplate>
             <PageHeader title="피드 쓰기" />
             <MainContainer>
                 <InfoSection>
@@ -81,7 +82,7 @@ function Write() {
                 />
                 <TextInput text={postText} onChange={onChangeTextInput} />
             </MainContainer>
-            <ButtonContainer>
+            <ButtonContainer locate="bottom">
                 <PostBtn
                     onClick={onClickPost}
                     color={palette.red500}
@@ -90,7 +91,7 @@ function Write() {
                     등록하기
                 </PostBtn>
             </ButtonContainer>
-        </PageTemplatexxx>
+        </PageTemplate>
     );
 }
 
@@ -103,12 +104,9 @@ const InfoSection = styled.section`
     padding: 0 20px 30px;
 `;
 
-const ButtonContainer = styled.div`
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+const ButtonContainer = styled(FixedBarContainer)`
     background-color: ${palette.white0};
-    padding: 10px 20px 20px;
+    padding: 10px 20px;
 `;
 
 const PostBtn = styled(DefaultButton)`

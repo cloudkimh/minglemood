@@ -1,6 +1,6 @@
 import UserHeader from "../../components/mypage/main/UserHeader";
 import UserMenu from "../../components/mypage/main/UserMenu";
-import PageTemplatexxx from "../../components/basics/PageTemplatexxx";
+import PageTemplate from "../../components/basics/PageTemplate";
 import { getSampleUser } from "../../lib/data/sampleUserData";
 import MenuItem from "../../components/mypage/main/UserMenu/MenuItem";
 import { SectionDivider } from "../../components/common/styles/Common";
@@ -10,7 +10,7 @@ function Main() {
     const user = getSampleUser();
 
     return (
-        <PageTemplatexxx gnbVisible>
+        <PageTemplate gnbVisible>
             <UserHeader alias={user.alias} avatar={user.avatar} />
             <UserMenu title="내 활동">
                 <MenuItem
@@ -50,7 +50,7 @@ function Main() {
                     text="로그아웃"
                 />
             </UserMenu>
-        </PageTemplatexxx>
+        </PageTemplate>
     );
 }
 
