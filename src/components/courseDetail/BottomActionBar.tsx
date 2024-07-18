@@ -40,7 +40,7 @@ const Block = styled.div`
     column-gap: 5px;
     background-color: ${palette.white0};
     box-shadow: 0px 0px 20px 0px ${palette.black2}${withOpacity(0.15)};
-    padding: 5px 20px 20px;
+    padding: 10px 20px;
 `;
 
 const LikeBtn = styled.button`
@@ -48,7 +48,7 @@ const LikeBtn = styled.button`
     place-items: center;
     width: 40px;
     height: 40px;
-    border: 1px solid #ddd9d8;
+    border: 1px solid ${palette.gray4};
     border-radius: 5px;
     background-color: ${palette.white0};
 `;

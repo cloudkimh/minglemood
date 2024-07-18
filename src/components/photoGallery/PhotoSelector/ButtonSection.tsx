@@ -38,7 +38,7 @@ const Block = styled.div`
     display: flex;
     column-gap: 4px;
     width: 100%;
-    padding: 10px 20px 20px;
+    padding: 10px 20px;
     background-color: ${palette.white0};
 `;
 

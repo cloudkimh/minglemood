@@ -24,7 +24,7 @@ function BottomActionBar(props: BottomActionBarProps) {
 const Block = styled.div`
     width: 100%;
     background-color: ${palette.white0};
-    padding: 10px 20px 25px;
+    padding: 10px 20px;
 `;
 
 const SubmitBtn = styled.button`

@@ -34,7 +34,7 @@ const Block = styled.div<{ visible: boolean }>`
     visibility: ${(props) => (props.visible ? "visible" : "hidden")};
     background-color: ${palette.white0};
     transform: translateX(-50%);
-    padding: 20px 20px;
+    padding: 20px 20px 10px;
 `;
 
 const PriceBlock = styled.div`
