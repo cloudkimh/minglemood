@@ -1,6 +1,4 @@
-/* wemuz default font - nanum square */
 @import url("https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css");
-/* default styles of splidejs */
 @import "@splidejs/react-splide/css/core";
 
 /* css reset */

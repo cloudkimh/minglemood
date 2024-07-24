@@ -1,4 +1,4 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow:
-Sitemap: https://app.wemuz.me/sitemap.xml
+Sitemap: https://club.minglemood.city/sitemap.xml

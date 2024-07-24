@@ -7,7 +7,7 @@ const Sitemap = require("react-router-sitemap").default;
 
 function generateSitemap() {
     return new Sitemap(router)
-        .build("https://app.wemuz.me")
+        .build("https://club.minglemood.city")
         .save("./public/sitemap.xml");
 }
 
