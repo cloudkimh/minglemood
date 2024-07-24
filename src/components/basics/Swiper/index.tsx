@@ -7,20 +7,36 @@ import {
 import styled, { css } from "styled-components";
 
 interface SwiperProps extends SplideProps {
+    hasPagination?: boolean;
     hasBtns?: boolean;
 }
 
 function Swiper(props: SwiperProps) {
-    const { children, ...rest } = props;
+    const { children, hasPagination, hasBtns, ...rest } = props;
 
-    return <Block {...rest}>{children}</Block>;
+    return (
+        <Block paginationVisible={hasPagination} btnVisible={hasBtns} {...rest}>
+            {children}
+        </Block>
+    );
 }
 
-const Block = styled(Splide)<{ hasBtns?: boolean }>`
-    ${({ hasBtns }) =>
-        !hasBtns &&
+const Block = styled(Splide)<{
+    btnVisible?: boolean;
+    paginationVisible?: boolean;
+}>`
+    ${({ btnVisible }) =>
+        !btnVisible &&
         css`
             .splide__arrows {
+                display: none;
+            }
+        `}
+
+    ${({ paginationVisible }) =>
+        !paginationVisible &&
+        css`
+            .splide__pagination {
                 display: none;
             }
         `}

@@ -21,8 +21,7 @@ function App() {
             <PageHelmet
                 title="밍글무드"
                 description="밍글무드"
-                // imgSrc={opengraphImg}
-                // url="https://app.wemuz.me/"
+                url="https://club.minglemood.city/"
             />
             <Routes>
                 <Route index element={<Home />} />

@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import media from "../../../lib/styles/media";
 import palette from "../../../lib/styles/palette";
 
 export const SwiperPageBtnContainer = styled.div.attrs({
@@ -20,21 +19,14 @@ export const SwiperPagination = styled.ul.attrs({
 
 export const swiperCirclePageBtnStyle = css`
     button {
-        width: 8px;
-        height: 8px;
+        width: 7px;
+        height: 7px;
         border-radius: 50%;
-        background-color: ${palette.white2};
+        background-color: ${palette.gray2};
     }
 
     button.is-active {
-        background-color: ${palette.purple0};
-    }
-
-    ${media.mobile} {
-        button {
-            width: 6px;
-            height: 6px;
-        }
+        background-color: ${palette.white0};
     }
 `;
 
@@ -44,12 +36,6 @@ export const SwiperCircleBtnPagination = styled.ul.attrs({
     ${swiperCirclePageBtnStyle}
 
     li + li {
-        margin-left: 12px;
-    }
-
-    ${media.mobile} {
-        li + li {
-            margin-left: 10px;
-        }
+        margin-left: 7px;
     }
 `;

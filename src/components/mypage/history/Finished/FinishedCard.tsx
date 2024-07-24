@@ -6,6 +6,7 @@ import { DefaultButton } from "../../../common/styles/Buttons";
 import palette from "../../../../lib/styles/palette";
 import { ReactComponent as WriteFeedIco } from "../../../../assets/icon/pencil.svg";
 import { ReactComponent as PhotoIco } from "../../../../assets/icon/photo.svg";
+import { Link } from "react-router-dom";
 
 export type FinishedCardProps = {
     timestamp: string;
@@ -31,7 +32,12 @@ function FinishedCard(props: FinishedCardProps) {
                 count={count}
             />
             <BtnContainer>
-                <CardBtn styleType="outlined" color={palette.red500}>
+                <CardBtn
+                    as={Link}
+                    to={`/photo-gallery/${id}`}
+                    styleType="outlined"
+                    color={palette.red500}
+                >
                     <PhotoIco />
                     모임 참여 사진
                 </CardBtn>

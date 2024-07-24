@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import palette from "../../lib/styles/palette";
-import { ReactComponent as HeartIco } from "../../assets/icon/like-heart.svg";
+import Icon from "../basics/Icon";
 
 export type EmptyProps = {
     mainText: string;
@@ -13,7 +13,7 @@ function Empty(props: EmptyProps) {
 
     return (
         <Block>
-            <StyledHeartIco />
+            <StyledHeartIco name="heart-outlined" />
             <MainText>{mainText}</MainText>
             <SubText>{subText}</SubText>
             <RedirectBtn onClick={onRedirect}>둘러보기</RedirectBtn>
@@ -28,7 +28,7 @@ const Block = styled.div`
     padding: 100px 0;
 `;
 
-const StyledHeartIco = styled(HeartIco)`
+const StyledHeartIco = styled(Icon)`
     width: 60px;
     height: 60px;
 `;

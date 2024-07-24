@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 import Dropdown from "../../basics/Dropdown";
 import palette from "../../../lib/styles/palette";
-import { useState } from "react";
 import {
     basicDropdownItemStyle,
     basicDropdownMenuStyle,
@@ -9,11 +8,11 @@ import {
 import { ReactComponent as ChevonIco } from "../../../assets/icon/chevron-up.svg";
 
 export type CreditCardOptionProps = {
-    currentValue: string;
+    currentValue: string | null;
     handleSelect: (value: string) => void;
 };
 
-const cards = [
+const CARD_LIST = [
     "기업 비씨",
     "광주은행",
     "롯데카드",
@@ -27,7 +26,6 @@ const cards = [
 
 function CreditCardOption(props: CreditCardOptionProps) {
     const { currentValue, handleSelect } = props;
-    const [testValue, setTestValue] = useState("");
 
     return (
         <Block>
@@ -36,18 +34,18 @@ function CreditCardOption(props: CreditCardOptionProps) {
                     <>
                         <OptionTrigger
                             onClick={toggleMenu}
-                            active={!!testValue}
+                            active={!!currentValue}
                         >
-                            {testValue
-                                ? testValue
+                            {currentValue
+                                ? currentValue
                                 : "[필수] 카드사를 선택해주세요."}
                             <DropdownIcon rotated={isOpened} />
                         </OptionTrigger>
                         <OptionMenu visible={isOpened}>
-                            {cards.map((aCard) => (
+                            {CARD_LIST.map((aCard) => (
                                 <MenuItem
                                     onClick={() => {
-                                        setTestValue(aCard);
+                                        handleSelect(aCard);
                                         toggleMenu();
                                     }}
                                 >

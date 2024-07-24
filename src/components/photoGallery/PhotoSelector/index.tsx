@@ -37,8 +37,10 @@ function PhotoSelector(props: PhotoSelectorProps) {
 
     const handleHighQualityDownload = () => {
         const data = {
-            productType: "photo",
-            productInfo: {
+            paymentInfo: {
+                price: 5000,
+            },
+            photoInfo: {
                 photos: photos.filter((_, i) => photoCheckedList[i] === true),
                 photographer: "테스트 이름",
                 fileType: "JPEG",
@@ -89,6 +91,7 @@ const Block = styled.div`
     position: fixed;
     top: 0;
     width: 100%;
+    max-width: 768px;
     height: 100%;
     background-color: ${palette.white0};
 `;

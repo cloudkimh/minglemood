@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import PageTemplatexxx from "../components/basics/PageTemplatexxx";
+import PageTemplate from "../components/basics/PageTemplate";
 import PageHeader from "../components/common/PageHeader";
 import palette from "../lib/styles/palette";
 import { getSampleImage } from "../lib/styles/utils";
@@ -42,7 +42,7 @@ function PhotoGallery() {
     };
 
     return (
-        <PageTemplatexxx>
+        <PageTemplate>
             <PageHeader
                 title="모임 참여 사진"
                 rightSlot={
@@ -66,7 +66,7 @@ function PhotoGallery() {
                     onClose={onCloseSelector}
                 />
             )}
-        </PageTemplatexxx>
+        </PageTemplate>
     );
 }
 

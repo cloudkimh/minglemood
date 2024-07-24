@@ -1,48 +1,63 @@
 import styled from "styled-components";
-import PageTemplate from "../components/basics/PageTemplate";
 import AvatarSection from "../components/setting/AvatarSection";
 import palette from "../lib/styles/palette";
 import AliasSection from "../components/setting/AliasSection";
 import BioSection from "../components/setting/BioSection";
+import PageTemplate from "../components/basics/PageTemplate";
+import PageHeader from "../components/common/PageHeader";
+import { getSampleUser } from "../lib/data/sampleUserData";
+import { ChangeEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-export type SettingProps = {};
+function Setting() {
+    const user = getSampleUser();
+    const [avatar, setAvatar] = useState<string>(user.avatar);
+    const [alias, setAlias] = useState<string>(user.alias);
+    const [bio, setBio] = useState<string>(user.bio);
+    const navigate = useNavigate();
 
-function Setting(props: SettingProps) {
+    const onChangeAvatar = (value: string) => setAvatar(value);
+
+    const onChangeAlias = (e: ChangeEvent<HTMLInputElement>) => {
+        const { value } = e.target;
+        setAlias(value);
+    };
+
+    const handleChangeBio = (value: string) => setBio(value);
+
+    const onClickSaveBtn = () => {
+        const postUser = {
+            avatar,
+            alias,
+            bio,
+        };
+        // do saync
+        toast.success("프로필 수정을 완료했습니다.");
+        navigate("/mypage");
+    };
+
     return (
         <PageTemplate>
-            <Block>
-                <Header>
-                    <Title>내 정보</Title>
-                    <SaveButton>저장</SaveButton>
-                </Header>
-                <AvatarSection />
-                <AliasSection />
-                <BioSection />
-            </Block>
+            <PageHeader
+                title="프로필 수정"
+                rightSlot={
+                    <SaveButton onClick={onClickSaveBtn}>저장</SaveButton>
+                }
+            />
+            <AvatarSection avatar={avatar} onChange={onChangeAvatar} />
+            <AliasSection alias={alias} onChange={onChangeAlias} />
+            <BioSection bio={bio} handleChange={handleChangeBio} />
         </PageTemplate>
     );
 }
 
-const Block = styled.div`
-    margin-top: 100px;
-`;
-
-const Header = styled.header`
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid ${palette.gray5};
-    padding: 40px 20px;
-`;
-
-const Title = styled.h1`
-    font-size: 24px;
-    font-weight: 800;
-`;
-
 const SaveButton = styled.button`
+    display: block;
     font-size: 14px;
     font-weight: 700;
     color: ${palette.red500};
+    margin-left: auto;
 `;
 
 export default Setting;

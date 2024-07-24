@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { SectionContainer, SectionHeader, SectionTitle } from "./styles";
+import { SectionContainer, SectionTitle } from "./styles";
 import { useEffect, useRef } from "react";
 import palette from "../../lib/styles/palette";
 import { copyToClipboard } from "../../lib/utils";
-import CopyContentIcon from "../../assets/icon/CourseDetail/MapSection/copy-content.svg";
 import { SectionDivider } from "../common/styles/Common";
+import Icon from "../basics/Icon";
 
 export type MapSectionProps = {
     lat: number;
@@ -31,22 +31,22 @@ function MapSection(props: MapSectionProps) {
         }
     }, []);
 
-    const onCopyBtnClick = () => {
+    const onClickCopyBtn = () => {
         copyToClipboard(address, "클립보드에 주소를 복사했습니다.");
     };
 
     return (
         <>
             <SectionContainer>
-                <StyledSectionHeader>
+                <Header>
                     <SectionTitle>장소</SectionTitle>
-                </StyledSectionHeader>
+                </Header>
                 <MapCanvas ref={mapRef} />
                 <PlaceInfo>
-                    <AddressCopy onClick={onCopyBtnClick}>
-                        <img alt="btn to copy address" src={CopyContentIcon} />{" "}
+                    <CopyBtn onClick={onClickCopyBtn}>
+                        <Icon name="copy" />
                         주소복사
-                    </AddressCopy>
+                    </CopyBtn>
                     <Address>{address}</Address>
                 </PlaceInfo>
             </SectionContainer>
@@ -55,8 +55,9 @@ function MapSection(props: MapSectionProps) {
     );
 }
 
-const StyledSectionHeader = styled(SectionHeader)`
-    margin-bottom: 11px;
+const Header = styled.header`
+    padding: 0 20px;
+    margin-bottom: 10px;
 `;
 
 const MapCanvas = styled.div`
@@ -70,10 +71,13 @@ const PlaceInfo = styled.div`
     padding: 0 20px;
 `;
 
-const AddressCopy = styled.button`
-    color: ${palette.gray2};
+const CopyBtn = styled.button`
+    display: flex;
+    align-items: center;
+    column-gap: 3px;
     font-size: 11px;
-    font-weight: 500;
+    color: ${palette.gray2};
+    padding: 3px;
 `;
 
 const Address = styled.p`

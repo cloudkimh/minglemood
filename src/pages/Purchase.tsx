@@ -1,7 +1,6 @@
-import { getSampleImage } from "../lib/styles/utils";
 import PaymentMethod from "../components/purchase/PaymentMethod";
 import { SectionDivider } from "../components/common/styles/Common";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import Coupon from "../components/purchase/Coupon";
 import Point from "../components/purchase/Point";
 import Summary from "../components/purchase/Summary";
@@ -9,63 +8,100 @@ import PolicyAgreement from "../components/purchase/PolicyAgreement";
 import BottomActionBar from "../components/purchase/BottomActionBar";
 import ProductInfo from "../components/common/ProductInfo";
 import styled from "styled-components";
-import PageTemplatexxx from "../components/basics/PageTemplatexxx";
+import PageTemplate from "../components/basics/PageTemplate";
 import PageHeader from "../components/common/PageHeader";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import PhotoCarousel from "../components/common/PhotoCarousel";
 import OptionInfo from "../components/common/OptionInfo";
+import { getDayString } from "../lib/utils";
+import { ProductOptionInfo } from "../components/courseDetail/types";
 
-const samplePaymentInfo = {
-    thumbnail: getSampleImage(),
-    region: "부산",
-    title: "하루만에 끝내는 스마트폰 사진 촬영과 보정법 (필터 공유)",
-    rate: 4.9,
-    reviewCnt: 128,
-    date: "2024년 5월 7일 17시 0분",
-    count: 2,
-    price: 20000,
+type PhotoTypeProductInfo = {
+    photos: Array<string>;
+    photographer: string;
+    fileType: string;
+    size: string;
+    license: string;
+};
+
+type CourseTypeProductInfo = {
+    options: Array<ProductOptionInfo>;
+    date: Date;
+    count: number;
+    id: number;
+    thumbnail: string;
+    region: string;
+    title: string;
+    rating: number;
+    reviewCnt: number;
 };
 
 function Purchase() {
     const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
+    const [creditCard, setCreditCard] = useState<string | null>(null);
+    const [policyChecked, setPolicyChecked] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
     const data = location.state as {
-        productType: string;
-        productInfo?: {
-            [key: string]: any;
+        paymentInfo: {
+            price: number;
         };
+        photoInfo?: PhotoTypeProductInfo;
+        courseInfo?: CourseTypeProductInfo;
     };
 
     useEffect(() => {
         if (!data) {
             navigate("/");
+            toast.error("잘못된 경로로 접근했습니다. 다시 시도 해주세요");
         }
     }, []);
 
     const handleSelectPaymentMethod = (value: string) => {
         setPaymentMethod(value);
+        setCreditCard(null);
+    };
+
+    const handleSelectCreditCard = (value: string) => {
+        setCreditCard(value);
+    };
+
+    const onChangePolicy = (e: ChangeEvent<HTMLInputElement>) => {
+        const { checked } = e.target;
+        setPolicyChecked(checked);
+    };
+
+    const formatDateText = (dateData: Date) => {
+        const year = dateData.getFullYear();
+        const month = dateData.getMonth() + 1;
+        const date = dateData.getDate();
+        const day = getDayString(dateData.getDay());
+        return `${year}년 ${month}월 ${date}일 (${day})`;
+    };
+
+    const isSubmitBtnAvailable = () => {
+        if (!paymentMethod) return false;
+        if (paymentMethod === "creditcard" && !creditCard) return false;
+        if (!policyChecked) return false;
+        return true;
     };
 
     if (!data) {
-        toast.error("잘못된 경로로 접근했습니다. 다시 시도 해주세요");
         return null;
     }
 
     return (
-        <PageTemplatexxx>
+        <PageTemplate>
             <PageHeader title="결제" />
             <InfoContainer>
-                {data.productType === "photo" ? (
+                {data.photoInfo && (
                     <>
                         <PhotoCarouselWrapper>
                             <PhotoCarousel>
-                                {data.productInfo?.photos.map(
-                                    (aPhoto: string) => (
-                                        <PhotoCarousel.Slide path={aPhoto} />
-                                    )
-                                )}
+                                {data.photoInfo.photos.map((aPhoto: string) => (
+                                    <PhotoCarousel.Slide path={aPhoto} />
+                                ))}
                             </PhotoCarousel>
                         </PhotoCarouselWrapper>
                         <OptionInfo
@@ -73,46 +109,47 @@ function Purchase() {
                             optionList={[
                                 {
                                     label: "작가명",
-                                    value: data.productInfo?.photographer,
+                                    value: data.photoInfo.photographer,
                                 },
                                 {
                                     label: "파일 종류",
-                                    value: data.productInfo?.fileType,
+                                    value: data.photoInfo.fileType,
                                 },
                                 {
                                     label: "파일 크기",
-                                    value: data.productInfo?.size,
+                                    value: data.photoInfo.size,
                                 },
                                 {
                                     label: "라이선스",
-                                    value: data.productInfo?.license,
+                                    value: data.photoInfo.license,
                                 },
                             ]}
                         />
                     </>
-                ) : (
+                )}
+                {data.courseInfo && (
                     <>
                         <ProductInfo
-                            thumbnail={samplePaymentInfo.thumbnail}
-                            region={samplePaymentInfo.region}
-                            title={samplePaymentInfo.title}
-                            rate={samplePaymentInfo.rate}
-                            reviewCnt={samplePaymentInfo.reviewCnt}
+                            thumbnail={data.courseInfo.thumbnail}
+                            region={data.courseInfo.region}
+                            title={data.courseInfo.title}
+                            rating={data.courseInfo.rating}
+                            reviewCnt={data.courseInfo.reviewCnt}
                         />
                         <OptionInfo
                             title="결제정보"
                             optionList={[
                                 {
                                     label: "일정",
-                                    value: samplePaymentInfo.date,
+                                    value: formatDateText(data.courseInfo.date),
                                 },
                                 {
                                     label: "인원",
-                                    value: `${samplePaymentInfo.count}인`,
+                                    value: `${data.courseInfo.count}인`,
                                 },
                                 {
                                     label: "가격",
-                                    value: `${samplePaymentInfo.price.toLocaleString()}원`,
+                                    value: `${data.paymentInfo.price.toLocaleString()}원`,
                                 },
                             ]}
                         />
@@ -121,19 +158,27 @@ function Purchase() {
             </InfoContainer>
             <SectionDivider />
             <PaymentMethod
-                currentValue={paymentMethod}
-                handleChange={handleSelectPaymentMethod}
+                currentMethod={paymentMethod}
+                currentCard={creditCard}
+                handleSelectMethod={handleSelectPaymentMethod}
+                handleSelectCreditCard={handleSelectCreditCard}
             />
             <SectionDivider />
             <Coupon />
             <SectionDivider />
             <Point />
             <SectionDivider />
-            <Summary paymentAmount={samplePaymentInfo.price} />
+            <Summary paymentAmount={data.paymentInfo.price} />
             <SectionDivider />
-            <PolicyAgreement />
-            <BottomActionBar totalPaymentAmount={samplePaymentInfo.price} />
-        </PageTemplatexxx>
+            <PolicyAgreement
+                checked={policyChecked}
+                onChange={onChangePolicy}
+            />
+            <BottomActionBar
+                buttonAvailable={isSubmitBtnAvailable()}
+                totalPaymentAmount={data.paymentInfo.price}
+            />
+        </PageTemplate>
     );
 }
 

@@ -1,49 +1,54 @@
 import styled, { css } from "styled-components";
-import { SectionContainer, SectionHeader, SectionTitle } from "./styles";
+import { SectionContainer, SectionTitle } from "./styles";
 import palette from "../../lib/styles/palette";
 import useToggle from "../../lib/hooks/useToggle";
-import BottomArrowIcon from "../../assets/icon/CourseDetail/bottom-arrow.svg";
 import { SectionDivider } from "../common/styles/Common";
+import Icon from "../basics/Icon";
 
 export type DescriptionSectionProps = {};
 
 function DescriptionSection(props: DescriptionSectionProps) {
     const [showContentsAll, toggleShowContentsAll] = useToggle(false);
 
-    const onShowContentsBtnClick = () => {
-        toggleShowContentsAll();
-    };
+    const onClickShowContentsBtn = () => toggleShowContentsAll();
 
     return (
         <>
             <SectionContainer>
-                <SectionHeader>
+                <Header>
                     <SectionTitle>소개</SectionTitle>
-                </SectionHeader>
-                <DescriptionContents showAll={showContentsAll}>
+                </Header>
+                <Contents contentVisible={showContentsAll}>
                     <TestContent />
                     <TestContent />
                     <TestContent />
                     <TestContent />
-                </DescriptionContents>
-                <ShowContentsBtn onClick={onShowContentsBtnClick}>
-                    {showContentsAll ? "간략히" : "상세정보 더보기"}
-                    <MoreBtn showAll={showContentsAll}>
-                        <img alt="more button icon" src={BottomArrowIcon} />
-                    </MoreBtn>
-                </ShowContentsBtn>
+                </Contents>
+                <BtnWrapper>
+                    <ShowContentsBtn onClick={onClickShowContentsBtn}>
+                        {showContentsAll ? "간략히" : "상세정보 더보기"}
+                        <ChevronIco
+                            name="chevron-down"
+                            rotated={showContentsAll}
+                        />
+                    </ShowContentsBtn>
+                </BtnWrapper>
             </SectionContainer>
             <SectionDivider />
         </>
     );
 }
 
-const DescriptionContents = styled.div<{ showAll: boolean }>`
+const Header = styled.header`
+    padding: 0 20px;
+`;
+
+const Contents = styled.div<{ contentVisible: boolean }>`
     overflow: hidden;
     padding: 20px 20px 30px;
 
     ${(props) =>
-        props.showAll
+        props.contentVisible
             ? css`
                   height: auto;
               `
@@ -62,33 +67,31 @@ const TestContent = styled.div`
     }
 `;
 
+const BtnWrapper = styled.div`
+    padding: 0 20px;
+    margin-top: 20px;
+`;
+
 const ShowContentsBtn = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: calc(100% - 40px);
+    column-gap: 5px;
+    width: 100%;
+    font-weight: 700;
     border: 1px solid ${palette.black0};
-    padding: 21px 0 19px;
-    margin: 80px auto 0;
-    font-size: 12px;
-    font-weight: 600;
+    padding: 20px 0 19px;
 `;
 
-const MoreBtn = styled.div<{ showAll: boolean }>`
+const ChevronIco = styled(Icon)<{ rotated: boolean }>`
     width: 14px;
     height: 14px;
-    margin-left: 5px;
 
     ${(props) =>
-        props.showAll &&
+        props.rotated &&
         css`
             transform: rotate(180deg);
         `}
-
-    img {
-        widght: 100%;
-        vertical-align: middle;
-    }
 `;
 
 export default DescriptionSection;

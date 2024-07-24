@@ -1,32 +1,33 @@
 import styled from "styled-components";
 import palette from "../../lib/styles/palette";
-import LikeHeartDeactive from "../../assets/icon/CourseDetail/like-heart-deactive.svg";
-import LikeHeartActive from "../../assets/icon/like-heart-active.svg";
 import { useState } from "react";
 import { FixedBarContainer } from "../common/styles/Containers";
+import Icon from "../basics/Icon";
+import { withOpacity } from "../../lib/styles/utils";
 
 export type BottomActionBarProps = {
     isLiked: boolean;
-    likes: number;
-    onSubmit: () => void;
+    onClickApply: () => void;
+    onClickShare: () => void;
 };
 
 function BottomActionBar(props: BottomActionBarProps) {
-    const { isLiked, likes, onSubmit } = props;
-    const [isLikedInner, setIsLikedInner] = useState<boolean>(isLiked);
-    const onLikeBtnClick = () => setIsLikedInner(!isLikedInner);
+    const { isLiked: initialIsLiked, onClickApply, onClickShare } = props;
+    const [isLiked, setIsLiked] = useState<boolean>(initialIsLiked);
+    const onLikeBtnClick = () => setIsLiked(!isLiked);
 
     return (
         <FixedBarContainer locate="bottom">
             <Block>
                 <LikeBtn onClick={onLikeBtnClick}>
-                    <LikeIco
-                        alt="icon for like feature"
-                        src={isLikedInner ? LikeHeartActive : LikeHeartDeactive}
-                    />
+                    {isLiked ? (
+                        <LikeIco name="heart-filled" />
+                    ) : (
+                        <LikeIco name="heart-outlined" />
+                    )}
                 </LikeBtn>
-                <ShareBtn>공유하기</ShareBtn>
-                <SubmitBtn onClick={onSubmit}>참여하기</SubmitBtn>
+                <ShareBtn onClick={onClickShare}>공유하기</ShareBtn>
+                <SubmitBtn onClick={onClickApply}>참여하기</SubmitBtn>
             </Block>
         </FixedBarContainer>
     );
@@ -38,8 +39,8 @@ const Block = styled.div`
     grid-template-columns: 40px 1fr 1fr;
     column-gap: 5px;
     background-color: ${palette.white0};
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 20px 0px;
-    padding: 5px 20px 20px;
+    box-shadow: 0px 0px 20px 0px ${palette.black2}${withOpacity(0.15)};
+    padding: 10px 20px;
 `;
 
 const LikeBtn = styled.button`
@@ -47,22 +48,21 @@ const LikeBtn = styled.button`
     place-items: center;
     width: 40px;
     height: 40px;
-    border: 1px solid #ddd9d8;
+    border: 1px solid ${palette.gray4};
     border-radius: 5px;
     background-color: ${palette.white0};
 `;
 
-const LikeIco = styled.img`
+const LikeIco = styled(Icon)`
     width: 24px;
     height: 24px;
-    vertical-align: middle;
 `;
 
 const ShareBtn = styled.button`
     width: 100%;
     height: 40px;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 700;
     border-radius: 5px;
     border: solid 1px ${palette.purple0};
     color: ${palette.purple0};
@@ -74,7 +74,7 @@ const SubmitBtn = styled.button`
     width: 100%;
     height: 40px;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 700;
     color: ${palette.white0};
     border-radius: 5px;
     background-color: ${palette.purple0};

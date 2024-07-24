@@ -1,36 +1,32 @@
+import { ReactNode } from "react";
 import styled from "styled-components";
-import MenuSection from "./MenuSection";
-import MenuItem from "./MenuItem";
-import { HorizontalBar } from "../../../common/styles/Common";
 
-export type UserMenuProps = {};
+export type UserMenuProps = {
+    title: string;
+    children: ReactNode;
+};
 
 function UserMenu(props: UserMenuProps) {
+    const { title, children } = props;
+
     return (
         <Block>
-            <MenuSection title="내 활동">
-                <MenuItem to="/mypage" text="결제내역" />
-            </MenuSection>
-            <SectionDivder />
-            <MenuSection title="호스트">
-                <MenuItem to="/mypage" text="호스트 관리자 페이지" />
-            </MenuSection>
-            <SectionDivder />
-            <MenuSection title="고객센터">
-                <MenuItem to="/mypage" text="공지사항" />
-                <MenuItem to="/mypage" text="FAQ" />
-                <MenuItem to="/mypage" text="고객센터 문의" />
-            </MenuSection>
-            <SectionDivder />
+            <Title>{title}</Title>
+            <MenuContainer>{children}</MenuContainer>
         </Block>
     );
 }
 
 const Block = styled.div`
-    padding: 0 20px;
+    padding: 20px;
 `;
 
-const SectionDivder = styled(HorizontalBar)`
+const Title = styled.header`
+    font-size: 15px;
+    font-weight: 700;
+`;
+
+const MenuContainer = styled.ul`
     margin-top: 20px;
 `;
 

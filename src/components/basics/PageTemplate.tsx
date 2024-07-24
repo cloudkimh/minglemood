@@ -1,17 +1,19 @@
 import styled from "styled-components";
 import palette from "../../lib/styles/palette";
-import { ReactNode, useEffect, useState, useRef } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { hideScrollBar, withOpacity } from "../../lib/styles/utils";
 import Footer from "../common/Footer";
-import throttle from "lodash/throttle";
 import Gnb from "../common/Gnb";
+import { throttle } from "lodash";
 
 type PageTemplateProps = {
+    gnbVisible?: boolean;
+    scrollGnbTransition?: boolean;
     children: ReactNode;
 };
 
 function PageTemplate(props: PageTemplateProps) {
-    const { children } = props;
+    const { gnbVisible, scrollGnbTransition, children } = props;
     const [isScrolled, setIsScrolled] = useState<boolean>(false);
     const pageContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -36,21 +38,19 @@ function PageTemplate(props: PageTemplateProps) {
     }, []);
 
     return (
-        <Block>
-            <PageContainer ref={pageContainerRef}>
-                <Gnb isScrolled={isScrolled} />
-                <PageContents>{children}</PageContents>
-                <Footer />
-            </PageContainer>
+        <Block ref={pageContainerRef}>
+            {gnbVisible && (
+                <Gnb
+                    isTransparent={scrollGnbTransition ? !isScrolled : false}
+                />
+            )}
+            <PageContents>{children}</PageContents>
+            <Footer />
         </Block>
     );
 }
 
 const Block = styled.div`
-    height: 100%;
-`;
-
-const PageContainer = styled.div`
     ${hideScrollBar}
     position: relative;
     background-color: ${palette.white0};

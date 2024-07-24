@@ -14,7 +14,7 @@ function Header(props: HeaderProps) {
     return (
         <Block>
             <Timestamp>{timestamp}</Timestamp>
-            <Link to={`../${id}`}>
+            <Link to={`/mypage/payment/${id}`}>
                 <DetailLinkBtn>
                     상세보기
                     <StyledLinkIco />

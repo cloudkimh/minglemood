@@ -6,13 +6,13 @@ import { VerticalBar } from "../components/common/styles/Common";
 import naverBtnImg from "../assets/img/kakao.svg";
 import kakaoBtnImg from "../assets/img/naver.svg";
 import { useNavigate } from "react-router-dom";
-import PageTemplatexxx from "../components/basics/PageTemplatexxx";
+import PageTemplate from "../components/basics/PageTemplate";
 
 function Login() {
     const navigate = useNavigate();
 
     return (
-        <PageTemplatexxx>
+        <PageTemplate>
             <LogoBlock>
                 <Logo />
             </LogoBlock>
@@ -26,7 +26,13 @@ function Login() {
                     <AccountInput type="text" placeholder="아이디(이메일)" />
                     <AccountInput type="password" placeholder="비밀번호" />
                 </AccountInputBlock>
-                <LoginBtn color={palette.red500} styleType="filled">
+                <LoginBtn
+                    onClick={() => {
+                        navigate("/");
+                    }}
+                    color={palette.red500}
+                    styleType="filled"
+                >
                     로그인
                 </LoginBtn>
                 <ButtonGroup>
@@ -44,7 +50,7 @@ function Login() {
                     <SnsBtn img={naverBtnImg} />
                 </SnsLoginBtnBlock>
             </MainContainer>
-        </PageTemplatexxx>
+        </PageTemplate>
     );
 }
 

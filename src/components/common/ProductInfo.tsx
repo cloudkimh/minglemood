@@ -1,19 +1,19 @@
 import styled from "styled-components";
 import ImageWithFallback from "../basics/ImageWithFallback";
 import palette from "../../lib/styles/palette";
-import { ReactComponent as StarIco } from "../../assets/icon/star.svg";
 import { multiLineEllipsis } from "../../lib/styles/utils";
+import Icon from "../basics/Icon";
 
 export type ProductInfoProps = {
     thumbnail: string;
     region: string;
     title: string;
-    rate: number;
+    rating: number;
     reviewCnt: number;
 };
 
 function ProductInfo(props: ProductInfoProps) {
-    const { thumbnail, region, title, rate, reviewCnt } = props;
+    const { thumbnail, region, title, rating, reviewCnt } = props;
 
     return (
         <Block>
@@ -21,10 +21,10 @@ function ProductInfo(props: ProductInfoProps) {
             <InfoBlock>
                 <Region>{region}</Region>
                 <Title>{title}</Title>
-                <RateBlock>
-                    <StarIco />
-                    <Rate>{`${rate} (${reviewCnt})`}</Rate>
-                </RateBlock>
+                <RatingBlock>
+                    <RatingIco name="star" />
+                    <Rating>{`${rating} (${reviewCnt})`}</Rating>
+                </RatingBlock>
             </InfoBlock>
         </Block>
     );
@@ -61,16 +61,20 @@ const Title = styled.div`
     margin-top: 6px;
 `;
 
-const RateBlock = styled.div`
+const RatingBlock = styled.div`
     display: flex;
     align-items: center;
+    column-gap: 3px;
     margin-top: 16px;
 `;
 
-const Rate = styled.p`
+const RatingIco = styled(Icon)`
+    margin-top: -2px;
+`;
+
+const Rating = styled.p`
     font-size: 12px;
     color: ${palette.gray6};
-    margin-left: 3px;
 `;
 
 export default ProductInfo;

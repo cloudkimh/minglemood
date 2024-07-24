@@ -8,7 +8,7 @@ import { FilterSettings, Location } from "../components/explore/types";
 import FilterModal from "../components/explore/FilterModal";
 import { MAX_COST, MIN_COST } from "../components/explore/variables";
 import SearchedPostsModal from "../components/explore/SearchedPostsModal";
-import PageTemplatexxx from "../components/basics/PageTemplatexxx";
+import PageTemplate from "../components/basics/PageTemplate";
 import styled from "styled-components";
 import palette from "../lib/styles/palette";
 import { ReactComponent as ListIco } from "../assets/icon/bulleted-list.svg";
@@ -88,7 +88,7 @@ function Explore() {
     };
 
     return (
-        <PageTemplatexxx>
+        <PageTemplate>
             <SearchBar
                 currentLocation={currentLocation.name}
                 onClickSearchBtn={toggleSearchModalOpened}
@@ -120,7 +120,7 @@ function Explore() {
                 <ListIco />
                 모임 {posts.length}개 보기
             </FloatBtn>
-        </PageTemplatexxx>
+        </PageTemplate>
     );
 }
 

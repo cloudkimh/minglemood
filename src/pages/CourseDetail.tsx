@@ -1,18 +1,21 @@
 import BottomActionBar from "../components/courseDetail/BottomActionBar";
 import DescriptionSection from "../components/courseDetail/DescriptionSection";
-import HeadSection from "../components/courseDetail/HeadSection";
 import MapSection from "../components/courseDetail/MapSection";
 import ReviewSection from "../components/courseDetail/ReviewSection";
-import TagsSection from "../components/courseDetail/TagsSection";
-import PageTemplate from "../components/basics/PageTemplate";
+import TagsSection from "../components/courseDetail/TagSection";
 import { getSampleImage } from "../lib/styles/utils";
 import OptionModal from "../components/courseDetail/OptionModal";
 import useToggle from "../lib/hooks/useToggle";
 import PolicySection from "../components/courseDetail/PolicySection";
+import { copyToClipboard } from "../lib/utils";
+import Banner from "../components/courseDetail/Banner";
+import HeaderSection from "../components/courseDetail/HeaderSection";
+import PageTemplate from "../components/basics/PageTemplate";
 
 const photo = getSampleImage();
-
 const course = {
+    id: 10,
+    thumbnail: photo,
     banners: Array(4).fill(photo),
     title: "오감으로 맛보고 느끼는 힐링, 월하보이 차와 함께 계절 다회",
     region: "부산",
@@ -61,48 +64,86 @@ const course = {
         lat: 37.3595704,
         lng: 127.105399,
     },
+    option: {
+        name: "성별",
+        data: [
+            {
+                id: 1,
+                name: "[부산] 남 (정가)",
+                price: 49000,
+                count: 12,
+            },
+            {
+                id: 2,
+                name: "[부산] 여 (정가)",
+                price: 49000,
+                count: 12,
+            },
+            {
+                id: 3,
+                name: "[부산] 남 (리뷰 이벤트)",
+                price: 49000,
+                count: 12,
+            },
+            {
+                id: 4,
+                name: "[부산] 여 (리뷰 이벤트)",
+                price: 49000,
+                count: 12,
+            },
+        ],
+    },
 };
 
 function CourseDetail() {
+    const [optionModalOpened, toggleOptionModalOpened] = useToggle(false);
+
     const {
+        id,
+        thumbnail,
         banners,
         title,
         region,
         discountRate,
         price,
         isLiked,
-        likes,
         hostInfo,
         rating,
         reviewCnt,
         reviews,
         place,
+        option,
     } = course;
-    const [optionModalOpened, toggleOptionModalOpened] = useToggle(false);
 
-    const onSubmit = () => {
+    const submitData = {
+        id,
+        thumbnail,
+        region,
+        title,
+        rating,
+        reviewCnt,
+    };
+
+    const onClickApply = () => {
         toggleOptionModalOpened();
     };
 
-    const handleToggleLike = () => {
-        // like async
+    const handleShare = () => {
+        const url = document.location.href;
+        copyToClipboard(url);
     };
 
     return (
-        <PageTemplate>
-            <HeadSection
-                banners={banners}
+        <PageTemplate gnbVisible>
+            <Banner onClickShare={handleShare} banners={banners} />
+            <HeaderSection
                 title={title}
                 region={region}
                 discountRate={discountRate}
                 price={price}
                 hostInfo={hostInfo}
             />
-            <ReviewSection
-                rating={rating}
-                reviewCnt={reviewCnt}
-                reviews={reviews}
-            />
+            <ReviewSection reviewCnt={reviewCnt} reviews={reviews} />
             <DescriptionSection />
             <TagsSection tags={[]} />
             <MapSection
@@ -113,16 +154,16 @@ function CourseDetail() {
             />
             <PolicySection />
             <OptionModal
+                submitData={submitData}
+                optionName={option.name}
+                optionData={option.data}
                 visible={optionModalOpened}
                 handleClose={toggleOptionModalOpened}
-                isLiked={isLiked}
-                likes={likes}
-                handleToggleLike={handleToggleLike}
             />
             <BottomActionBar
                 isLiked={isLiked}
-                likes={likes}
-                onSubmit={onSubmit}
+                onClickApply={onClickApply}
+                onClickShare={handleShare}
             />
         </PageTemplate>
     );

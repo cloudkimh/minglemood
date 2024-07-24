@@ -21,20 +21,20 @@ function Succeed(props: SucceedProps) {
     if (!visible) return null;
 
     return (
-        <Block>
+        <Block visible={visible}>
             <TextContainer>
                 <Logo />
                 <MainText>환영합니다. {name}님!</MainText>
                 <SubText>회원가입이 완료 되었어요.</SubText>
             </TextContainer>
-            <ToHomeBtn onClick={onClickToHomeBtn}>홈으로</ToHomeBtn>
+            <BottomBtn onClick={onClickToHomeBtn}>홈으로</BottomBtn>
         </Block>
     );
 }
 
-const Block = styled.div`
+const Block = styled.div<{ visible: boolean }>`
     ${animation(fadeInFromLeft, 0.3)}
-    display: grid;
+    display: ${(props) => (props.visible ? "grid" : "none")};
     grid-template-rows: 1fr 40px;
     place-items: center;
     height: 100%;

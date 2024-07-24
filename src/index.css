@@ -1,6 +1,4 @@
-/* wemuz default font - nanum square */
 @import url("https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css");
-/* default styles of splidejs */
 @import "@splidejs/react-splide/css/core";
 
 /* css reset */
@@ -137,14 +135,20 @@ button {
     cursor: pointer;
     padding: 0;
 }
+button:focus,
+button:active {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
 a {
     text-decoration: none;
 }
 * {
     box-sizing: border-box;
-    font-family: "Noto Sans", "NanumSquareRound", -apple-system,
-        BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-        "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-family: "NanumSquareRound", -apple-system, BlinkMacSystemFont,
+        "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+        "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
 /* css fonts */

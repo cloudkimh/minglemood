@@ -4,7 +4,9 @@ import Account from "../components/signUp/Account";
 import { useState } from "react";
 import PhoneVertify from "../components/signUp/PhoneVertify";
 import Succeed from "../components/signUp/Succeed";
-import PageTemplatexxx from "../components/basics/PageTemplatexxx";
+import styled from "styled-components";
+import { hideScrollBar, withOpacity } from "../lib/styles/utils";
+import palette from "../lib/styles/palette";
 
 type PostUser = {
     id: string | null;
@@ -37,7 +39,7 @@ function SignUp() {
     };
 
     return (
-        <PageTemplatexxx>
+        <Block>
             <Account
                 visible={phaseNum === 0}
                 handleToNextPhase={handleConfirmAccountPhase}
@@ -52,8 +54,19 @@ function SignUp() {
                 visible={policyModalOpened}
                 onClickStartBtn={handleClickStartBtn}
             />
-        </PageTemplatexxx>
+        </Block>
     );
 }
+
+const Block = styled.div`
+    ${hideScrollBar}
+    position: relative;
+    background-color: ${palette.white0};
+    max-width: 768px;
+    height: 100%;
+    overflow: auto;
+    box-shadow: ${palette.gray2}${withOpacity(0.2)} 0px 0px 20px;
+    margin: 0 auto;
+`;
 
 export default SignUp;

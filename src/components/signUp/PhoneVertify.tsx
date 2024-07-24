@@ -129,9 +129,9 @@ function PhoneVertify(props: PhoneVertifyProps) {
                         </VertifyNumBlock>
                     )}
                 </div>
-                <ConfirmBtn onClick={onClickConfirmBtn} disabled={!vertified}>
+                <BottomBtn onClick={onClickConfirmBtn} disabled={!vertified}>
                     가입하기
-                </ConfirmBtn>
+                </BottomBtn>
             </Block>
         </>
     );
@@ -144,8 +144,6 @@ const Block = styled.div`
     height: 100%;
     padding: 65px 20px 20px;
 `;
-
-const ConfirmBtn = styled(BottomBtn)``;
 
 const NameInput = styled(TextInput)`
     width: 100%;

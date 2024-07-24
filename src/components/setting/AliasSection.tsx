@@ -1,39 +1,27 @@
 import styled from "styled-components";
-import { InputLabel, TextInput } from "./styles";
-import palette from "../../lib/styles/palette";
-import { ChangeEvent, useRef, useState } from "react";
+import { InputLabel } from "./styles";
+import { ChangeEvent } from "react";
+import { TextInput } from "../common/styles/Inputs";
 
-export type AliasSectionProps = {};
+export type AliasSectionProps = {
+    alias: string;
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+};
 
 function AliasSection(props: AliasSectionProps) {
-    const [value, setValue] = useState("");
-    const inputRef = useRef<HTMLInputElement>(null);
-
-    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setValue(e.currentTarget.value);
-    };
-
-    const onClickResetBtn = () => {
-        if (inputRef.current) {
-            inputRef.current.value = "";
-        }
-    };
+    const { alias, onChange } = props;
 
     return (
         <Block>
             <InputLabel>닉네임</InputLabel>
-            <InputWrapper>
-                <TextInput
-                    ref={inputRef}
-                    type="text"
-                    placeholder="한글, 영문 2~10자"
-                    onChange={onChange}
-                />
-                <ResetBtn
-                    visible={!!value}
-                    onClick={onClickResetBtn}
-                ></ResetBtn>
-            </InputWrapper>
+            <AliasInput
+                type="text"
+                value={alias}
+                placeholder="2~10자 이내여야 합니다."
+                maxLength={10}
+                minLength={2}
+                onChange={onChange}
+            />
         </Block>
     );
 }
@@ -43,20 +31,9 @@ const Block = styled.section`
     margin-top: 40px;
 `;
 
-const InputWrapper = styled.div`
-    position: relative;
-    margin-top: 8px;
-`;
-
-const ResetBtn = styled.button<{ visible: boolean }>`
-    display: ${(props) => (props.visible ? "block" : "none")};
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: ${palette.gray3};
+const AliasInput = styled(TextInput)`
+    width: 100%;
+    margin-top: 4px;
 `;
 
 export default AliasSection;

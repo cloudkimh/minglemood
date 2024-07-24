@@ -3,7 +3,7 @@
         "relation": ["delegate_permission/common.handle_all_urls"],
         "target": {
             "namespace": "android_app",
-            "package_name": "me.wemuz.app.twa",
+            "package_name": "me.minglemood.app.twa",
             "sha256_cert_fingerprints": [
                 "FE:3A:EC:1D:77:D1:C4:91:13:43:F0:0E:56:9B:50:C9:57:97:CC:17:EF:57:A1:E1:27:20:15:AB:DD:49:FE:6F",
                 "D8:E3:77:57:4F:B7:0D:F5:0E:E5:C4:6A:EE:C0:0C:57:56:14:77:A1:D7:22:AB:37:EC:A8:3D:AE:6E:39:07:F0"
