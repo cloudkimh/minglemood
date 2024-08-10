@@ -7,9 +7,39 @@ import naverBtnImg from "../assets/img/kakao.svg";
 import kakaoBtnImg from "../assets/img/naver.svg";
 import { useNavigate } from "react-router-dom";
 import PageTemplate from "../components/basics/PageTemplate";
+import React, { useState } from "react";
 
 function Login() {
     const navigate = useNavigate();
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleLogin = async () => {
+        await new Promise((r) => setTimeout(r, 1000));
+
+        const response = await fetch(
+            process.env.REACT_APP_HOST + "members/sign-in",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password : password
+                }),
+            }
+        );
+
+        const result = await response.json();
+        if (response.status === 200) {
+            if (result.accessToken) {
+                localStorage.setItem('login-token', result.accessToken);
+                localStorage.setItem('refresh-token', result.refreshToken);
+            }
+            navigate("/");
+        }
+    };
 
     return (
         <PageTemplate>
@@ -23,12 +53,14 @@ function Login() {
                     여행을 시작해 보세요!
                 </MainText>
                 <AccountInputBlock>
-                    <AccountInput type="text" placeholder="아이디(이메일)" />
-                    <AccountInput type="password" placeholder="비밀번호" />
+                    <AccountInput type="text" placeholder="아이디(이메일)" id="username"
+                                  value={username} onChange={(e) => setUsername(e.target.value)}/>
+                    <AccountInput type="password" placeholder="비밀번호"  id="password"
+                                  value={password} onChange={(e) => setPassword(e.target.value)}/>
                 </AccountInputBlock>
                 <LoginBtn
                     onClick={() => {
-                        navigate("/");
+                        handleLogin();
                     }}
                     color={palette.red500}
                     styleType="filled"

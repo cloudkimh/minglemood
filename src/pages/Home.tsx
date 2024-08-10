@@ -8,13 +8,30 @@ import ThemeTabs from "../components/home/ThemeTabs";
 import { SectionDivider } from "../components/common/styles/Common";
 import { SectionButton, SectionTitle } from "../components/home/styles";
 import PageTemplate from "../components/basics/PageTemplate";
+import {useEffect, useState} from "react";
 
 const photo = getSampleImage();
 const photos = Array(9).fill(photo);
-const banners = Array(4).fill({
+/*const banners = Array(4).fill({
     image: photo,
     title: "따스한 4월!\n여기로 꽃구경 어때요?",
-});
+});*/
+const banners = [{
+        image: "https://i.ibb.co/j6QvyHk/banner01.png",
+        title: "따스한 4월!\n여기로 꽃구경 어때요?",
+    },
+    {
+        image: "https://i.ibb.co/BVM4nLf/banner02.png",
+        title: "따스한 4월!\n여기로 꽃구경 어때요?",
+    },
+    {
+        image: "https://i.ibb.co/ypS2XCG/banner03.png",
+        title: "따스한 4월!\n여기로 꽃구경 어때요?",
+    },
+    {
+        image: "https://i.ibb.co/txrPShZ/banner04.png",
+        title: "따스한 4월!\n여기로 꽃구경 어때요?",
+    }];
 
 const bestPosts = [
     {
@@ -44,6 +61,38 @@ const bestPosts = [
 ];
 
 function Home() {
+    const [content, setContent] = useState({
+        best: [],
+        latest: [],
+        more1: [],
+        more2: [],
+        reviews:[],
+    });
+    const handleHome = async () => {
+        await new Promise((r) => setTimeout(r, 1000));
+        const response = await fetch(
+            process.env.REACT_APP_HOST + "/program/main",
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        );
+
+        if (response.status === 200) {
+            const result = await response.json();
+            setContent(result); // 유저 정보 상태에 저장
+        } else {
+            alert("알수 없는 오류, 고객센터에 문의 주시기 바랍니다.");
+        }
+
+    };
+
+    useEffect(() => {
+        handleHome(); // 컴포넌트가 마운트될 때 유저 정보 불러오기
+    }, []);
+
     return (
         <PageTemplate gnbVisible scrollGnbTransition>
             <Banner banners={banners} />
@@ -58,25 +107,25 @@ function Home() {
                         </SectionTitle>
                     }
                     headerButton={<SectionButton>더보기</SectionButton>}
-                    posts={bestPosts}
+                    posts={content.best}
                 />
                 <PostSection
                     title={<SectionTitle>최근 본 모임</SectionTitle>}
                     headerButton={<SectionButton>더보기</SectionButton>}
-                    posts={bestPosts}
+                    posts={content.latest}
                 />
                 <PostSection
                     title={<SectionTitle>함께 참여 가능 모임</SectionTitle>}
                     headerButton={<SectionButton>더보기</SectionButton>}
-                    posts={bestPosts}
+                    posts={content.more2}
                 />
                 <PostSection
                     title={<SectionTitle>혼자 참여 가능 모임</SectionTitle>}
                     headerButton={<SectionButton>더보기</SectionButton>}
-                    posts={bestPosts}
+                    posts={content.more1}
                 />
                 <StyledSectionDivider />
-                <PhotoFeeds photos={photos} />
+                <PhotoFeeds reviews={content.reviews} />
             </MainContainer>
         </PageTemplate>
     );

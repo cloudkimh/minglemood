@@ -9,8 +9,8 @@ export type HeaderSectionProps = {
     discountRate?: number;
     price: number;
     hostInfo: {
-        avatar: string;
-        alias: string;
+        profileImg: string,
+        nickname: string,
         courseCnt: number;
         reviewCnt: number;
         likes: number;
@@ -30,8 +30,8 @@ function HeaderSection(props: HeaderSectionProps) {
                     discountRate={discountRate}
                 />
                 <HostInfoCard
-                    avatar={hostInfo.avatar}
-                    alias={hostInfo.alias}
+                    avatar={hostInfo.profileImg}
+                    alias={hostInfo.nickname}
                     courseCnt={hostInfo.courseCnt}
                     reviewCnt={hostInfo.reviewCnt}
                     likes={hostInfo.likes}

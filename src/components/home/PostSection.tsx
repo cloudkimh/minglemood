@@ -12,9 +12,9 @@ export type PostSectionProps = {
         thumbnail: string;
         region: string;
         title: string;
-        starScore: number;
-        starCnt: number;
-        heartCnt: number;
+        rating: number;
+        reviewCnt: number;
+        likeCnt: number;
         price: number;
         isLiked: boolean;
         discountRate?: number;
@@ -35,9 +35,9 @@ function PostSection(props: PostSectionProps) {
                         thumbnail={aPost.thumbnail}
                         region={aPost.region}
                         title={aPost.title}
-                        starScore={aPost.starScore}
-                        starCnt={aPost.starCnt}
-                        heartCnt={aPost.heartCnt}
+                        starScore={aPost.rating}
+                        starCnt={aPost.reviewCnt}
+                        heartCnt={aPost.likeCnt}
                         price={aPost.price}
                         isLiked={aPost.isLiked}
                         discountRate={aPost.discountRate}

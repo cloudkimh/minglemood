@@ -9,16 +9,16 @@ function Footer(props: FooterProps) {
         <Block>
             <CompanyName>Mingle Mood</CompanyName>
             <CompanyInfo>
-                (주)밍글무드 | 사업자 등록번호: 000-00-00000
+                (주)밍글무드 | 사업자 등록번호: 612-52-00914
                 <br />
-                통신판매업신고번호: 0000-부산금정-00000
+                주소 : 부산광역시 영도구 봉래나루로 33
                 <br />
                 대표 : 황다교
             </CompanyInfo>
             <Terms>
-                <TermsLink to="/">이용약관</TermsLink> |{" "}
-                <TermsLink to="/">개인정보 처리방침</TermsLink> |{" "}
-                <TermsLink to="/">위치기반 서비스 이용약관</TermsLink>
+                <TermsLink to="https://mango-marquess-cef.notion.site/dce28a6865b64eac9fda0e58f44f8207?pvs=4">이용약관</TermsLink> |{" "}
+                <TermsLink to="https://mango-marquess-cef.notion.site/c71b67f8bf0d4cda9d665d265ef86867?pvs=4">개인정보 처리방침</TermsLink> |{" "}
+                <TermsLink to="/https://mango-marquess-cef.notion.site/210b74f0a5b54a8ebb745701f866fd38">위치기반 서비스 이용약관</TermsLink>
             </Terms>
         </Block>
     );

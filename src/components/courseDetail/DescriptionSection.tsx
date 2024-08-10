@@ -4,11 +4,15 @@ import palette from "../../lib/styles/palette";
 import useToggle from "../../lib/hooks/useToggle";
 import { SectionDivider } from "../common/styles/Common";
 import Icon from "../basics/Icon";
+import {useEffect} from "react";
 
-export type DescriptionSectionProps = {};
+export type DescriptionSectionProps = {
+    courseInfo : string
+};
 
 function DescriptionSection(props: DescriptionSectionProps) {
     const [showContentsAll, toggleShowContentsAll] = useToggle(false);
+    const {courseInfo} = props;
 
     const onClickShowContentsBtn = () => toggleShowContentsAll();
 
@@ -19,10 +23,8 @@ function DescriptionSection(props: DescriptionSectionProps) {
                     <SectionTitle>소개</SectionTitle>
                 </Header>
                 <Contents contentVisible={showContentsAll}>
-                    <TestContent />
-                    <TestContent />
-                    <TestContent />
-                    <TestContent />
+                    <Content dangerouslySetInnerHTML={ {__html: courseInfo} }>
+                    </Content>
                 </Contents>
                 <BtnWrapper>
                     <ShowContentsBtn onClick={onClickShowContentsBtn}>
@@ -50,7 +52,7 @@ const Contents = styled.div<{ contentVisible: boolean }>`
     ${(props) =>
         props.contentVisible
             ? css`
-                  height: auto;
+                  height: 100%;
               `
             : css`
                   height: 400px;
@@ -61,6 +63,16 @@ const TestContent = styled.div`
     width: 100%;
     height: 400px;
     background-color: ${palette.red2};
+
+    & + & {
+        margin-top: 20px;
+    }
+`;
+
+const Content = styled.div`
+    width: 100%;
+    height: 100%;
+    background-color: ${palette.white1};
 
     & + & {
         margin-top: 20px;

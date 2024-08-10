@@ -11,11 +11,13 @@ import { copyToClipboard } from "../lib/utils";
 import Banner from "../components/courseDetail/Banner";
 import HeaderSection from "../components/courseDetail/HeaderSection";
 import PageTemplate from "../components/basics/PageTemplate";
+import {useParams} from "react-router-dom";
+import {useEffect, useState} from "react";
 
 const photo = getSampleImage();
 const course = {
     id: 10,
-    thumbnail: photo,
+    thumbnail: "https://i.ibb.co/JBCMBfZ/001.jpg",
     banners: Array(4).fill(photo),
     title: "오감으로 맛보고 느끼는 힐링, 월하보이 차와 함께 계절 다회",
     region: "부산",
@@ -24,8 +26,8 @@ const course = {
     isLiked: true,
     likes: 281,
     hostInfo: {
-        avatar: photo,
-        alias: "월하보이",
+        profileImg: photo,
+        nickname: "월하보이",
         courseCnt: 5,
         reviewCnt: 13,
         likes: 28,
@@ -97,6 +99,78 @@ const course = {
 
 function CourseDetail() {
     const [optionModalOpened, toggleOptionModalOpened] = useToggle(false);
+    const params = useParams();
+    const [courseDetail, setCourseDetail] = useState({
+        id: 10,
+        thumbnail: "https://i.ibb.co/JBCMBfZ/001.jpg",
+        banners: Array(4).fill(photo),
+        title: "오감으로 맛보고 느끼는 힐링, 월하보이 차와 함께 계절 다회",
+        region: "부산",
+        discountRate: 15,
+        price: 50000,
+        isLiked: true,
+        likes: 281,
+        content:"",
+        hostInfo: {
+            profileImg: photo,
+            nickname: "밍글무드",
+            courseCnt: 5,
+            reviewCnt: 13,
+            likes: 28,
+        },
+        rating: 4.8,
+        reviewCnt: 0,
+        reviews: [
+            {
+                photo: photo,
+                imgUrl: photo,
+                nickname: "밍글무드",
+                content: "",
+            }
+        ],
+        placeName: "월하보이",
+        address: "서울 종로구 북촌로5길 26, 1층",
+        lat: 37.3595704,
+        lng: 127.105399,
+        option: {
+            name: "성별",
+            data: [
+                {
+                    id: 1,
+                    name: "[부산] 남 (정가)",
+                    price: 49000,
+                    count: 12,
+                }
+            ],
+        },
+    });
+
+    const handleCourseDetail = async () => {
+        await new Promise((r) => setTimeout(r, 1000));
+        const response = await fetch(
+            process.env.REACT_APP_HOST + "/program/course?id=" + params.id,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        );
+
+        if (response.status === 200) {
+            const result = await response.json();
+            setCourseDetail(result);
+            //setContent(result); // 유저 정보 상태에 저장
+        } else {
+            alert("알수 없는 오류, 고객센터에 문의 주시기 바랍니다.");
+        }
+
+    };
+
+    useEffect(() => {
+        handleCourseDetail(); // 컴포넌트가 마운트될 때 유저 정보 불러오기
+    }, []);
+
 
     const {
         id,
@@ -111,9 +185,14 @@ function CourseDetail() {
         rating,
         reviewCnt,
         reviews,
-        place,
+        content,
+        lat,
+        lng,
+        address,
+        placeName,
         option,
-    } = course;
+    } = courseDetail;
+
 
     const submitData = {
         id,
@@ -144,22 +223,9 @@ function CourseDetail() {
                 hostInfo={hostInfo}
             />
             <ReviewSection reviewCnt={reviewCnt} reviews={reviews} />
-            <DescriptionSection />
+            <DescriptionSection courseInfo={content} />
             <TagsSection tags={[]} />
-            <MapSection
-                lat={place.lat}
-                lng={place.lng}
-                name={place.name}
-                address={place.address}
-            />
             <PolicySection />
-            <OptionModal
-                submitData={submitData}
-                optionName={option.name}
-                optionData={option.data}
-                visible={optionModalOpened}
-                handleClose={toggleOptionModalOpened}
-            />
             <BottomActionBar
                 isLiked={isLiked}
                 onClickApply={onClickApply}
@@ -170,3 +236,18 @@ function CourseDetail() {
 }
 
 export default CourseDetail;
+/*
+<MapSection
+                lat={lat}
+                lng={lng}
+                name={placeName}
+                address={address}
+            />
+            <OptionModal
+                submitData={submitData}
+                optionName={option.name}
+                optionData={option.data}
+                visible={optionModalOpened}
+                handleClose={toggleOptionModalOpened}
+            />
+* */

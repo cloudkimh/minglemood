@@ -6,11 +6,16 @@ import { Link } from "react-router-dom";
 import { SectionButton, SectionTitle } from "../styles";
 
 export type PhotoFeedsProps = {
-    photos: Array<string>;
+    reviews: Array<{
+        photo: string;
+        imgUrl: string;
+        nickname: string;
+        content: string;
+    }>;
 };
 
 function PhotoFeeds(props: PhotoFeedsProps) {
-    const { photos } = props;
+    const { reviews } = props;
     return (
         <Block>
             <SectionHeader
@@ -22,8 +27,8 @@ function PhotoFeeds(props: PhotoFeedsProps) {
                 }
             />
             <FeedGrid>
-                {photos.map((aPhoto, index) => (
-                    <Feed photo={aPhoto} key={index} />
+                {reviews.map((aPhoto, index) => (
+                    <Feed photo={aPhoto.imgUrl} key={index} />
                 ))}
             </FeedGrid>
         </Block>

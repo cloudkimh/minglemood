@@ -25,6 +25,30 @@ function SignUp() {
         phone: null,
     });
 
+    const handleSignup = async () => {
+        await new Promise((r) => setTimeout(r, 1000));
+
+        const response = await fetch(
+            "http://api.minglemood.city/members/sign-up",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(
+                    postUser
+                ),
+            }
+        );
+        const result = await response.json();
+
+        if (response.status === 200) {
+            alert(result);
+            console.log(result);
+            //navigate("/"); // 로그인 성공시 홈으로 이동합니다.
+        }
+    };
+
     const handleClickStartBtn = () => togglePolicyModalOpened();
 
     const handleConfirmAccountPhase = (id: string, password: string) => {
@@ -59,7 +83,7 @@ function SignUp() {
 }
 
 const Block = styled.div`
-    ${hideScrollBar}
+    ${hideScrollBar};
     position: relative;
     background-color: ${palette.white0};
     max-width: 768px;

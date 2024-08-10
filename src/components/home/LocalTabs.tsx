@@ -14,19 +14,19 @@ function LocalTabs(props: LocalTabsProps) {
         <Block>
             <SectionHeader title={<SectionTitle>로컬 찾기</SectionTitle>} />
             <TabContainer>
-                <CategoryTab image={photo}>
+                <CategoryTab image="https://i.ibb.co/3yvjDBW/country.jpg">
                     <TabName>전국</TabName>
                 </CategoryTab>
-                <CategoryTab image={photo}>
+                <CategoryTab image="https://i.ibb.co/sKpX2rM/busan.jpg">
                     <TabName>부산</TabName>
                 </CategoryTab>
-                <CategoryTab image={photo}>
+                <CategoryTab image="https://i.ibb.co/tLmmjyK/gyeongnam.jpg">
                     <TabName>경남</TabName>
                 </CategoryTab>
-                <CategoryTab image={photo}>
+                <CategoryTab image="https://i.ibb.co/HP9y39M/gyeongbuk.jpg">
                     <TabName>경북</TabName>
                 </CategoryTab>
-                <CategoryTab image={photo}>
+                <CategoryTab image="https://i.ibb.co/cvTGTt5/jeju.jpg">
                     <TabName>제주</TabName>
                 </CategoryTab>
             </TabContainer>

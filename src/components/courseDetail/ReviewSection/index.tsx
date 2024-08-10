@@ -8,9 +8,9 @@ export type ReviewSectionProps = {
     reviewCnt: number;
     reviews: Array<{
         photo: string;
-        alias: string;
-        avatar: string;
-        review: string;
+        imgUrl: string;
+        nickname: string;
+        content: string;
     }>;
 };
 
@@ -30,7 +30,7 @@ function ReviewSection(props: ReviewSectionProps) {
                     {reviews.map((aReview, i) => (
                         <ReviewCard
                             key={`review-card-${i}`}
-                            photo={aReview.photo}
+                            photo={aReview.imgUrl}
                         />
                     ))}
                 </ReviewCardContainer>
