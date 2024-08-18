@@ -3,13 +3,13 @@ import { ReactComponent as Logo } from "../assets/img/minglemood-logo.svg";
 import palette from "../lib/styles/palette";
 import { DefaultButton } from "../components/common/styles/Buttons";
 import { VerticalBar } from "../components/common/styles/Common";
-import kakaoBtnImg from "../assets/img/kakao.svg";
-import naverBtnImg from "../assets/img/naver.svg";
+import naverBtnImg from "../assets/img/kakao.svg";
+import kakaoBtnImg from "../assets/img/naver.svg";
 import { useNavigate } from "react-router-dom";
 import PageTemplate from "../components/basics/PageTemplate";
 import React, { useState } from "react";
 
-function Login() {
+function FindPassword() {
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -41,16 +41,6 @@ function Login() {
         }
     };
 
-    const handleKaKaoLogin =  () => {
-        const kakaoAuthUrl = "https://kauth.kakao.com/oauth/authorize?client_id="+process.env.REACT_APP_KAKAO_CP_CLIENT_ID+"&redirect_uri="+process.env.REACT_APP_KAKAO_CLIENT+"&response_type=code";
-        window.location.href = kakaoAuthUrl;
-    }
-
-    const handleTest =  () => {
-        const kakaoAuthUrl = "https://kauth.kakao.com/oauth/authorize?client_id="+process.env.REACT_APP_KAKAO_CP_CLIENT_ID+"&redirect_uri="+process.env.REACT_APP_KAKAO_CLIENT+"&response_type=code";
-        window.location.href = kakaoAuthUrl;
-    }
-
     return (
         <PageTemplate>
             <LogoBlock>
@@ -58,15 +48,11 @@ function Login() {
             </LogoBlock>
             <MainContainer>
                 <MainText>
-                    지금 밍글과 함께
-                    <br />
-                    여행을 시작해 보세요!
+                    비밀 번호 찾기
                 </MainText>
                 <AccountInputBlock>
                     <AccountInput type="text" placeholder="아이디(이메일)" id="username"
                                   value={username} onChange={(e) => setUsername(e.target.value)}/>
-                    <AccountInput type="password" placeholder="비밀번호"  id="password"
-                                  value={password} onChange={(e) => setPassword(e.target.value)}/>
                 </AccountInputBlock>
                 <LoginBtn
                     onClick={() => {
@@ -75,12 +61,12 @@ function Login() {
                     color={palette.red500}
                     styleType="filled"
                 >
-                    로그인
+                    비밀번호 찾기
                 </LoginBtn>
                 <ButtonGroup>
                     <TextBtn>아이디 찾기</TextBtn>
                     <StyledVerticalBar />
-                    <TextBtn onClick={() => navigate("/findPassword")}>비밀번호 찾기</TextBtn>
+                    <TextBtn>로그인 하기</TextBtn>
                     <StyledVerticalBar />
                     <TextBtn onClick={() => navigate("/sign-up")}>
                         회원가입
@@ -88,8 +74,8 @@ function Login() {
                 </ButtonGroup>
                 <SnsLoginText>SNS계정으로 로그인하기</SnsLoginText>
                 <SnsLoginBtnBlock>
-                    <SnsBtn img={kakaoBtnImg} onClick={handleKaKaoLogin}/>
-                    <SnsBtn img={naverBtnImg} onClick={handleTest} />
+                    <SnsBtn img={kakaoBtnImg} />
+                    <SnsBtn img={naverBtnImg} />
                 </SnsLoginBtnBlock>
             </MainContainer>
         </PageTemplate>
@@ -177,8 +163,6 @@ const SnsBtn = styled.button<{ img: string }>`
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    cursor:pointer;
-    z-index:10;
 `;
 
-export default Login;
+export default FindPassword;

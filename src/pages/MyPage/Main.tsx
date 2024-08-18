@@ -28,7 +28,7 @@ function Main() {
         const logintoken = localStorage.getItem('login-token');
         if (logintoken) {
             const response = await fetch(
-                "https://api.minglemood.city/members/mypage",
+                process.env.REACT_APP_HOST + "/members/mypage",
                 {
                     method: "GET",
                     headers: {
@@ -54,6 +54,15 @@ function Main() {
     useEffect(() => {
         handleMyPage(); // 컴포넌트가 마운트될 때 유저 정보 불러오기
     }, []);
+
+    function handleLogout() {
+        // LocalStorage 또는 SessionStorage에서 토큰 삭제
+        localStorage.removeItem('login-token');
+        localStorage.removeItem('refresh-token');
+
+        // 리디렉션 또는 로그아웃 페이지로 이동
+        window.location.href = '/login';
+    }
 
     // @ts-ignore
     return (
@@ -86,17 +95,17 @@ function Main() {
             <SectionDivider />
             <UserMenu title="고객센터">
                 <MenuItem
-                    to="/mypage"
+                    to="https://www.notion.so/d75a14a8bb9b4cb79542f5873fc0fb70?pvs=4"
                     icon={<Icon name="speaker" />}
                     text="공지사항"
                 />
                 <MenuItem
-                    to="/mypage"
+                    to="https://open.kakao.com/o/swfGFtzg"
                     icon={<Icon name="headphone" />}
                     text="고객센터"
                 />
                 <MenuItem
-                    to="/mypage"
+                    onClick={handleLogout} // 로그아웃 함수 연결
                     icon={<Icon name="exit" />}
                     text="로그아웃"
                 />

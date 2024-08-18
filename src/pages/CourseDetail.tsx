@@ -132,17 +132,18 @@ function CourseDetail() {
         address: "서울 종로구 북촌로5길 26, 1층",
         lat: 37.3595704,
         lng: 127.105399,
-        option: {
+        optionGroups: [{
             name: "성별",
-            data: [
+            options: [
                 {
                     id: 1,
                     name: "[부산] 남 (정가)",
                     price: 49000,
                     count: 12,
                 }
-            ],
-        },
+            ]
+            },
+        ],
     });
 
     const handleCourseDetail = async () => {
@@ -190,7 +191,7 @@ function CourseDetail() {
         lng,
         address,
         placeName,
-        option,
+        optionGroups,
     } = courseDetail;
 
 
@@ -225,6 +226,22 @@ function CourseDetail() {
             <ReviewSection reviewCnt={reviewCnt} reviews={reviews} />
             <DescriptionSection courseInfo={content} />
             <TagsSection tags={[]} />
+            <MapSection
+                lat={lat}
+                lng={lng}
+                name={placeName}
+                address={address}
+            />
+            {optionGroups.map((group, index) => (
+                <OptionModal
+                    key={index}
+                    submitData={submitData}
+                    optionName={group.name}
+                    optionData={group.options}
+                    visible={optionModalOpened}
+                    handleClose={toggleOptionModalOpened}
+                />
+            ))}
             <PolicySection />
             <BottomActionBar
                 isLiked={isLiked}
@@ -236,18 +253,5 @@ function CourseDetail() {
 }
 
 export default CourseDetail;
-/*
-<MapSection
-                lat={lat}
-                lng={lng}
-                name={placeName}
-                address={address}
-            />
-            <OptionModal
-                submitData={submitData}
-                optionName={option.name}
-                optionData={option.data}
-                visible={optionModalOpened}
-                handleClose={toggleOptionModalOpened}
-            />
-* */
+
+

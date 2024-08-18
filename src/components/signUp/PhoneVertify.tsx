@@ -11,7 +11,7 @@ import { hideSpinBtn } from "../../lib/styles/utils";
 export type PhoneVertifyProps = {
     visible: boolean;
     handleToPrevPhase: () => void;
-    handleConfirm: (name: string, phone: string) => void;
+    handleConfirm: (nickname: string, phone: string) => void;
 };
 
 function PhoneVertify(props: PhoneVertifyProps) {
@@ -64,14 +64,21 @@ function PhoneVertify(props: PhoneVertifyProps) {
         setPhone(formattedPhone);
     };
 
+    const onChangeNickName = (e: ChangeEvent<HTMLInputElement>) => {
+        const { value } = e.target;
+        if (value != undefined && value != '') {
+            setVertified(true);
+        }
+    };
+
     const onClickVertifyBtn = () => {
         setVertified(true);
     };
 
     const onClickConfirmBtn = () => {
         if (nameInputRef.current) {
-            const name = nameInputRef.current.value;
-            handleConfirm(name, phone);
+            const nickname = nameInputRef.current.value;
+            handleConfirm(nickname, phone);
         }
     };
 
@@ -86,11 +93,13 @@ function PhoneVertify(props: PhoneVertifyProps) {
             <Block>
                 <div>
                     <NameInput
-                        name="name"
+                        name="nickname"
                         type="text"
-                        placeholder="이름"
+                        placeholder="닉네임"
+                        onChange={onChangeNickName}
                         ref={nameInputRef}
                     />
+                    {/*
                     <PhoneNumBlock>
                         <PhoneNumInput
                             name="phone"
@@ -128,6 +137,7 @@ function PhoneVertify(props: PhoneVertifyProps) {
                             </VertifyBtn>
                         </VertifyNumBlock>
                     )}
+                    */}
                 </div>
                 <BottomBtn onClick={onClickConfirmBtn} disabled={!vertified}>
                     가입하기

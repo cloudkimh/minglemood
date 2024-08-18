@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 export type AccountProps = {
     visible: boolean;
-    handleToNextPhase: (id: string, password: string) => void;
+    handleToNextPhase: (username: string, password: string) => void;
 };
 
 function Account(props: AccountProps) {
@@ -73,9 +73,9 @@ function Account(props: AccountProps) {
         }
 
         if (idInputRef.current && passwordInputRef.current) {
-            const id = idInputRef.current.value;
+            const username = idInputRef.current.value;
             const password = passwordInputRef.current.value;
-            handleToNextPhase(id, password);
+            handleToNextPhase(username, password);
         }
     };
 
@@ -93,7 +93,7 @@ function Account(props: AccountProps) {
                 <InputsContainer>
                     <IdInput
                         ref={idInputRef}
-                        name="id"
+                        name="username"
                         type="text"
                         placeholder="아이디(이메일)"
                     />

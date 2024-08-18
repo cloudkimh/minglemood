@@ -14,6 +14,9 @@ import Purchase from "./pages/Purchase";
 import PhotoGallery from "./pages/PhotoGallery";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import Detail from "./pages/Detail";
+import FindPassword from "./pages/FindPassword";
+import KakaoCallback from "./pages/KaKaoCallback";
 
 function App() {
     return (
@@ -26,6 +29,7 @@ function App() {
             <Routes>
                 <Route index element={<Home />} />
                 <Route path="course/:id" element={<CourseDetail />} />
+                <Route path="detail/:id" element={<Detail />} />
                 <Route path="explore" element={<Explore />} />
                 <Route path="mypage/*" element={<MyPage />} />
                 <Route path="setting" element={<Setting />} />
@@ -34,7 +38,9 @@ function App() {
                 <Route path="purchase/:id" element={<Purchase />} />
                 <Route path="photo-gallery/:id" element={<PhotoGallery />} />
                 <Route path="login" element={<Login />} />
+                <Route path="findPassword" element={<FindPassword />} />
                 <Route path="sign-up" element={<SignUp />} />
+                <Route path="/login/oauth2/callback/kakao" element={<KakaoCallback />} />
                 {/* <Route path="*" element={<NotFoundPage />} /> */}
             </Routes>
             <Core />

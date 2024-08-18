@@ -4,16 +4,25 @@ import palette from "../../../../lib/styles/palette";
 import { ReactElement } from "react";
 
 export type MenuItemProps = {
-    to: string;
+    to?: string; // to를 선택적으로 변경
     text: string;
     icon: ReactElement;
+    onClick?: () => void;
 };
 
 function MenuItem(props: MenuItemProps) {
-    const { to, text, icon } = props;
+    const { to, text, icon, onClick } = props;
+    if (onClick) {
+        return (
+            <Block as="button" onClick={onClick}>
+                {icon}
+                {text}
+            </Block>
+        );
+    }
 
     return (
-        <Block as={Link} to={to}>
+        <Block as={Link} to={to!}> {/* to가 undefined일 수 있으므로 '!'로 확신 표시 */}
             {icon}
             {text}
         </Block>

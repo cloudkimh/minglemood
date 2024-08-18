@@ -5,7 +5,7 @@ import { useState } from "react";
 import PhotoCarousel from "../../../common/PhotoCarousel";
 
 export type DownloadPhotosProps = {
-    photos: Array<string>;
+    photos: string;  //사진 여러장일때 Array<string>
     onClickClose: () => void;
 };
 
@@ -28,15 +28,18 @@ function DownloadPhotos(props: DownloadPhotosProps) {
                         setCurrentPage(i + 1);
                     }}
                 >
-                    {photos.map((aPhoto) => (
-                        <PhotoSlide path={aPhoto} alt="피드 사진" />
-                    ))}
+                    <PhotoSlide path={photos} alt="피드 사진" />
                 </PhotoCarousel>
             </MainContainer>
         </Block>
     );
 }
 
+/**
+ * {photos.map((aPhoto) => (
+ *                         <PhotoSlide path={aPhoto} alt="피드 사진" />
+ *                     ))}
+ */
 const Block = styled.div`
     position: fixed;
     top: 0;

@@ -3,6 +3,8 @@
 <url> <loc>https://club.minglemood.city/</loc> </url>
 <url> <loc>https://club.minglemood.city/explore</loc> </url>
 <url> <loc>https://club.minglemood.city/course/:id</loc> </url>
+<url> <loc>https://club.minglemood.city/detail/:id</loc> </url>
 <url> <loc>https://club.minglemood.city/social-feeds</loc> </url>
 <url> <loc>https://club.minglemood.city/login</loc> </url>
+<url> <loc>https://club.minglemood.city/findPassword</loc> </url>
 </urlset>

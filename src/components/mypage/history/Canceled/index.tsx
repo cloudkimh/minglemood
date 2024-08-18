@@ -22,7 +22,7 @@ function Canceled() {
 
     const handleClickOrderBtn = () => toggleIsAscendingOrder();
 
-    return courseCount > 0 ? (
+    return 0 > 0 ? (
         <>
             <CardCount
                 count={courseCount}

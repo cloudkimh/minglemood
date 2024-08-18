@@ -10,7 +10,7 @@ import DownloadPhotos from "./DownloadPhoto";
 
 export type FeedProps = {
     id: number;
-    photos: Array<string>;
+    photos:  string; //Array<string>; 이미지 여러개일 경우
     timestamp: string;
     avatar: string;
     alias: string;

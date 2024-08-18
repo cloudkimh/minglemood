@@ -18,7 +18,7 @@ function Footer(props: FooterProps) {
             <Terms>
                 <TermsLink to="https://mango-marquess-cef.notion.site/dce28a6865b64eac9fda0e58f44f8207?pvs=4">이용약관</TermsLink> |{" "}
                 <TermsLink to="https://mango-marquess-cef.notion.site/c71b67f8bf0d4cda9d665d265ef86867?pvs=4">개인정보 처리방침</TermsLink> |{" "}
-                <TermsLink to="/https://mango-marquess-cef.notion.site/210b74f0a5b54a8ebb745701f866fd38">위치기반 서비스 이용약관</TermsLink>
+                <TermsLink to="https://mango-marquess-cef.notion.site/210b74f0a5b54a8ebb745701f866fd38">위치기반 서비스 이용약관</TermsLink>
             </Terms>
         </Block>
     );

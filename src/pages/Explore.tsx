@@ -56,12 +56,48 @@ function Explore() {
             [key: string]: any;
         }>
     >([]);
+    const [nearPosts, setNearPosts] = useState([{
+        id: 1,
+        thumbnail: photo,
+        region: "부산",
+        title: "테스트 제목 테스트 제목 테스트 제목 테스트 제목 테스트 제목 테스트 제목 테스트 제목 테스트 제목  ",
+        rating: 4.5,
+        reviewCnt: 1000,
+        likeCnt: 2000,
+        price: 33000,
+        discountRate: undefined,
+        isLiked: true,
+    }])
+
+    const handleCurrentLocation = async () => {
+        await new Promise((r) => setTimeout(r, 1000));
+        const response = await fetch(
+            process.env.REACT_APP_HOST + "/program/explore",
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        );
+
+        if (response.status === 200) {
+            const result = await response.json();
+            setNearPosts(result); // 유저 정보 상태에 저장
+        } else {
+            alert("알수 없는 오류, 고객센터에 문의 주시기 바랍니다.");
+        }
+
+    };
+
 
     useEffect(() => {
         const getPostsInCurrentLocation = (lat: number, lng: number) => {
             // do async
             return samplePosts;
         };
+
+        handleCurrentLocation();
 
         const response = getPostsInCurrentLocation(
             currentLocation.lat,
@@ -114,11 +150,11 @@ function Explore() {
             <SearchedPostsModal
                 visible={searchedPostsModalOpened}
                 onClose={toggleSearchedPostsModalOpened}
-                posts={posts}
+                posts={nearPosts}
             />
             <FloatBtn onClick={toggleSearchedPostsModalOpened}>
                 <ListIco />
-                모임 {posts.length}개 보기
+                모임 {nearPosts.length}개 보기
             </FloatBtn>
         </PageTemplate>
     );

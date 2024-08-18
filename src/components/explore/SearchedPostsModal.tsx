@@ -27,9 +27,9 @@ function SearchedPostsModal(props: SearchedPostsModalProps) {
                                 thumbnail={aPost.thumbnail}
                                 region={aPost.region}
                                 title={aPost.title}
-                                starScore={aPost.starScore}
-                                starCnt={aPost.starCnt}
-                                heartCnt={aPost.heartCnt}
+                                starScore={aPost.rating}
+                                starCnt={aPost.reviewCnt}
+                                heartCnt={aPost.likeCnt}
                                 price={aPost.price}
                                 isLiked={aPost.isLiked}
                                 discountRate={aPost.discountRate}

@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { ReactComponent as Logo } from "../../assets/img/minglemood-logo.svg";
 import palette from "../../lib/styles/palette";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { getSampleUser } from "../../lib/data/sampleUserData";
 import Icon from "../basics/Icon";
 import ImageWithFallback from "../basics/ImageWithFallback";
@@ -11,6 +11,11 @@ export type GnbProps = { isTransparent: boolean };
 function Gnb(props: GnbProps) {
     const { isTransparent } = props;
     const user = getSampleUser();
+    const navigate = useNavigate();
+
+    const onSearchBtnClick = () => {
+        navigate("/explore");
+    };
 
     return (
         <Block isTransparent={isTransparent}>
@@ -18,7 +23,7 @@ function Gnb(props: GnbProps) {
                 <Logo />
             </Link>
             <Container>
-                <SearchBtn>
+                <SearchBtn onClick={onSearchBtnClick}>
                     <SearchIco
                         name="magnifier"
                         color={isTransparent ? "white" : "black"}
